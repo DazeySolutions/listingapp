@@ -111,7 +111,7 @@ public class GetSellingManagerEmailLogCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerEmailLogType[] object.
    */
   public SellingManagerEmailLogType[] getSellingManagerEmailLog()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerEmailLogRequestType req;
     req = new GetSellingManagerEmailLogRequestType();

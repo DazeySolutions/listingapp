@@ -134,7 +134,7 @@ public class GetMyeBaySellingCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getMyeBaySelling()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetMyeBaySellingRequestType req;
     if (this.myeBaySellingRequest != null)

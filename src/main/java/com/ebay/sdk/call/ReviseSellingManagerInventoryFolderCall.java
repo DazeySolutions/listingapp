@@ -62,7 +62,7 @@ public class ReviseSellingManagerInventoryFolderCall extends com.ebay.sdk.ApiCal
    * @return The SellingManagerFolderDetailsType object.
    */
   public SellingManagerFolderDetailsType reviseSellingManagerInventoryFolder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseSellingManagerInventoryFolderRequestType req;
     req = new ReviseSellingManagerInventoryFolderRequestType();

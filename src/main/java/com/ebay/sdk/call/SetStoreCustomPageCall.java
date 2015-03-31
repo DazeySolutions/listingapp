@@ -59,7 +59,7 @@ public class SetStoreCustomPageCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void setStoreCustomPage()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetStoreCustomPageRequestType req;
     req = new SetStoreCustomPageRequestType();

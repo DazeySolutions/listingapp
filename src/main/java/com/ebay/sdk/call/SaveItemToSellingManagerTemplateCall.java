@@ -67,7 +67,7 @@ public class SaveItemToSellingManagerTemplateCall extends com.ebay.sdk.ApiCall
    * @return The Long object.
    */
   public Long saveItemToSellingManagerTemplate()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SaveItemToSellingManagerTemplateRequestType req;
     req = new SaveItemToSellingManagerTemplateRequestType();

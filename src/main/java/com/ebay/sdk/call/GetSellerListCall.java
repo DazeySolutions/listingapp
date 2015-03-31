@@ -178,7 +178,7 @@ public class GetSellerListCall extends com.ebay.sdk.ApiCall
    * @return The ItemType[] object.
    */
   public ItemType[] getSellerList()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerListRequestType req;
     if (this.request != null)
@@ -476,7 +476,7 @@ public class GetSellerListCall extends com.ebay.sdk.ApiCall
    * @return ItemType[]
    */
   public com.ebay.soap.eBLBaseComponents.ItemType[] getEntireSellerList()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerListRequestType req = new GetSellerListRequestType();
 

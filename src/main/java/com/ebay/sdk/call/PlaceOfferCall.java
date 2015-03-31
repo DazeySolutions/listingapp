@@ -123,7 +123,7 @@ public class PlaceOfferCall extends com.ebay.sdk.ApiCall
    * @return The SellingStatusType object.
    */
   public SellingStatusType placeOffer()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     PlaceOfferRequestType req;
     req = new PlaceOfferRequestType();

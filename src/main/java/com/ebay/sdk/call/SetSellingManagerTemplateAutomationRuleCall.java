@@ -100,7 +100,7 @@ public class SetSellingManagerTemplateAutomationRuleCall extends com.ebay.sdk.Ap
    * @return The SellingManagerAutoListType object.
    */
   public SellingManagerAutoListType setSellingManagerTemplateAutomationRule()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetSellingManagerTemplateAutomationRuleRequestType req;
     req = new SetSellingManagerTemplateAutomationRuleRequestType();

@@ -60,7 +60,7 @@ public class SetMessagePreferencesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void setMessagePreferences()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetMessagePreferencesRequestType req;
     req = new SetMessagePreferencesRequestType();

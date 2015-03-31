@@ -51,7 +51,7 @@ public class CallRetry {
    * @return List of exception names.
    */
 
-  public java.lang.Class[] getTriggerExceptions() {
+  public Class[] getTriggerExceptions() {
     return this.exceptionFilter.getTriggerExceptions();
   }
 
@@ -61,7 +61,7 @@ public class CallRetry {
    * <p>null means the call-retry will be triggered for any exception.
    * @param triggerExceptions String[]
    */
-  public void setTriggerExceptions(java.lang.Class[] triggerExceptions) {
+  public void setTriggerExceptions(Class[] triggerExceptions) {
     this.exceptionFilter.setTriggerExceptions(triggerExceptions);;
   }
 

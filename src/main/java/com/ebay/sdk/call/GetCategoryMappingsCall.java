@@ -77,7 +77,7 @@ public class GetCategoryMappingsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getCategoryMappings()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCategoryMappingsRequestType req;
     req = new GetCategoryMappingsRequestType();

@@ -131,7 +131,7 @@ public class RelistFixedPriceItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType relistFixedPriceItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     RelistFixedPriceItemRequestType req;
     req = new RelistFixedPriceItemRequestType();

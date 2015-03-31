@@ -68,7 +68,7 @@ public class GetProductFamilyMembersCall extends com.ebay.sdk.ApiCall
    * @return The ProductSearchResultType[] object.
    */
   public ProductSearchResultType[] getProductFamilyMembers()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductFamilyMembersRequestType req;
     req = new GetProductFamilyMembersRequestType();
@@ -114,7 +114,7 @@ public class GetProductFamilyMembersCall extends com.ebay.sdk.ApiCall
    * @return ProductSearchResultType[]
    */
   public ProductSearchResultType[] getProductFamilyMembers(ProductSearchType[] productSearch)
-    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductFamilyMembersRequestType req = new GetProductFamilyMembersRequestType();
     req.setProductSearch(productSearch);

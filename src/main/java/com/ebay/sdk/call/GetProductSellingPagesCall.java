@@ -92,7 +92,7 @@ public class GetProductSellingPagesCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String getProductSellingPages()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductSellingPagesRequestType req;
     req = new GetProductSellingPagesRequestType();

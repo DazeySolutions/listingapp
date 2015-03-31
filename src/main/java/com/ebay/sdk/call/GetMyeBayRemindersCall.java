@@ -66,7 +66,7 @@ public class GetMyeBayRemindersCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getMyeBayReminders()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetMyeBayRemindersRequestType req;
     req = new GetMyeBayRemindersRequestType();

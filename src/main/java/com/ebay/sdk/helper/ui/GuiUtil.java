@@ -32,12 +32,12 @@ public class GuiUtil {
      //frame.setVisible(true);
    }
 
-   public static void JListClearData(javax.swing.JList list) {
+   public static void JListClearData(JList list) {
      list.setListData(new Object[0]);
    }
 
-   public static void JListAddObject(javax.swing.JList list, Object item) {
-     javax.swing.ListModel lm = list.getModel();
+   public static void JListAddObject(JList list, Object item) {
+     ListModel lm = list.getModel();
      Object[] newList = new Object[lm.getSize() + 1];
      for(int i = 0; i < lm.getSize(); i++) {
        newList[i] = lm.getElementAt(i);
@@ -46,11 +46,11 @@ public class GuiUtil {
      list.setListData(newList);
    }
 
-   public static void JListRemoveSelectedObject(javax.swing.JList list){
+   public static void JListRemoveSelectedObject(JList list){
      Object sel = list.getSelectedValue();
      if( sel != null )
      {
-       javax.swing.ListModel lm = list.getModel();
+       ListModel lm = list.getModel();
        Object[] newList = new Object[lm.getSize() - 1];
        int cur = 0;
        for(int i = 0; i < lm.getSize(); i++) {
@@ -121,11 +121,11 @@ public class GuiUtil {
      txtTo.setText(toStr);
    }
 
-   public static boolean IsTextFieldEmpty(javax.swing.JTextField tf) {
+   public static boolean IsTextFieldEmpty(JTextField tf) {
      return (tf.getText().length() == 0);
    }
 
-   public static boolean AreAllTextFieldsFilled(javax.swing.JTextField[] tfs) {
+   public static boolean AreAllTextFieldsFilled(JTextField[] tfs) {
     for(int i = 0; i < tfs.length; i ++)
     {
       if( IsTextFieldEmpty(tfs[i]) )
@@ -181,11 +181,11 @@ public class GuiUtil {
    */
   public static boolean isTextControlFilled(javax.swing.text.JTextComponent tc,
                                       String errorMessage)
-      throws com.ebay.sdk.SdkException
+      throws SdkException
   {
     boolean b = tc.getText().length() > 0;
     if( errorMessage != null && !b )
-      throw new com.ebay.sdk.SdkException(errorMessage);
+      throw new SdkException(errorMessage);
     return b;
   }
 }

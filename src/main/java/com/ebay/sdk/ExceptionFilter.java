@@ -38,7 +38,7 @@ public class ExceptionFilter {
 
   private String[] triggerApiErrorCodes;
   private int[] triggerHTTPErrorCodes;
-  private java.lang.Class[] triggerExceptions;
+  private Class[] triggerExceptions;
 
   /**
    * Constructor.
@@ -132,7 +132,7 @@ public class ExceptionFilter {
    * @return List of exception names.
    */
 
-  public java.lang.Class[] getTriggerExceptions() {
+  public Class[] getTriggerExceptions() {
     return this.triggerExceptions;
   }
 
@@ -140,7 +140,7 @@ public class ExceptionFilter {
    * Set the list of exception names to match against. e.g., "ebay.sdk.ApiException", "java.rmi.RemoteException",
    * @param triggerExceptions String[]
    */
-  public void setTriggerExceptions(java.lang.Class[] triggerExceptions) {
+  public void setTriggerExceptions(Class[] triggerExceptions) {
     this.triggerExceptions = triggerExceptions;
   }
 
@@ -191,7 +191,7 @@ public class ExceptionFilter {
     return false;
   }
 
-  private boolean containsException(java.lang.Class[] exceptionList, java.lang.Class exception)
+  private boolean containsException(Class[] exceptionList, Class exception)
   {
     for(int i = 0; i < exceptionList.length; i++ )
     {
@@ -235,7 +235,7 @@ public class ExceptionFilter {
     if( this.triggerApiErrorCodes != null )
     {
       com.ebay.soap.eBLBaseComponents.ErrorType[] apiErrors = null;
-      if( exception instanceof com.ebay.sdk.ApiException)
+      if( exception instanceof ApiException)
       {
         ApiException ae = (ApiException) exception;
         apiErrors = ae.getErrors();

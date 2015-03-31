@@ -65,7 +65,7 @@ public class GetChallengeTokenCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String getChallengeToken()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetChallengeTokenRequestType req;
     req = new GetChallengeTokenRequestType();

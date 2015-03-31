@@ -81,7 +81,7 @@ public class GetSellingManagerInventoryCall extends com.ebay.sdk.ApiCall
    * @return The Calendar object.
    */
   public Calendar getSellingManagerInventory()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerInventoryRequestType req;
     req = new GetSellingManagerInventoryRequestType();

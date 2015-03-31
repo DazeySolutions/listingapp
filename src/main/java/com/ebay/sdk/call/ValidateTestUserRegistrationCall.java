@@ -80,7 +80,7 @@ public class ValidateTestUserRegistrationCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void validateTestUserRegistration()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ValidateTestUserRegistrationRequestType req;
     req = new ValidateTestUserRegistrationRequestType();

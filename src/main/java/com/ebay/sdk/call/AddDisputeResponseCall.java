@@ -83,7 +83,7 @@ public class AddDisputeResponseCall extends com.ebay.sdk.ApiCall
    * @return The AddDisputeResponseResponseType object.
    */
   public AddDisputeResponseResponseType addDisputeResponse()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddDisputeResponseRequestType req;
     req = new AddDisputeResponseRequestType();

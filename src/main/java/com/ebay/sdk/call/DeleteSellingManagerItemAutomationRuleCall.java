@@ -76,7 +76,7 @@ public class DeleteSellingManagerItemAutomationRuleCall extends com.ebay.sdk.Api
    * @return The SellingManagerAutoListType object.
    */
   public SellingManagerAutoListType deleteSellingManagerItemAutomationRule()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     DeleteSellingManagerItemAutomationRuleRequestType req;
     req = new DeleteSellingManagerItemAutomationRuleRequestType();

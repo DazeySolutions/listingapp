@@ -28,6 +28,10 @@ public class Book implements Serializable {
     
     @Column(name="author", columnDefinition="VARCHAR(64) NOT NULL")
     private String author;
+
+    @Column(name="hard_cover")
+    private boolean hardcover;
+
     
     public Long getId(){
         return id;
@@ -35,7 +39,14 @@ public class Book implements Serializable {
     public void setId(Long id){
         this.id = id;
     }
-    
+
+    public boolean isHardcover() {
+        return hardcover;
+    }
+    public void setHardcover(boolean hardcover) {
+        this.hardcover = hardcover;
+    }
+
     public String getTitle() {
         return title;
     }

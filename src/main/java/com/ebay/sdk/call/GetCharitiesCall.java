@@ -113,7 +113,7 @@ public class GetCharitiesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getCharities()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCharitiesRequestType req;
     if (this.overrideRequest != null)

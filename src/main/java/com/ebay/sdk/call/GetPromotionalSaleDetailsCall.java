@@ -84,7 +84,7 @@ public class GetPromotionalSaleDetailsCall extends com.ebay.sdk.ApiCall
    * @return The PromotionalSaleArrayType object.
    */
   public PromotionalSaleArrayType getPromotionalSaleDetails()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetPromotionalSaleDetailsRequestType req;
     req = new GetPromotionalSaleDetailsRequestType();

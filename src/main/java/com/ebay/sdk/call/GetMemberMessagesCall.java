@@ -116,7 +116,7 @@ public class GetMemberMessagesCall extends com.ebay.sdk.ApiCall
    * @return The MemberMessageExchangeType[] object.
    */
   public MemberMessageExchangeType[] getMemberMessages()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetMemberMessagesRequestType req;
     req = new GetMemberMessagesRequestType();

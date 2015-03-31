@@ -57,7 +57,7 @@ public class GetStorePreferencesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getStorePreferences()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetStorePreferencesRequestType req;
     req = new GetStorePreferencesRequestType();

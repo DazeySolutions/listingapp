@@ -91,7 +91,7 @@ public class GetShippingDiscountProfilesCall extends com.ebay.sdk.ApiCall
    * @return The CurrencyCodeType object.
    */
   public CurrencyCodeType getShippingDiscountProfiles()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetShippingDiscountProfilesRequestType req;
     req = new GetShippingDiscountProfilesRequestType();

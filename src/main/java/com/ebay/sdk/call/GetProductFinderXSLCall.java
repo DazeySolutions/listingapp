@@ -71,7 +71,7 @@ public class GetProductFinderXSLCall extends com.ebay.sdk.ApiCall
    * @return The XSLFileType[] object.
    */
   public XSLFileType[] getProductFinderXSL()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductFinderXSLRequestType req;
     req = new GetProductFinderXSLRequestType();

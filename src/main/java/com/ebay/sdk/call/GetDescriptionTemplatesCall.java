@@ -88,7 +88,7 @@ public class GetDescriptionTemplatesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getDescriptionTemplates()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetDescriptionTemplatesRequestType req;
     req = new GetDescriptionTemplatesRequestType();

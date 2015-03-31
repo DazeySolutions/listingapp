@@ -92,7 +92,7 @@ public class VerifyAddSecondChanceItemCall extends com.ebay.sdk.ApiCall
    * @return The VerifyAddSecondChanceItemResponseType object.
    */
   public VerifyAddSecondChanceItemResponseType verifyAddSecondChanceItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     VerifyAddSecondChanceItemRequestType req;
     req = new VerifyAddSecondChanceItemRequestType();

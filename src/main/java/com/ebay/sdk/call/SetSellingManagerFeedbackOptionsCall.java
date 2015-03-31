@@ -68,7 +68,7 @@ public class SetSellingManagerFeedbackOptionsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void setSellingManagerFeedbackOptions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetSellingManagerFeedbackOptionsRequestType req;
     req = new SetSellingManagerFeedbackOptionsRequestType();

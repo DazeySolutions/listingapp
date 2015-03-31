@@ -93,7 +93,7 @@ public class GetSellerDashboardCall extends com.ebay.sdk.ApiCall
    * @return The SearchStandingDashboardType object.
    */
   public SearchStandingDashboardType getSellerDashboard()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerDashboardRequestType req;
     req = new GetSellerDashboardRequestType();

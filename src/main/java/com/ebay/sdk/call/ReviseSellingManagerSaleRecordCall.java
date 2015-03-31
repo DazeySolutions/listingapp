@@ -124,7 +124,7 @@ public class ReviseSellingManagerSaleRecordCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void reviseSellingManagerSaleRecord()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseSellingManagerSaleRecordRequestType req;
     req = new ReviseSellingManagerSaleRecordRequestType();

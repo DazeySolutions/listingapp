@@ -72,7 +72,7 @@ public class GetProductSearchResultsCall extends com.ebay.sdk.ApiCall
    * @return The ProductSearchResultType[] object.
    */
   public ProductSearchResultType[] getProductSearchResults()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductSearchResultsRequestType req;
     req = new GetProductSearchResultsRequestType();
@@ -113,7 +113,7 @@ public class GetProductSearchResultsCall extends com.ebay.sdk.ApiCall
    * @return ProductSearchResultType[]
    */
   public ProductSearchResultType[] getProductSearchResults(ProductSearchType[] productSearch)
-    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductSearchResultsRequestType req = new GetProductSearchResultsRequestType();
     req.setProductSearch(productSearch);

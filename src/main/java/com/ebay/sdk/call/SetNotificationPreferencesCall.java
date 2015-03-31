@@ -75,7 +75,7 @@ public class SetNotificationPreferencesCall extends com.ebay.sdk.ApiCall
    * @return The SetNotificationPreferencesResponseType object.
    */
   public SetNotificationPreferencesResponseType setNotificationPreferences()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetNotificationPreferencesRequestType req;
     req = new SetNotificationPreferencesRequestType();

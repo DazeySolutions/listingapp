@@ -220,7 +220,7 @@ public class GetSellerTransactionsCall extends com.ebay.sdk.ApiCall
    * @return The TransactionType[] object.
    */
   public TransactionType[] getSellerTransactions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerTransactionsRequestType req;
     req = new GetSellerTransactionsRequestType();
@@ -433,7 +433,7 @@ public class GetSellerTransactionsCall extends com.ebay.sdk.ApiCall
    * @return TransactionType[]
    */
   public TransactionType[] getEntireSellerTransactions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     if( this.modifiedTimeFilter == null )
       throw new SdkException("TimeFilter is not set.");
@@ -450,7 +450,7 @@ public class GetSellerTransactionsCall extends com.ebay.sdk.ApiCall
    * @return TransactionType[]
    */
   public TransactionType[] getEntireSellerTransactions(TimeFilter modifiedTimeFilter)
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerTransactionsRequestType req = new GetSellerTransactionsRequestType();
 
@@ -517,7 +517,7 @@ public class GetSellerTransactionsCall extends com.ebay.sdk.ApiCall
    * @return TransactionType[]
    */
   public TransactionType[] getSellerTransactions(TimeFilter modifiedTimeFilter)
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
      this.modifiedTimeFilter = modifiedTimeFilter;
      return getSellerTransactions();

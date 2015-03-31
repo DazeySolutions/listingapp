@@ -86,7 +86,7 @@ public class GetProductSearchPageCall extends com.ebay.sdk.ApiCall
    * @return The ProductSearchPageType[] object.
    */
   public ProductSearchPageType[] getProductSearchPage()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductSearchPageRequestType req;
     req = new GetProductSearchPageRequestType();

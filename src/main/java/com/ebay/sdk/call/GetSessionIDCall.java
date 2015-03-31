@@ -66,7 +66,7 @@ public class GetSessionIDCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String getSessionID()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSessionIDRequestType req;
     req = new GetSessionIDRequestType();

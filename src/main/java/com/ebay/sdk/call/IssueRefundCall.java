@@ -111,7 +111,7 @@ public class IssueRefundCall extends com.ebay.sdk.ApiCall
    * @return The AmountType object.
    */
   public AmountType issueRefund()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     IssueRefundRequestType req;
     req = new IssueRefundRequestType();

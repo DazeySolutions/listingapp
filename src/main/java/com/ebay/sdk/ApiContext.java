@@ -35,7 +35,7 @@ public class ApiContext {
   private String epsServerUrl = null;
   private String signInUrl = null;
   private ApiCredential apiCredential = new ApiCredential();
-  private java.lang.String errorLanguage;
+  private String errorLanguage;
   private ApiLogging apiLogging = new ApiLogging();
   private CallRetry callRetry = null;
   private int totalCalls = 0;
@@ -133,7 +133,7 @@ public class ApiContext {
    * Get the language in which to return error messages.
    * @return the error language string.
    */
-  public java.lang.String getErrorLanguage() {
+  public String getErrorLanguage() {
     return errorLanguage;
   }
 
@@ -141,7 +141,7 @@ public class ApiContext {
    * Set the language in which to return error messages.
    * @param errorLanguage the error language string.
    */
-  public void setErrorLanguage(java.lang.String errorLanguage) {
+  public void setErrorLanguage(String errorLanguage) {
     this.errorLanguage = errorLanguage;
   }
 

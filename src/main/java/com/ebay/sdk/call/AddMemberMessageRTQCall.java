@@ -63,7 +63,7 @@ public class AddMemberMessageRTQCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void addMemberMessageRTQ()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddMemberMessageRTQRequestType req;
     req = new AddMemberMessageRTQRequestType();

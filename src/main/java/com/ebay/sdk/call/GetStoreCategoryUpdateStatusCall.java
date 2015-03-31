@@ -66,7 +66,7 @@ public class GetStoreCategoryUpdateStatusCall extends com.ebay.sdk.ApiCall
    * @return The TaskStatusCodeType object.
    */
   public TaskStatusCodeType getStoreCategoryUpdateStatus()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetStoreCategoryUpdateStatusRequestType req;
     req = new GetStoreCategoryUpdateStatusRequestType();

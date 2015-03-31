@@ -70,7 +70,7 @@ public class GetSuggestedCategoriesCall extends com.ebay.sdk.ApiCall
    * @return The SuggestedCategoryType[] object.
    */
   public SuggestedCategoryType[] getSuggestedCategories()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSuggestedCategoriesRequestType req;
     req = new GetSuggestedCategoriesRequestType();

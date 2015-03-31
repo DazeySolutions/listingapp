@@ -104,7 +104,7 @@ public class AddTransactionConfirmationItemCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String addTransactionConfirmationItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddTransactionConfirmationItemRequestType req;
     req = new AddTransactionConfirmationItemRequestType();

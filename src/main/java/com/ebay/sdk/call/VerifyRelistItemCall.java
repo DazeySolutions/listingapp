@@ -104,7 +104,7 @@ public class VerifyRelistItemCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String verifyRelistItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     VerifyRelistItemRequestType req;
     req = new VerifyRelistItemRequestType();

@@ -122,7 +122,7 @@ public class GetUserDisputesCall extends com.ebay.sdk.ApiCall
    * @return The GetUserDisputesResponseType object.
    */
   public GetUserDisputesResponseType getUserDisputes()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetUserDisputesRequestType req;
     req = new GetUserDisputesRequestType();

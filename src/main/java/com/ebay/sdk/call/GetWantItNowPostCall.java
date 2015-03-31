@@ -65,7 +65,7 @@ public class GetWantItNowPostCall extends com.ebay.sdk.ApiCall
    * @return The WantItNowPostType object.
    */
   public WantItNowPostType getWantItNowPost()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetWantItNowPostRequestType req;
     req = new GetWantItNowPostRequestType();

@@ -72,7 +72,7 @@ public class GetStoreOptionsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getStoreOptions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetStoreOptionsRequestType req;
     req = new GetStoreOptionsRequestType();

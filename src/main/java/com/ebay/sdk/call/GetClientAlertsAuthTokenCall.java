@@ -63,7 +63,7 @@ public class GetClientAlertsAuthTokenCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String getClientAlertsAuthToken()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetClientAlertsAuthTokenRequestType req;
     req = new GetClientAlertsAuthTokenRequestType();

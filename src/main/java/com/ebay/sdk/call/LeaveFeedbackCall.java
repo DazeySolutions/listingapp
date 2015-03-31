@@ -111,7 +111,7 @@ public class LeaveFeedbackCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void leaveFeedback()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     LeaveFeedbackRequestType req;
     req = new LeaveFeedbackRequestType();

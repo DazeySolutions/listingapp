@@ -64,7 +64,7 @@ public class AddMemberMessagesAAQToBidderCall extends com.ebay.sdk.ApiCall
    * @return The AddMemberMessagesAAQToBidderResponseContainerType[] object.
    */
   public AddMemberMessagesAAQToBidderResponseContainerType[] addMemberMessagesAAQToBidder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddMemberMessagesAAQToBidderRequestType req;
     req = new AddMemberMessagesAAQToBidderRequestType();

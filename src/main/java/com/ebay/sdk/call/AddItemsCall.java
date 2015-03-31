@@ -65,7 +65,7 @@ public class AddItemsCall extends com.ebay.sdk.ApiCall
    * @return The AddItemResponseContainerType[] object.
    */
   public AddItemResponseContainerType[] addItems()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddItemsRequestType req;
     req = new AddItemsRequestType();

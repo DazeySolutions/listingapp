@@ -124,7 +124,7 @@ public class GetAccountCall extends com.ebay.sdk.ApiCall
    * @return The AccountEntryType[] object.
    */
   public AccountEntryType[] getAccount()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetAccountRequestType req;
     req = new GetAccountRequestType();

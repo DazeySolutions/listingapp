@@ -164,7 +164,7 @@ public class GetItemCall extends com.ebay.sdk.ApiCall
    * @return The ItemType object.
    */
   public ItemType getItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetItemRequestType req;
     req = new GetItemRequestType();
@@ -383,7 +383,7 @@ public class GetItemCall extends com.ebay.sdk.ApiCall
    * @return The ItemType object if the call succeeded.
    */
   public ItemType getItem(String itemID)
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
 
     GetItemRequestType req = new GetItemRequestType();

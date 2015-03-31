@@ -65,7 +65,7 @@ public class ExtendSiteHostedPicturesCall extends com.ebay.sdk.ApiCall
    * @return The String[] object.
    */
   public String[] extendSiteHostedPictures()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ExtendSiteHostedPicturesRequestType req;
     req = new ExtendSiteHostedPicturesRequestType();

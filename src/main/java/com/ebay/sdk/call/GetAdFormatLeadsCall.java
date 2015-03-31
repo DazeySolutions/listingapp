@@ -82,7 +82,7 @@ public class GetAdFormatLeadsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getAdFormatLeads()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetAdFormatLeadsRequestType req;
     req = new GetAdFormatLeadsRequestType();

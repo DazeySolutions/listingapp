@@ -134,7 +134,7 @@ public class AttributeSet extends AttributeSetType {
 	 * @param attr
 	 *            Attribute
 	 */
-	public void add(com.ebay.sdk.attributes.model.Attribute attr) {
+	public void add(Attribute attr) {
 		AttributeType[] attrs = this.getAttribute();
 		AttributeType[] newAttrs = new AttributeType[((attrs == null) ? 0
 				: attrs.length) + 1];

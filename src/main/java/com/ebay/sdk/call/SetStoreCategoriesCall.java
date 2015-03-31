@@ -87,7 +87,7 @@ public class SetStoreCategoriesCall extends com.ebay.sdk.ApiCall
    * @return The long object.
    */
   public long setStoreCategories()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetStoreCategoriesRequestType req;
     req = new SetStoreCategoriesRequestType();

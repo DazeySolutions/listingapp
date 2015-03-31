@@ -72,7 +72,7 @@ public class GetMessagePreferencesCall extends com.ebay.sdk.ApiCall
    * @return The ASQPreferencesType object.
    */
   public ASQPreferencesType getMessagePreferences()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetMessagePreferencesRequestType req;
     req = new GetMessagePreferencesRequestType();

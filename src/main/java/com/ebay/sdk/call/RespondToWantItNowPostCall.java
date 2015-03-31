@@ -63,7 +63,7 @@ public class RespondToWantItNowPostCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void respondToWantItNowPost()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     RespondToWantItNowPostRequestType req;
     req = new RespondToWantItNowPostRequestType();

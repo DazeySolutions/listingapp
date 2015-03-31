@@ -165,7 +165,7 @@ public class VerifyAddItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType verifyAddItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     VerifyAddItemRequestType req;
     req = new VerifyAddItemRequestType();
@@ -287,7 +287,7 @@ public class VerifyAddItemCall extends com.ebay.sdk.ApiCall
    * @return FeesType The estimated fees information.
    */
   public FeesType verifyAddItem(ItemType item)
-    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+    throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     VerifyAddItemRequestType request = new VerifyAddItemRequestType();
     request.setItem(item);

@@ -113,7 +113,7 @@ public class GetWantItNowSearchResultsCall extends com.ebay.sdk.ApiCall
    * @return The WantItNowPostArrayType object.
    */
   public WantItNowPostArrayType getWantItNowSearchResults()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetWantItNowSearchResultsRequestType req;
     req = new GetWantItNowSearchResultsRequestType();

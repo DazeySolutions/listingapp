@@ -108,7 +108,7 @@ public class ReviseInventoryStatusCall extends com.ebay.sdk.ApiCall
    * @return The InventoryStatusType[] object.
    */
   public InventoryStatusType[] reviseInventoryStatus()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseInventoryStatusRequestType req;
     req = new ReviseInventoryStatusRequestType();

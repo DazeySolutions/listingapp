@@ -104,7 +104,7 @@ public class AddItemFromSellingManagerTemplateCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String addItemFromSellingManagerTemplate()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddItemFromSellingManagerTemplateRequestType req;
     req = new AddItemFromSellingManagerTemplateRequestType();

@@ -73,7 +73,7 @@ public class GetSellingManagerItemAutomationRuleCall extends com.ebay.sdk.ApiCal
    * @return The SellingManagerAutoListType object.
    */
   public SellingManagerAutoListType getSellingManagerItemAutomationRule()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerItemAutomationRuleRequestType req;
     req = new GetSellingManagerItemAutomationRuleRequestType();

@@ -119,7 +119,7 @@ public class AddFixedPriceItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType addFixedPriceItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddFixedPriceItemRequestType req;
     req = new AddFixedPriceItemRequestType();

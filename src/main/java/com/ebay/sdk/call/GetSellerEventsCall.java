@@ -191,7 +191,7 @@ public class GetSellerEventsCall extends com.ebay.sdk.ApiCall
    * @return The ItemType[] object.
    */
   public ItemType[] getSellerEvents()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerEventsRequestType req;
     req = new GetSellerEventsRequestType();

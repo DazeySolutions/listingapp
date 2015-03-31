@@ -70,7 +70,7 @@ public class SetPromotionalSaleCall extends com.ebay.sdk.ApiCall
    * @return The PromotionalSaleStatusCodeType object.
    */
   public PromotionalSaleStatusCodeType setPromotionalSale()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetPromotionalSaleRequestType req;
     req = new SetPromotionalSaleRequestType();

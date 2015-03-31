@@ -66,7 +66,7 @@ public class ValidateChallengeInputCall extends com.ebay.sdk.ApiCall
    * @return The Boolean object.
    */
   public Boolean validateChallengeInput()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ValidateChallengeInputRequestType req;
     req = new ValidateChallengeInputRequestType();

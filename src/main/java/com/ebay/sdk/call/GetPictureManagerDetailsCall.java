@@ -72,7 +72,7 @@ public class GetPictureManagerDetailsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getPictureManagerDetails()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetPictureManagerDetailsRequestType req;
     req = new GetPictureManagerDetailsRequestType();

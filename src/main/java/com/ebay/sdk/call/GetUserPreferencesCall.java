@@ -207,7 +207,7 @@ public class GetUserPreferencesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getUserPreferences()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetUserPreferencesRequestType req;
     req = new GetUserPreferencesRequestType();

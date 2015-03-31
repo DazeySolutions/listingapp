@@ -60,7 +60,7 @@ public class DeleteMyMessagesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void deleteMyMessages()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     DeleteMyMessagesRequestType req;
     req = new DeleteMyMessagesRequestType();

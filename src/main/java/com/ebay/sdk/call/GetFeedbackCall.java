@@ -127,7 +127,7 @@ public class GetFeedbackCall extends com.ebay.sdk.ApiCall
    * @return The FeedbackDetailType[] object.
    */
   public FeedbackDetailType[] getFeedback()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetFeedbackRequestType req;
     req = new GetFeedbackRequestType();

@@ -105,7 +105,7 @@ public class GetMyMessagesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getMyMessages()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetMyMessagesRequestType req;
     req = new GetMyMessagesRequestType();

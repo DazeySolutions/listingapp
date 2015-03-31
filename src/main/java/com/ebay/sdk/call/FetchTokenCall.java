@@ -77,7 +77,7 @@ public class FetchTokenCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String fetchToken()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     FetchTokenRequestType req;
     req = new FetchTokenRequestType();

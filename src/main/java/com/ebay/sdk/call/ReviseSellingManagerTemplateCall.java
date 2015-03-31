@@ -140,7 +140,7 @@ public class ReviseSellingManagerTemplateCall extends com.ebay.sdk.ApiCall
    * @return The Long object.
    */
   public Long reviseSellingManagerTemplate()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseSellingManagerTemplateRequestType req;
     req = new ReviseSellingManagerTemplateRequestType();

@@ -138,7 +138,7 @@ public class GetCategoriesCall extends com.ebay.sdk.ApiCall
    * @return The CategoryType[] object.
    */
   public CategoryType[] getCategories()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCategoriesRequestType req;
     req = new GetCategoriesRequestType();
@@ -336,7 +336,7 @@ public class GetCategoriesCall extends com.ebay.sdk.ApiCall
 /**
    * No longer supported - do not use.
    */
-  public void setMinimumReservePrice(java.lang.Double minimumReservePrice) {
+  public void setMinimumReservePrice(Double minimumReservePrice) {
       this.minimumReservePrice = minimumReservePrice;
   }
 /**

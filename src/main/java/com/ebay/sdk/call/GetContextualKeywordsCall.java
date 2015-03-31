@@ -66,7 +66,7 @@ public class GetContextualKeywordsCall extends com.ebay.sdk.ApiCall
    * @return The ContextSearchAssetType[] object.
    */
   public ContextSearchAssetType[] getContextualKeywords()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetContextualKeywordsRequestType req;
     req = new GetContextualKeywordsRequestType();

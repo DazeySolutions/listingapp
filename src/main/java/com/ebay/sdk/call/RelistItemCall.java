@@ -120,7 +120,7 @@ public class RelistItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType relistItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     RelistItemRequestType req;
     req = new RelistItemRequestType();

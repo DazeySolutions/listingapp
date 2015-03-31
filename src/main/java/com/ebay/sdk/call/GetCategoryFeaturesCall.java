@@ -143,7 +143,7 @@ public class GetCategoryFeaturesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getCategoryFeatures()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCategoryFeaturesRequestType req;
     req = new GetCategoryFeaturesRequestType();

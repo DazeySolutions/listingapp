@@ -71,7 +71,7 @@ public class SellerReverseDisputeCall extends com.ebay.sdk.ApiCall
    * @return The SellerReverseDisputeResponseType object.
    */
   public SellerReverseDisputeResponseType sellerReverseDispute()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SellerReverseDisputeRequestType req;
     req = new SellerReverseDisputeRequestType();

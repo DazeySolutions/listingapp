@@ -210,7 +210,7 @@ public class ReviseItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType reviseItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseItemRequestType req;
     req = new ReviseItemRequestType();

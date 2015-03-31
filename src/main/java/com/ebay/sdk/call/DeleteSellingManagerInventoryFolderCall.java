@@ -60,7 +60,7 @@ public class DeleteSellingManagerInventoryFolderCall extends com.ebay.sdk.ApiCal
    * @return The void object.
    */
   public void deleteSellingManagerInventoryFolder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     DeleteSellingManagerInventoryFolderRequestType req;
     req = new DeleteSellingManagerInventoryFolderRequestType();

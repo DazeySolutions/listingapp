@@ -76,7 +76,7 @@ public class GetUserCall extends com.ebay.sdk.ApiCall
    * @return The UserType object.
    */
   public UserType getUser()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetUserRequestType req;
     req = new GetUserRequestType();

@@ -75,7 +75,7 @@ public class GetCrossPromotionsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getCrossPromotions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCrossPromotionsRequestType req;
     req = new GetCrossPromotionsRequestType();

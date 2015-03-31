@@ -194,7 +194,7 @@ public class GetItemTransactionsCall extends com.ebay.sdk.ApiCall
    * @return The TransactionType[] object.
    */
   public TransactionType[] getItemTransactions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetItemTransactionsRequestType req;
     req = new GetItemTransactionsRequestType();
@@ -433,7 +433,7 @@ public class GetItemTransactionsCall extends com.ebay.sdk.ApiCall
    * @return TransactionType[]
    */
   public TransactionType[] getEntireItemTransactions()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     if( this.itemID == null )
       throw new SdkException("ItemID is not set.");
@@ -452,7 +452,7 @@ public class GetItemTransactionsCall extends com.ebay.sdk.ApiCall
    * @return TransactionType[]
    */
   public TransactionType[] getItemTransactions(String itemID, TimeFilter modifiedTimeFilter)
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetItemTransactionsRequestType req = new GetItemTransactionsRequestType();
 

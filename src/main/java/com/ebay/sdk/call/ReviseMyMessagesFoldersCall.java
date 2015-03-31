@@ -77,7 +77,7 @@ public class ReviseMyMessagesFoldersCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void reviseMyMessagesFolders()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseMyMessagesFoldersRequestType req;
     req = new ReviseMyMessagesFoldersRequestType();

@@ -168,7 +168,7 @@ public class GetSellerPaymentsCall extends com.ebay.sdk.ApiCall
    * @return The SellerPaymentType[] object.
    */
   public SellerPaymentType[] getSellerPayments()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellerPaymentsRequestType req;
     req = new GetSellerPaymentsRequestType();

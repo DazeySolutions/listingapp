@@ -423,9 +423,9 @@ public class GetAttributesCSCall extends com.ebay.sdk.ApiCall
     * @throws IOException
     * @return String
     */
-   public static String getDefaultStyleXsl() throws java.io.IOException
+   public static String getDefaultStyleXsl() throws IOException
   {
-    java.io.InputStream strm = GetAttributesCSCall.class.getResourceAsStream("Attributes_Style.xsl");
+    InputStream strm = GetAttributesCSCall.class.getResourceAsStream("Attributes_Style.xsl");
     return eBayUtil.convertInputStreamToString(strm);
   }
 /**

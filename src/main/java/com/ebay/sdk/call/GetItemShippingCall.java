@@ -94,7 +94,7 @@ public class GetItemShippingCall extends com.ebay.sdk.ApiCall
    * @return The ShippingDetailsType object.
    */
   public ShippingDetailsType getItemShipping()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetItemShippingRequestType req;
     req = new GetItemShippingRequestType();

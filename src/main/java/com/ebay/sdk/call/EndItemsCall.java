@@ -60,7 +60,7 @@ public class EndItemsCall extends com.ebay.sdk.ApiCall
    * @return The EndItemResponseContainerType[] object.
    */
   public EndItemResponseContainerType[] endItems()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     EndItemsRequestType req;
     req = new EndItemsRequestType();

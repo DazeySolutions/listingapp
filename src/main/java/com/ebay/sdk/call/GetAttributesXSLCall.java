@@ -73,7 +73,7 @@ public class GetAttributesXSLCall extends com.ebay.sdk.ApiCall
    * @return The XSLFileType[] object.
    */
   public XSLFileType[] getAttributesXSL()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetAttributesXSLRequestType req;
     req = new GetAttributesXSLRequestType();

@@ -95,7 +95,7 @@ public class AddSecondChanceItemCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String addSecondChanceItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddSecondChanceItemRequestType req;
     req = new AddSecondChanceItemRequestType();
@@ -222,7 +222,7 @@ public class AddSecondChanceItemCall extends com.ebay.sdk.ApiCall
    * @return FeesType
    */
   public void verifyAddSecondChanceItem() throws com.ebay.sdk.ApiException,
-     com.ebay.sdk.SdkException, java.lang.Exception
+     com.ebay.sdk.SdkException, Exception
   {
     VerifyAddSecondChanceItemRequestType req = new VerifyAddSecondChanceItemRequestType();
 

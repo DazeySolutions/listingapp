@@ -98,7 +98,7 @@ public class GetCategory2CSCall extends com.ebay.sdk.ApiCall
    * @return The CategoryType[] object.
    */
   public CategoryType[] getCategory2CS()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCategory2CSRequestType req;
     req = new GetCategory2CSRequestType();

@@ -230,7 +230,7 @@ public class GetCategorySpecificsCall extends com.ebay.sdk.ApiCall
    * @return The RecommendationsType[] object.
    */
   public RecommendationsType[] getCategorySpecifics()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetCategorySpecificsRequestType req;
     req = new GetCategorySpecificsRequestType();

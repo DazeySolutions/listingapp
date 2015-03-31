@@ -300,7 +300,7 @@ public class ApiCall {
 
   private AbstractResponseType callSOAP(
 		  EBayAPIInterface api, String apiName, AbstractRequestType request)
-  throws java.lang.Exception
+  throws Exception
   {
     Object objRet = null;
     java.lang.reflect.Method method;
@@ -308,7 +308,7 @@ public class ApiCall {
     try {
       // Method name has the first char to be lower case.
       StringBuffer sb = new StringBuffer(apiName);
-      sb.setCharAt(0, java.lang.Character.toLowerCase(sb.charAt(0)));
+      sb.setCharAt(0, Character.toLowerCase(sb.charAt(0)));
 
       method = api.getClass().getMethod(sb.toString(),
                                            new Class[] {request.getClass()});
@@ -516,11 +516,11 @@ public class ApiCall {
 	        {	
 		          if( e instanceof java.lang.reflect.InvocationTargetException )
 		          {
-		            java.lang.Throwable trb = ( (java.lang.reflect.InvocationTargetException) e).
+		            Throwable trb = ( (java.lang.reflect.InvocationTargetException) e).
 		                getTargetException();
 	                    // 7/16/2006 JMW
 	                    //trb.printStackTrace();
-		            if( trb instanceof java.lang.Exception )
+		            if( trb instanceof Exception )
 		              e = (Exception)trb;
 		            else
 		              e = new SdkException(trb);
@@ -560,7 +560,7 @@ public class ApiCall {
 	        }
 	      } while (callException != null && retries <= maxRetries);
 	    }
-	    catch (java.lang.Exception e)
+	    catch (Exception e)
 	    {
 	      if( e instanceof java.lang.reflect.InvocationTargetException )
 	      {

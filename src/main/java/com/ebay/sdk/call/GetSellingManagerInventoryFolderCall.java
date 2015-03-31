@@ -71,7 +71,7 @@ public class GetSellingManagerInventoryFolderCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerFolderDetailsType object.
    */
   public SellingManagerFolderDetailsType getSellingManagerInventoryFolder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerInventoryFolderRequestType req;
     req = new GetSellingManagerInventoryFolderRequestType();

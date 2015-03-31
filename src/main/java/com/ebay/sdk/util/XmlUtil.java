@@ -255,7 +255,7 @@ public abstract class XmlUtil {
    * @param value String
    * @return Element
    */
-  public static Element appendChildNode(Document doc, String namespace, org.w3c.dom.Node parent, String name, String value)
+  public static Element appendChildNode(Document doc, String namespace, Node parent, String name, String value)
   {
     Element child = doc.createElementNS(namespace, name);
     child.appendChild(doc.createTextNode(value));
@@ -463,7 +463,7 @@ public abstract class XmlUtil {
   {
       if(nodeName.equals(node.getNodeName()))
           return node;
-      org.w3c.dom.NodeList children = node.getChildNodes();
+      NodeList children = node.getChildNodes();
       for(int i=0;i<children.getLength();i++){
           Node ret = findNode(children.item(i), nodeName);
           if(ret != null)
@@ -480,7 +480,7 @@ public abstract class XmlUtil {
    */
   public static Node getChildByName(Node node, String nodeName)
   {
-    org.w3c.dom.NodeList children = node.getChildNodes();
+    NodeList children = node.getChildNodes();
     for(int i=0; i < children.getLength();i++)
     {
       Node c = children.item(i);
@@ -568,7 +568,7 @@ public abstract class XmlUtil {
     TransformerFactory xformFactory = TransformerFactory.newInstance();
     Transformer transformer = xformFactory.newTransformer(xslSrc);
 
-    java.io.StringWriter sw = new java.io.StringWriter();
+    StringWriter sw = new StringWriter();
     StreamResult outXml = new StreamResult(sw);
 
     transformer.transform(source, outXml);

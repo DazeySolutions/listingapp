@@ -62,7 +62,7 @@ public class DeleteSellingManagerProductCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerProductDetailsType object.
    */
   public SellingManagerProductDetailsType deleteSellingManagerProduct()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     DeleteSellingManagerProductRequestType req;
     req = new DeleteSellingManagerProductRequestType();

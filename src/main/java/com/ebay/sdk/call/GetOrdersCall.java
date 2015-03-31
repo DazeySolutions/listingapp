@@ -198,7 +198,7 @@ public class GetOrdersCall extends com.ebay.sdk.ApiCall
    * @return The OrderType[] object.
    */
   public OrderType[] getOrders()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetOrdersRequestType req;
     req = new GetOrdersRequestType();

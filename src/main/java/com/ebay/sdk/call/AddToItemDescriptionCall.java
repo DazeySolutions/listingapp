@@ -65,7 +65,7 @@ public class AddToItemDescriptionCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void addToItemDescription()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddToItemDescriptionRequestType req;
     req = new AddToItemDescriptionRequestType();

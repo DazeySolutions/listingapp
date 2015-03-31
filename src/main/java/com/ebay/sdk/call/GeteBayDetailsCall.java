@@ -276,7 +276,7 @@ public class GeteBayDetailsCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void geteBayDetails()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GeteBayDetailsRequestType req;
     req = new GeteBayDetailsRequestType();

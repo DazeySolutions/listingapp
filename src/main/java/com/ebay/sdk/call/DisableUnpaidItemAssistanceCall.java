@@ -85,7 +85,7 @@ public class DisableUnpaidItemAssistanceCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void disableUnpaidItemAssistance()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     DisableUnpaidItemAssistanceRequestType req;
     req = new DisableUnpaidItemAssistanceRequestType();

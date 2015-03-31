@@ -100,7 +100,7 @@ public class ReviseMyMessagesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void reviseMyMessages()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseMyMessagesRequestType req;
     req = new ReviseMyMessagesRequestType();

@@ -78,7 +78,7 @@ public class ReviseSellingManagerProductCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerProductDetailsType object.
    */
   public SellingManagerProductDetailsType reviseSellingManagerProduct()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseSellingManagerProductRequestType req;
     req = new ReviseSellingManagerProductRequestType();

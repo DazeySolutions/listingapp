@@ -28,5 +28,5 @@ public interface SendApiRequestListener extends java.util.EventListener {
    * @param request AbstractRequestType The request object to be sent.
    * @throws SdkException
    */
-  void FilterApiRequest(AbstractRequestType request) throws com.ebay.sdk.SdkException;
+  void FilterApiRequest(AbstractRequestType request) throws SdkException;
 }

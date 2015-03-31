@@ -141,7 +141,7 @@ public class AddItemCall extends com.ebay.sdk.ApiCall
    * @return The FeesType object.
    */
   public FeesType addItem()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddItemRequestType req;
     req = new AddItemRequestType();

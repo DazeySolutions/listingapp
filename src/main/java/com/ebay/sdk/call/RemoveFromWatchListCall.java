@@ -74,7 +74,7 @@ public class RemoveFromWatchListCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void removeFromWatchList()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     RemoveFromWatchListRequestType req;
     req = new RemoveFromWatchListRequestType();

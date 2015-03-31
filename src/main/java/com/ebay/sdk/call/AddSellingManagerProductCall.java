@@ -70,7 +70,7 @@ public class AddSellingManagerProductCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerProductDetailsType object.
    */
   public SellingManagerProductDetailsType addSellingManagerProduct()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddSellingManagerProductRequestType req;
     req = new AddSellingManagerProductRequestType();

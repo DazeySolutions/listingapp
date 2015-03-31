@@ -180,7 +180,7 @@ public class CompleteSaleCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void completeSale()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     CompleteSaleRequestType req;
     req = new CompleteSaleRequestType();

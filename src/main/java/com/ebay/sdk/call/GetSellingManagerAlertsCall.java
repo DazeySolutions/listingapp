@@ -61,7 +61,7 @@ public class GetSellingManagerAlertsCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerAlertType[] object.
    */
   public SellingManagerAlertType[] getSellingManagerAlerts()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerAlertsRequestType req;
     req = new GetSellingManagerAlertsRequestType();

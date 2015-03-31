@@ -55,7 +55,7 @@ public class GeteBayOfficialTimeCall extends com.ebay.sdk.ApiCall
    * @return The java.util.Calendar object.
    */
   public java.util.Calendar geteBayOfficialTime()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GeteBayOfficialTimeRequestType req;
     req = new GeteBayOfficialTimeRequestType();

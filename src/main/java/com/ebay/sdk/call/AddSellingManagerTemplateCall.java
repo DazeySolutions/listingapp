@@ -98,7 +98,7 @@ public class AddSellingManagerTemplateCall extends com.ebay.sdk.ApiCall
    * @return The Long object.
    */
   public Long addSellingManagerTemplate()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddSellingManagerTemplateRequestType req;
     req = new AddSellingManagerTemplateRequestType();

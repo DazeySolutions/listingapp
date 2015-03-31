@@ -116,7 +116,7 @@ public class GetProductFinderCall extends com.ebay.sdk.ApiCall
    * @return The String object.
    */
   public String getProductFinder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetProductFinderRequestType req;
     req = new GetProductFinderRequestType();

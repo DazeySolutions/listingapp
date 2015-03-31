@@ -58,7 +58,7 @@ public class RevokeTokenCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void revokeToken()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     RevokeTokenRequestType req;
     req = new RevokeTokenRequestType();

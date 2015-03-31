@@ -69,7 +69,7 @@ public class GetSellingManagerTemplatesCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerTemplateDetailsArrayType object.
    */
   public SellingManagerTemplateDetailsArrayType getSellingManagerTemplates()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerTemplatesRequestType req;
     req = new GetSellingManagerTemplatesRequestType();

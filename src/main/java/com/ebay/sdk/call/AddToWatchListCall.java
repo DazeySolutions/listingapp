@@ -77,7 +77,7 @@ public class AddToWatchListCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void addToWatchList()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddToWatchListRequestType req;
     req = new AddToWatchListRequestType();

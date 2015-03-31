@@ -66,7 +66,7 @@ public class AddSellingManagerInventoryFolderCall extends com.ebay.sdk.ApiCall
    * @return The Long object.
    */
   public Long addSellingManagerInventoryFolder()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     AddSellingManagerInventoryFolderRequestType req;
     req = new AddSellingManagerInventoryFolderRequestType();

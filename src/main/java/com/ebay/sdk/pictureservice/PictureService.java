@@ -53,7 +53,7 @@ public interface PictureService {
 	   * for detailed error information.
 	   */
 	  boolean uploadPicture(PhotoDisplayCodeType option,
-	  		PictureInfo picInfo);
+							PictureInfo picInfo);
 
 	  /**
 	   * Upload list of picture files to EPS server.

@@ -221,7 +221,7 @@ public class ReviseCheckoutStatusCall extends com.ebay.sdk.ApiCall
    * @return The ReviseCheckoutStatusResponseType object.
    */
   public ReviseCheckoutStatusResponseType reviseCheckoutStatus()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     ReviseCheckoutStatusRequestType req;
     req = new ReviseCheckoutStatusRequestType();

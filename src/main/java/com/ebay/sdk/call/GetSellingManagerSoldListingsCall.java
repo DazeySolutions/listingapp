@@ -85,7 +85,7 @@ public class GetSellingManagerSoldListingsCall extends com.ebay.sdk.ApiCall
    * @return The SellingManagerSoldOrderType[] object.
    */
   public SellingManagerSoldOrderType[] getSellingManagerSoldListings()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetSellingManagerSoldListingsRequestType req;
     req = new GetSellingManagerSoldListingsRequestType();

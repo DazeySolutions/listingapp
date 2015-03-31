@@ -72,7 +72,7 @@ public class GetVeROReasonCodeDetailsCall extends com.ebay.sdk.ApiCall
    * @return The VeROReasonCodeDetailsType object.
    */
   public VeROReasonCodeDetailsType getVeROReasonCodeDetails()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetVeROReasonCodeDetailsRequestType req;
     req = new GetVeROReasonCodeDetailsRequestType();

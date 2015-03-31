@@ -57,7 +57,7 @@ public class SetTaxTableCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void setTaxTable()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetTaxTableRequestType req;
     req = new SetTaxTableRequestType();

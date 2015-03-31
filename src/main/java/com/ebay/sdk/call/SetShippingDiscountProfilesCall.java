@@ -105,7 +105,7 @@ public class SetShippingDiscountProfilesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void setShippingDiscountProfiles()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     SetShippingDiscountProfilesRequestType req;
     req = new SetShippingDiscountProfilesRequestType();

@@ -59,7 +59,7 @@ public class GetApiAccessRulesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getApiAccessRules()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetApiAccessRulesRequestType req;
     req = new GetApiAccessRulesRequestType();

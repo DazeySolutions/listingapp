@@ -70,7 +70,7 @@ public class GetPromotionRulesCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getPromotionRules()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetPromotionRulesRequestType req;
     req = new GetPromotionRulesRequestType();

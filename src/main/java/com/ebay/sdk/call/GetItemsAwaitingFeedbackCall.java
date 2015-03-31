@@ -68,7 +68,7 @@ public class GetItemsAwaitingFeedbackCall extends com.ebay.sdk.ApiCall
    * @return The void object.
    */
   public void getItemsAwaitingFeedback()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetItemsAwaitingFeedbackRequestType req;
     req = new GetItemsAwaitingFeedbackRequestType();

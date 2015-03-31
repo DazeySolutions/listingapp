@@ -57,7 +57,7 @@ public class GetTokenStatusCall extends com.ebay.sdk.ApiCall
    * @return The TokenStatusType object.
    */
   public TokenStatusType getTokenStatus()
-      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, java.lang.Exception
+      throws com.ebay.sdk.ApiException, com.ebay.sdk.SdkException, Exception
   {
     GetTokenStatusRequestType req;
     req = new GetTokenStatusRequestType();

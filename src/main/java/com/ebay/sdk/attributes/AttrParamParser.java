@@ -305,10 +305,10 @@ abstract class AttrParamParser
       return ValueTypes.Text;
   }
 
-  private static com.ebay.sdk.attributes.model.Attribute ExtractAttr(AttrInfo info)
+  private static Attribute ExtractAttr(AttrInfo info)
   {
     Value val = null;
-    com.ebay.sdk.attributes.model.Attribute attr = new com.ebay.sdk.attributes.model.Attribute();
+    Attribute attr = new Attribute();
     attr.setAttributeID(Integer.parseInt(info.attrId));
     attr.setType(info.typeId);
 
@@ -354,9 +354,9 @@ abstract class AttrParamParser
     return attr;
   }
 
-  private static com.ebay.sdk.attributes.model.Attribute ExtractAttr2(AttrInfo info1, AttrInfo info2)
+  private static Attribute ExtractAttr2(AttrInfo info1, AttrInfo info2)
   {
-    com.ebay.sdk.attributes.model.Attribute attr = new com.ebay.sdk.attributes.model.Attribute();
+    Attribute attr = new Attribute();
     //IValueList list = new ValueList();
     //attr.ValueList = list;
     attr.setAttributeID(Integer.parseInt(info1.attrId));
@@ -371,10 +371,10 @@ abstract class AttrParamParser
     return attr;
   }
 
-  private static com.ebay.sdk.attributes.model.Attribute ExtractAttr(AttrInfo [] infos)
+  private static Attribute ExtractAttr(AttrInfo [] infos)
   {
     Value val = null;
-    com.ebay.sdk.attributes.model.Attribute attr = new com.ebay.sdk.attributes.model.Attribute();
+    Attribute attr = new Attribute();
     attr.setAttributeID(Integer.parseInt(infos[0].attrId));
     //IValueList list = new ValueList();
     //attr.ValueList = list;
