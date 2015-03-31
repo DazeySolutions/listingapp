@@ -33,7 +33,7 @@ public class Listing implements Serializable{
     private int ebayCondition;
 
     @Column(name="amazon_condition")
-    private int amzCondition
+    private int amzCondition;
 
     @Column(name="amazon_price")
     private Double amzPrice;
