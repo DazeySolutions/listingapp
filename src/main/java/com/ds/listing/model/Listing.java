@@ -41,6 +41,17 @@ public class Listing implements Serializable{
     @OneToMany(mappedBy = "owner")
     private List<NameValuePair> nvps;
 
+    private boolean dustJacket;
+    private boolean bookClub;
+    private boolean firstEdition;
+    private boolean firstPrinting;
+    private boolean illustrated;
+    
+    private int category;
+    private int storeCategory;
+    
+    private int quantity;
+
     @Lob
     private String ebayDescription;
 
