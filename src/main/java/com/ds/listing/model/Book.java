@@ -35,11 +35,11 @@ public class Book implements Serializable {
     @Column(name="hard_cover")
     private boolean hardcover;
     
-    private Double depth;
-    private Double height;
-    private Double width;
-    private Double weightMajor;
-    private Double weightMinor;
+    private BigDecimal depth;
+    private BigDecimal height;
+    private BigDecimal width;
+    private BigDecimal weightMajor;
+    private BigDecimal weightMinor;
     
     private Date publishDate;
     
