@@ -17,7 +17,7 @@ public class Listing implements Serializable{
     @Column(name="listing_id")
     private Long id;
 
-    @OneToOne(mappedBy = "book_id", fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private Book book;
 
     @Column(name="ebay_title", columnDefinition = "varchar(80) NOT NULL")
