@@ -23,6 +23,9 @@ public class Book implements Serializable {
     @Column(name="isbn", columnDefinition="VARCHAR(13) NOT NULL")
     private String isbn;
     
+    @Column(name="asin", columnDefinition="VARCHAR(26) NOT NULL")
+    private String asin;
+    
     @Column(name="title", columnDefinition="VARCHAR(256) NOT NULL")
     private String title;
     
@@ -31,7 +34,17 @@ public class Book implements Serializable {
 
     @Column(name="hard_cover")
     private boolean hardcover;
-
+    
+    private Double depth;
+    private Double height;
+    private Double width;
+    private Double weightMajor;
+    private Double weightMinor;
+    
+    private Date publishDate;
+    
+    @Lob
+    private String imageUrl;
     
     public Long getId(){
         return id;
