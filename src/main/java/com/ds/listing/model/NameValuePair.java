@@ -20,7 +20,7 @@ public class NameValuePair implements Serializable{
     private String value;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="OWNER_ID")
+    @JoinColumn(name="owner")
     private Listing owner;
 
     public Listing getOwner() {

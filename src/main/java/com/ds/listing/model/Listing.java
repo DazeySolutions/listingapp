@@ -38,7 +38,7 @@ public class Listing implements Serializable{
     @Column(name="amazon_price")
     private Double amzPrice;
 
-    @OneToMany(mappedBy = "nvp_id")
+    @OneToMany(mappedBy = "owner")
     private List<NameValuePair> nvps;
 
     @Lob
