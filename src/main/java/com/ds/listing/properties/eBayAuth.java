@@ -24,7 +24,7 @@ public class eBayAuth {
         setupContext();
     }
 
-    public ApiContext getApiContenxt(){
+    public ApiContext getApiContext(){
         if(_apiContext == null){
             setupContext();
         }
