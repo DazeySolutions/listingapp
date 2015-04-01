@@ -13,11 +13,16 @@ import java.util.ArrayList;
  * Created by bithack on 3/31/15.
  */
 public class eBayListingService {
+    private ApiContext apiContext;
+    
+    public eBayListingService(ApiContext apiContext){
+        this.apiContext = apiContext;
+    }
 
     public boolean addListing(Listing listing){
         try {
             ItemType item = buildItemType(listing);
-            AddFixedPriceItemCall api = new AddFixedPriceItemCall(eBayAuth.getInstance().getApiContenxt());
+            AddFixedPriceItemCall api = new AddFixedPriceItemCall(apiContext);
             api.setItem(item);
 
             FeesType fees = api.addFixedPriceItem();
