@@ -6,6 +6,7 @@ import com.ds.listing.properties.eBayAuth;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
+import com.ebay.sdk.ApiContext;
 
 import java.util.ArrayList;
 
