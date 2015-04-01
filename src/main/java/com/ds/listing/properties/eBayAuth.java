@@ -21,7 +21,7 @@ public class eBayAuth {
         Random randomGenerator = new Random();
         _version = randomGenerator.nextInt(1000000);
         System.out.println("eBay Auth: ID# "+ Integer.toString(_version));
-        setupContext()
+        setupContext();
     }
 
     public ApiContext getApiContenxt(){
