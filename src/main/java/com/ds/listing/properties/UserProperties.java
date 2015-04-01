@@ -2,7 +2,7 @@ package com.ds.listing.properties;
 
 import java.io.IOException;
 import java.util.Properties;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.annotation.PostConstruct;
 
 /**
