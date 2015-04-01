@@ -30,6 +30,10 @@ public class eBayAuth {
         }
         return _apiContext;
     }
+    
+    public String getVersion(){
+        return "V - " + Integer.toString(_version);
+    }
 
     private void setupContext(){
         _apiContext = new ApiContext();
