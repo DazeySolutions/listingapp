@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 
 /**
  * Startup
@@ -15,11 +16,17 @@ import javax.ejb.Startup;
 @Singleton
 @Startup
 public class runListingApp {
+    @Inject
+    private UserProperties props;
+    
+    @Inject
+    private eBayAuth auth;
+    
     @PostConstruct
     private void startup() {
         System.out.println("Setting up server");
-        UserProperties.getInstance();
-        eBayAuth.getInstance().getApiContenxt();
+        System.out.println(props.getValue("ebaytoken"));
+        System.out.println(auth.getVersion());
         System.out.println("Server Started");
 
     }
