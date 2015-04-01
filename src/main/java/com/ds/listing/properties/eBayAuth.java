@@ -3,7 +3,7 @@ package com.ds.listing.properties;
 import com.ebay.sdk.ApiContext;
 import com.ebay.sdk.ApiCredential;
 import java.util.Random;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.annotation.PostConstruct;
 
 /**
