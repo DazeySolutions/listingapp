@@ -5,6 +5,7 @@ import com.ebay.sdk.ApiCredential;
 import java.util.Random;
 import javax.ejb.Singleton;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * ebay auth credentials
@@ -15,6 +16,9 @@ public class eBayAuth {
     
     private ApiContext _apiContext = null;
     private int _version = 0;
+
+    @Inject
+    private UserProperties props;
 
     @PostConstruct
     private void init(){
@@ -38,8 +42,8 @@ public class eBayAuth {
     private void setupContext(){
         _apiContext = new ApiContext();
         ApiCredential cred = _apiContext.getApiCredential();
-        cred.seteBayToken(UserProperties.getInstance().getValue("ebaytoken"));
-        _apiContext.setApiServerUrl(UserProperties.getInstance().getValue("ebaysoapurl"));
+        cred.seteBayToken(props.getValue("ebaytoken"));
+        _apiContext.setApiServerUrl(props.getValue("ebaysoapurl"));
     }
     
 
