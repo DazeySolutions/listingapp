@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
  * ebay auth credentials
  * Created by bithack on 3/31/15.
  */
- @Singleton
+@Singleton
 public class eBayAuth {
     
     private ApiContext _apiContext = null;
