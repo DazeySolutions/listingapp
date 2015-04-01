@@ -17,6 +17,8 @@ public class Listing implements Serializable{
     @Column(name="listing_id")
     private Long id;
 
+    private String ebayListingId;
+
     @OneToOne(fetch = FetchType.EAGER)
     private Book book;
 
@@ -46,9 +48,11 @@ public class Listing implements Serializable{
     private boolean firstEdition;
     private boolean firstPrinting;
     private boolean illustrated;
+
+    private boolean status;
     
-    private int category;
-    private int storeCategory;
+    private String category;
+    private long storeCategory;
     
     private int quantity;
 
@@ -133,5 +137,86 @@ public class Listing implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isBookClub() {
+        return bookClub;
+    }
+
+    public void setBookClub(boolean bookClub) {
+        this.bookClub = bookClub;
+    }
+
+    public boolean isDustJacket() {
+        return dustJacket;
+    }
+
+    public void setDustJacket(boolean dustJacket) {
+        this.dustJacket = dustJacket;
+    }
+
+    public boolean isFirstEdition() {
+        return firstEdition;
+    }
+
+    public void setFirstEdition(boolean firstEdition) {
+        this.firstEdition = firstEdition;
+    }
+
+    public boolean isFirstPrinting() {
+        return firstPrinting;
+    }
+
+    public void setFirstPrinting(boolean firstPrinting) {
+        this.firstPrinting = firstPrinting;
+    }
+
+    public boolean isIllustrated() {
+        return illustrated;
+    }
+
+    public void setIllustrated(boolean illustrated) {
+        this.illustrated = illustrated;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public long getStoreCategory() {
+        return storeCategory;
+    }
+
+    public void setStoreCategory(long storeCategory) {
+        this.storeCategory = storeCategory;
+    }
+
+    public String getEbayListingId() {
+        return ebayListingId;
+    }
+
+    public void setEbayListingId(String ebayListingId) {
+        this.ebayListingId = ebayListingId;
     }
 }

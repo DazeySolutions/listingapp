@@ -1,13 +1,10 @@
 package com.ds.listing.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 
 @SuppressWarnings("serial")
@@ -81,4 +78,67 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
+    public String getAsin() {
+        return asin;
+    }
+
+    public void setAsin(String asin) {
+        this.asin = asin;
+    }
+
+    public BigDecimal getDepth() {
+        return depth;
+    }
+
+    public void setDepth(BigDecimal depth) {
+        this.depth = depth;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public BigDecimal getWeightMajor() {
+        return weightMajor;
+    }
+
+    public void setWeightMajor(BigDecimal weightMajor) {
+        this.weightMajor = weightMajor;
+    }
+
+    public BigDecimal getWeightMinor() {
+        return weightMinor;
+    }
+
+    public void setWeightMinor(BigDecimal weightMinor) {
+        this.weightMinor = weightMinor;
+    }
+
+    public BigDecimal getWidth() {
+        return width;
+    }
+
+    public void setWidth(BigDecimal width) {
+        this.width = width;
+    }
 }
