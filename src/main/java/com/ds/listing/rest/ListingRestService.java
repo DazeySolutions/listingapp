@@ -5,10 +5,10 @@ import com.ds.listing.services.ListingService;
 
 import java.util.ArrayList;
 
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 @Path("/rest/list")
 public class ListingRestService {
