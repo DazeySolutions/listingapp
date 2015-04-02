@@ -8,7 +8,6 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import java.u
 
 /**
  * Startup
