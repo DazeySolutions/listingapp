@@ -18,6 +18,10 @@ public class eBayListingService {
     public eBayListingService(ApiContext apiContext){
         this.apiContext = apiContext;
     }
+    
+    public void getCurrentListings(){
+        
+    }
 
     public boolean addListing(Listing listing){
         try {
@@ -183,6 +187,7 @@ public class eBayListingService {
         pdt.setPictureURL(imageURLS);
         item.setPictureDetails(pdt);
     }
+   
     private void setItemSpecifics(ItemType item, Listing listing){
 
         NameValueListArrayType itemSpecificsArrayType = new NameValueListArrayType();
@@ -213,4 +218,5 @@ public class eBayListingService {
         amt.setValue(price);
         item.setStartPrice(amt);
     }
+    
 }
