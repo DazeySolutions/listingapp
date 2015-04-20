@@ -2,12 +2,15 @@ package com.ds.listing.services;
 
 import com.ds.listing.model.Listing;
 import com.ds.listing.model.NameValuePair;
+import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
+import com.ebay.sdk.call.GetSellerListCall;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by bithack on 3/31/15.
@@ -20,7 +23,22 @@ public class eBayListingService {
     }
     
     public void getCurrentListings(){
-        
+      try{
+			GetSellerListCall api = new GetSellerListCall(apiContext);
+			api.setAdminEndedItemsOnly(false);
+        	Calendar timeFrom = Calendar.getInstance();
+        	timeFrom.add(Calendar.DATE, -121);
+         Calendar timeTo = Calendar.getInstance();
+        	timeTo.add(Calendar.DATE, -1);
+         TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
+      	api.setEndTimeFilter(endTimeFilter);
+         ItemType[] items = api.getSellerList();
+         for(ItemType item : items){
+           System.out.println(item.getItemID()+" - "+item.getTitle());
+         }
+      } catch (Exception e)  {
+
+      }
     }
 
     public boolean addListing(Listing listing){
