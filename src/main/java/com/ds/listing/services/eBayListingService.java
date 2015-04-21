@@ -33,7 +33,8 @@ public class eBayListingService {
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
             api.setEndTimeFilter(endTimeFilter);
             ItemType[] items = api.getSellerList();
-            int pageCount = Integer.getInteger(Double.toString(Math.ceil(items.length / 200)));
+            System.out.println(Double.toString(Math.ceil(items.length / 200)));
+            int pageCount = Integer.parseInt(Double.toString(Math.ceil(items.length / 200)));
             PaginationType ptype = new PaginationType();
             ptype.setEntriesPerPage(200);
             System.out.println(pageCount);
