@@ -33,13 +33,11 @@ public class eBayListingService {
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
             api.setEndTimeFilter(endTimeFilter);
             api.setGranularityLevel(GranularityLevelCodeType.FINE);
-            PaginationType pagType = new PaginationType();
-            pagType.setEntriesPerPage(10);
-            pagType.setPageNumber(0);
-            api.setPagination(pagType);
             ItemType[] items = api.getSellerList();
             for (ItemType item : items) {
-                System.out.println(item.getItemID() + " - " + item.getTitle());
+                if(item.getSellingStatus().getQuantitySold()<item.getQuantity()) {
+                    System.out.println(item.getItemID() + " - " + item.getTitle());
+                }
             }
         } catch (Exception e) {
 
