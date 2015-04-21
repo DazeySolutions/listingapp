@@ -17,13 +17,13 @@ import java.util.Calendar;
  */
 public class eBayListingService {
     private ApiContext apiContext;
-    
-    public eBayListingService(ApiContext apiContext){
+
+    public eBayListingService(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
-    
-    public void getCurrentListings(){
-      try{
+
+    public void getCurrentListings() {
+        try {
             GetSellerListCall api = new GetSellerListCall(apiContext);
             api.setAdminEndedItemsOnly(false);
             Calendar timeFrom = Calendar.getInstance();
@@ -31,20 +31,22 @@ public class eBayListingService {
             Calendar timeTo = Calendar.getInstance();
             timeTo.add(Calendar.DATE, -1);
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
-            System.out.println("Hello");
             api.setEndTimeFilter(endTimeFilter);
+            api.setGranularityLevel(GranularityLevelCodeType.FINE);
+            PaginationType pagType = new PaginationType();
+            pagType.setEntriesPerPage(10);
+            pagType.setPageNumber(0);
+            api.setPagination(pagType);
             ItemType[] items = api.getSellerList();
-
-            System.out.println(items.length);
-            for(ItemType item : items){
-                System.out.println(item.getItemID()+" - "+item.getTitle());
+            for (ItemType item : items) {
+                System.out.println(item.getItemID() + " - " + item.getTitle());
             }
-      } catch (Exception e)  {
+        } catch (Exception e) {
 
-      }
+        }
     }
 
-    public boolean addListing(Listing listing){
+    public boolean addListing(Listing listing) {
         try {
             ItemType item = buildItemType(listing);
             AddFixedPriceItemCall api = new AddFixedPriceItemCall(apiContext);
@@ -62,7 +64,7 @@ public class eBayListingService {
 
     }
 
-    private ItemType buildItemType(Listing listing){
+    private ItemType buildItemType(Listing listing) {
         ItemType item = new ItemType();
 
         item.setTitle(listing.getEbayTitle());
@@ -118,7 +120,7 @@ public class eBayListingService {
         return item;
     }
 
-    private void setReturnPolicy(ItemType item){
+    private void setReturnPolicy(ItemType item) {
         ReturnPolicyType rpt = new ReturnPolicyType();
         rpt.setReturnsAcceptedOption("ReturnsAccepted");
         rpt.setExtendedHolidayReturns(true);
@@ -128,11 +130,11 @@ public class eBayListingService {
         item.setReturnPolicy(rpt);
     }
 
-    private void setShippingDetails(ItemType item, Listing listing){
+    private void setShippingDetails(ItemType item, Listing listing) {
         ShippingDetailsType sdt = new ShippingDetailsType();
         CalculatedShippingRateType csrt = new CalculatedShippingRateType();
         csrt.setOriginatingPostalCode("40065");
-        MeasureType w,d,l;
+        MeasureType w, d, l;
         w = new MeasureType();
         d = new MeasureType();
         l = new MeasureType();
@@ -163,7 +165,7 @@ public class eBayListingService {
         ss.setShippingServicePriority(1);
         ss.setShippingService("USPSFirstClassMailInternational");
         String[] values = new String[1];
-        values[0]="WorldWide";
+        values[0] = "WorldWide";
         ss.setShipToLocation(values);
         sdt.setInternationalShippingServiceOption(0, ss);
         sdt.setShippingType(ShippingTypeCodeType.FLAT_DOMESTIC_CALCULATED_INTERNATIONAL);
@@ -185,38 +187,38 @@ public class eBayListingService {
 
     }
 
-    private void setProductLiting(ItemType item, String isbn){
+    private void setProductLiting(ItemType item, String isbn) {
         ProductListingDetailsType pldt = new ProductListingDetailsType();
         pldt.setISBN(isbn);
         item.setProductListingDetails(pldt);
     }
 
-    private void setPrimaryCategory(ItemType item, String category){
+    private void setPrimaryCategory(ItemType item, String category) {
         CategoryType ct = new CategoryType();
         ct.setCategoryID(category);
         item.setPrimaryCategory(ct);
     }
 
-    private void setPicture(ItemType item, Listing listing){
+    private void setPicture(ItemType item, Listing listing) {
         PictureDetailsType pdt = new PictureDetailsType();
         pdt.setGalleryType(GalleryTypeCodeType.GALLERY);
         String[] imageURLS = new String[12];
 
-        for(int i=0; i<12; i++){
-            imageURLS[i]="http://kmhenry70.com/images/" + listing.getBook().getAsin()+".jpg";
+        for (int i = 0; i < 12; i++) {
+            imageURLS[i] = "http://kmhenry70.com/images/" + listing.getBook().getAsin() + ".jpg";
         }
         pdt.setPictureURL(imageURLS);
         item.setPictureDetails(pdt);
     }
-   
-    private void setItemSpecifics(ItemType item, Listing listing){
+
+    private void setItemSpecifics(ItemType item, Listing listing) {
 
         NameValueListArrayType itemSpecificsArrayType = new NameValueListArrayType();
         ArrayList<NameValueListType> itemSpecificsArray = new ArrayList<>();
-        for(NameValuePair pair : listing.getNvps()){
+        for (NameValuePair pair : listing.getNvps()) {
             NameValueListType itemSpecific = new NameValueListType();
             itemSpecific.setName(pair.getName());
-            itemSpecific.setValue(new String[] { pair.getValue() });
+            itemSpecific.setValue(new String[]{pair.getValue()});
             itemSpecificsArray.add(itemSpecific);
         }
 
@@ -226,18 +228,18 @@ public class eBayListingService {
 
     }
 
-    private void setStoreFront(ItemType item, long storeCategory){
+    private void setStoreFront(ItemType item, long storeCategory) {
         StorefrontType storeFront = new StorefrontType();
         storeFront.setStoreCategoryID(storeCategory);
 
         item.setStorefront(storeFront);
     }
 
-    private void setPrice(ItemType item, Double price){
+    private void setPrice(ItemType item, Double price) {
         AmountType amt = new AmountType();
         amt.setCurrencyID(CurrencyCodeType.USD);
         amt.setValue(price);
         item.setStartPrice(amt);
     }
-    
+
 }
