@@ -4,7 +4,7 @@ import com.ds.listing.model.Listing;
 import com.ds.listing.model.NameValuePair;
 import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
-import com.ebay.sdk.call.GetSellerListCall;
+import com.ebay.sdk.call.GetMyeBaySellingCall;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;
@@ -25,33 +25,37 @@ public class eBayListingService {
     public ArrayList<Listing> getCurrentListings() {
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
-            GetSellerListCall api = new GetSellerListCall(apiContext);
-            api.setAdminEndedItemsOnly(false);
-            Calendar timeFrom = Calendar.getInstance();
-            timeFrom.add(Calendar.DATE, -121);
-            Calendar timeTo = Calendar.getInstance();
-            timeTo.add(Calendar.DATE, -1);
-            TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
-            api.setEndTimeFilter(endTimeFilter);
-            ItemType[] items = api.getSellerList();
-            int pageCount = Integer.parseInt(Double.toString(Math.ceil(items.length / 200)));
-            System.out.println(pageCount);
-            PaginationType ptype = new PaginationType();
-            ptype.setEntriesPerPage(200);
-            System.out.println(pageCount);
-            for(int i=0; i<pageCount; i++){
-                GetSellerListCall apiDet = new GetSellerListCall(apiContext);
-                apiDet.setAdminEndedItemsOnly(false);
-                apiDet.setEndTimeFilter(endTimeFilter);
-                ptype.setPageNumber(i++);
-                apiDet.setPagination(ptype);
-                apiDet.setGranularityLevel(GranularityLevelCodeType.FINE);
-                ItemType[] detailedItems = apiDet.getSellerList();
-                for (ItemType item : detailedItems) {
-                    if((item.getQuantity()==1 && item.getSellingStatus().getQuantitySold()==0) || (item.getSellingStatus().getQuantitySold()-item.getQuantity()<0)) {
-                        System.out.println(item.getItemID() + " - " + item.getTitle());
+            GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
+            ItemListCustomizationType unsoldList = new ItemListCustomizationType();
+            unsoldList.setInclude(true);  
+            PaginationType pt = new PaginationType();
+            pt.setEntriesPerPage(200);
+            
+            int pageNum = 1;
+            int totalNumberOfPages = 1;
+            
+            unsoldList.setPagination(pt);
+            
+            api.setUnsoldList(unsoldList);
+            
+            while(totalNumberOfPages >= pageNum){
+                pt.setPageNumber(pageNum);
+                api.getMyeBaySelling();
+                
+                PaginatedItemArrayType unsoldItems = api.getReturnedUnsoldList();
+                if(unsoldItems != null){
+                    PaginationResultType pr = unsoldItems.getPaginationResult();
+                    totalNumberOfPages = pr.getTotalNumberOfPages();
+                    ItemArrayType itemArray = unsoldItems.getItemArray();
+                    ItemType[] items = itemArray.getItem();
+                    
+                    for(ItemType item : items){
+                        System.out.println(item.getItemID()+" - " + item.getTitle());
+                        retValues.add(PopulateListing(item));
                     }
                 }
+                pageNum++;
+                
             }
 
         } catch (Exception e) {
@@ -62,7 +66,7 @@ public class eBayListingService {
   
     private Listing PopulateListing(ItemType item){
       Listing listing = new Listing();
-      
+      listing.setEbayTitle(item.getTitle());
       return listing;
     }
 
