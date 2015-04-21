@@ -21,10 +21,10 @@ public class EBayRestService {
    private eBayAuth auth;
   
    @Inject
-  	private ListingService listService;
+   private ListingService listService;
   
-    @PersistenceContext(unitName="primary")
-    private EntityManager em;
+   @PersistenceContext(unitName="primary")
+   private EntityManager em;
   
    @GET
    @Produces("application/json")

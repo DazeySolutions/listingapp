@@ -23,6 +23,7 @@ public class eBayListingService {
     }
 
     public ArrayList<Listing> getCurrentListings() {
+        System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
@@ -33,7 +34,6 @@ public class eBayListingService {
             
             int pageNum = 1;
             int totalNumberOfPages = 1;
-            System.out.println("try");
             unsoldList.setPagination(pt);
             
             api.setUnsoldList(unsoldList);

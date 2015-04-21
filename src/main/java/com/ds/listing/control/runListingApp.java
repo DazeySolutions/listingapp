@@ -24,11 +24,7 @@ public class runListingApp {
     
     @PostConstruct
     private void startup() {
-        System.out.println("Setting up server");
-        System.out.println(props.getValue("ebaytoken"));
-        System.out.println(auth.getVersion());
         System.out.println("Server Started");
-
     }
 
 

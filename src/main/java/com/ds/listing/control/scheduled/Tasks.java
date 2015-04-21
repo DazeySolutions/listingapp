@@ -26,7 +26,7 @@ public class Tasks {
 
     @Schedule(second = "*/15", minute = "*", hour = "*")
     public void checkForNewListings() {
-        System.out.println(auth.getVersion());
+        System.out.println("Test");
         eBayListingService listingService = new eBayListingService(auth.getApiContext());
         listingService.getCurrentListings();
         //List<Listing> listings = findListings();
