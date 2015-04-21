@@ -31,9 +31,10 @@ public class eBayListingService {
             Calendar timeTo = Calendar.getInstance();
             timeTo.add(Calendar.DATE, -1);
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
+            System.out.println("Hello");
             api.setEndTimeFilter(endTimeFilter);
             ItemType[] items = api.getSellerList();
-            System.out.println("Hello");
+
             System.out.println(items.length);
             for(ItemType item : items){
                 System.out.println(item.getItemID()+" - "+item.getTitle());
