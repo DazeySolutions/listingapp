@@ -2,7 +2,8 @@ package com.ds.listing.control;
 
 import com.ds.listing.properties.UserProperties;
 import com.ds.listing.properties.eBayAuth;
-
+import com.ds.listing.model.Listing;
+import com.ds.listing.services.eBayListingService;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
