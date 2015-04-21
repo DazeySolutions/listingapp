@@ -33,16 +33,19 @@ public class eBayListingService {
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
             api.setEndTimeFilter(endTimeFilter);
             ItemType[] items = api.getSellerList();
-            System.out.println(Double.toString(Math.ceil(items.length / 200)));
             int pageCount = Integer.parseInt(Double.toString(Math.ceil(items.length / 200)));
+            System.out.println(pageCount);
             PaginationType ptype = new PaginationType();
             ptype.setEntriesPerPage(200);
             System.out.println(pageCount);
             for(int i=0; i<pageCount; i++){
+                GetSellerListCall apiDet = new GetSellerListCall(apiContext);
+                apiDet.setAdminEndedItemsOnly(false);
+                apiDet.setEndTimeFilter(endTimeFilter);
                 ptype.setPageNumber(i++);
-                api.setPagination(ptype);
-                api.setGranularityLevel(GranularityLevelCodeType.FINE);
-                ItemType[] detailedItems = api.getSellerList();
+                apiDet.setPagination(ptype);
+                apiDet.setGranularityLevel(GranularityLevelCodeType.FINE);
+                ItemType[] detailedItems = apiDet.getSellerList();
                 for (ItemType item : detailedItems) {
                     if((item.getQuantity()==1 && item.getSellingStatus().getQuantitySold()==0) || (item.getSellingStatus().getQuantitySold()-item.getQuantity()<0)) {
                         System.out.println(item.getItemID() + " - " + item.getTitle());
