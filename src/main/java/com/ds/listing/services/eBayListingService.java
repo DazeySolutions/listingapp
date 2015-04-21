@@ -36,13 +36,14 @@ public class eBayListingService {
             int pageCount = Integer.getInteger(Double.toString(Math.ceil(items.length / 200)));
             PaginationType ptype = new PaginationType();
             ptype.setEntriesPerPage(200);
+            System.out.println(pageCount);
             for(int i=0; i<pageCount; i++){
                 ptype.setPageNumber(i++);
                 api.setPagination(ptype);
                 api.setGranularityLevel(GranularityLevelCodeType.FINE);
                 ItemType[] detailedItems = api.getSellerList();
                 for (ItemType item : detailedItems) {
-                    if(item.getSellingStatus().getQuantitySold()<item.getQuantity()) {
+                    if((item.getQuantity()==1 && item.getSellingStatus().getQuantitySold()==0) || (item.getSellingStatus().getQuantitySold()-item.getQuantity()<0)) {
                         System.out.println(item.getItemID() + " - " + item.getTitle());
                     }
                 }
