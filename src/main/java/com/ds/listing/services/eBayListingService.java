@@ -33,7 +33,7 @@ public class eBayListingService {
             
             int pageNum = 1;
             int totalNumberOfPages = 1;
-            
+            System.out.println("try");
             unsoldList.setPagination(pt);
             
             api.setUnsoldList(unsoldList);
