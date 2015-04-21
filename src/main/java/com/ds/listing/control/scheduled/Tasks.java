@@ -4,7 +4,7 @@ import com.ds.listing.model.Listing;
 import com.ds.listing.services.eBayListingService;
 import com.ds.listing.properties.eBayAuth;
 import javax.ejb.Schedule;
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * Scheduled Tasks
  * Created by bithack on 3/31/15.
  */
-@Stateless
+@Singleton
 public class Tasks {
 
     @Inject
