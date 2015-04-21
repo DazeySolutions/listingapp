@@ -24,18 +24,18 @@ public class eBayListingService {
     
     public void getCurrentListings(){
       try{
-			GetSellerListCall api = new GetSellerListCall(apiContext);
-			api.setAdminEndedItemsOnly(false);
-        	Calendar timeFrom = Calendar.getInstance();
-        	timeFrom.add(Calendar.DATE, -121);
-         Calendar timeTo = Calendar.getInstance();
-        	timeTo.add(Calendar.DATE, -1);
-         TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
-      	api.setEndTimeFilter(endTimeFilter);
-         ItemType[] items = api.getSellerList();
-         for(ItemType item : items){
-           System.out.println(item.getItemID()+" - "+item.getTitle());
-         }
+            GetSellerListCall api = new GetSellerListCall(apiContext);
+            api.setAdminEndedItemsOnly(false);
+            Calendar timeFrom = Calendar.getInstance();
+            timeFrom.add(Calendar.DATE, -121);
+            Calendar timeTo = Calendar.getInstance();
+            timeTo.add(Calendar.DATE, -1);
+            TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
+            api.setEndTimeFilter(endTimeFilter);
+            ItemType[] items = api.getSellerList();
+            for(ItemType item : items){
+                System.out.println(item.getItemID()+" - "+item.getTitle());
+            }
       } catch (Exception e)  {
 
       }
