@@ -21,9 +21,9 @@ public class EBayRestService {
   
    @Inject
   	private ListingService listService;
-
-   @Inject
-   private EntityManager em;
+  
+    @PersistenceContext(unitName="primary")
+    private EntityManager em;
   
    @GET
    @Produces("application/json")
