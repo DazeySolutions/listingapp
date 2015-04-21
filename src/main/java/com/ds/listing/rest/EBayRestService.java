@@ -28,7 +28,7 @@ public class EBayRestService {
   
    @GET
    @Produces("application/json")
-   private ArrayList<String> RelistUnSold(){
+   public ArrayList<String> RelistUnSold(){
      ArrayList<String> retStrings = new ArrayList<>();
      eBayListingService eBayService = new eBayListingService(auth.getApiContext());
      ArrayList<Listing> listings = new ArrayList<>();
