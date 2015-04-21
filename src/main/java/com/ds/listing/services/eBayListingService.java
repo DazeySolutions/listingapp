@@ -22,7 +22,8 @@ public class eBayListingService {
         this.apiContext = apiContext;
     }
 
-    public void getCurrentListings() {
+    public ArrayList<Listing> getCurrentListings() {
+        ArrayList<Listing> retValues = new ArrayList<>();
         try {
             GetSellerListCall api = new GetSellerListCall(apiContext);
             api.setAdminEndedItemsOnly(false);
@@ -56,6 +57,13 @@ public class eBayListingService {
         } catch (Exception e) {
 
         }
+        return retValues;
+    }
+  
+    private Listing PopulateListing(ItemType item){
+      Listing listing = new Listing();
+      
+      return listing;
     }
 
     public boolean addListing(Listing listing) {
