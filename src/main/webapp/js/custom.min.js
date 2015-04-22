@@ -50,10 +50,10 @@ ngListApp.run(function($rootScope, $state, Auth){
 ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider){
    
     $urlRouterProvider.when('',['$state', function($state){
-        $state.go('site',{page:'home',controller:'HomePageController'});
+        $state.go('default');
     }]);
     $urlRouterProvider.when('/',['$state', function($state){
-        $state.go('site',{page:'home',controller:'HomePageController'});
+        $state.go('default');
     }]);
     $urlRouterProvider.otherwise('/');
     $stateProvider
