@@ -35,7 +35,7 @@ public class runListingApp {
     public void checkForNewListings() {
         System.out.println("Test");
         eBayListingService listingService = new eBayListingService(auth.getApiContext());
-        listingService.getCurrentListings();
+//        listingService.getCurrentListings();
         //List<Listing> listings = findListings();
         //for(Listing item : listings){
 //            if(listingService.addListing(item)){

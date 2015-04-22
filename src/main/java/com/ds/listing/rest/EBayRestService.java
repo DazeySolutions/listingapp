@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("/rest/ebay")
@@ -27,13 +28,14 @@ public class EBayRestService {
    private EntityManager em;
   
    @GET
+   @Path("/{page:[0-9][0-9]*}")
    @Produces("application/json")
-   public ArrayList<String> RelistUnSold(){
+   public ArrayList<Listing> GetUnSold(@PathParam("page") int page){
      ArrayList<String> retStrings = new ArrayList<>();
      eBayListingService eBayService = new eBayListingService(auth.getApiContext());
      ArrayList<Listing> listings = new ArrayList<>();
-     listings = eBayService.getCurrentListings();
-     return retStrings;
+     listings = eBayService.getCurrentListings(page);
+     return listings;
    }
   
 }

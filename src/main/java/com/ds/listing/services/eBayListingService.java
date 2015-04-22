@@ -22,7 +22,7 @@ public class eBayListingService {
         this.apiContext = apiContext;
     }
 
-    public ArrayList<Listing> getCurrentListings() {
+    public ArrayList<Listing> getCurrentListings(int page) {
         System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
@@ -32,13 +32,12 @@ public class eBayListingService {
             PaginationType pt = new PaginationType();
             pt.setEntriesPerPage(200);
             
-            int pageNum = 1;
+            int pageNum = page;
             int totalNumberOfPages = 1;
             unsoldList.setPagination(pt);
             
             api.setUnsoldList(unsoldList);
             
-            while(totalNumberOfPages >= pageNum){
                 pt.setPageNumber(pageNum);
                 api.getMyeBaySelling();
                 
@@ -54,9 +53,7 @@ public class eBayListingService {
                         retValues.add(PopulateListing(item));
                     }
                 }
-                pageNum++;
                 
-            }
 
         } catch (Exception e) {
 
