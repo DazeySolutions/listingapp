@@ -14,8 +14,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-@Path("/rest/ebay")
+@Path("/ebay")
 public class EBayRestService {
 	
    @Inject
@@ -29,7 +30,7 @@ public class EBayRestService {
   
    @GET
    @Path("/{page:[0-9][0-9]*/{perpage:[0-9][0-9]*}")
-   @Produces("application/json")
+   @Produces(MediaType.APPLICATION_JSON)
     public UnsoldListData GetUnSold(@PathParam("page") int page, @PathParam("perpage") int perpage){
         UnsoldListData returnData = new UnsoldListData();
         ArrayList<String> retStrings = new ArrayList<>();
