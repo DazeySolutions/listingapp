@@ -15,7 +15,7 @@ ngListApp.filter('to_trusted', ['$sce', function($sce){
 ngListApp.config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl('/rest');
 });
-ngListApp.run('$rootScope', '$state', 'Auth', function($rootScope, $state, Auth){
+ngListApp.run(function($rootScope, $state, Auth){
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if(!Auth.isLoggedIn()){
             event.preventDefault();
