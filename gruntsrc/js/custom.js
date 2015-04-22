@@ -17,7 +17,7 @@ ngListApp.config(function(RestangularProvider) {
 });
 ngListApp.run(function($rootScope, $state, Auth){
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        if(!Auth.isLoggedIn()){
+        if(!Auth.isLoggedIn() && toState.name !== 'name'){
             event.preventDefault();
             $state.go('login');
         }
