@@ -34,9 +34,7 @@ public class EBayRestService {
         UnsoldListData returnData = new UnsoldListData();
         ArrayList<String> retStrings = new ArrayList<>();
         eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-        ArrayList<Listing> listings = new ArrayList<>();
         eBayService.getCurrentListings(1, 20, returnData);
-        returnData.setListings(listings);
         return returnData;
    }
   
