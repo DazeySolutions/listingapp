@@ -56,7 +56,7 @@ public class eBayListingService {
             }
                 
             data.setNumPages(1);
-            data.setNumResulst(20);
+            data.setNumResults(20);
 
         } catch (Exception e) {
 
