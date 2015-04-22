@@ -47,7 +47,7 @@ ngListApp.run('$rootScope', '$state', 'Auth', function($rootScope, $state, Auth)
 * UI ROUTER CONFIG FILE
 * router.js
 */
-ngListApp.config(['$stateProvider','$urlRouterProvider','$rootScope', function($stateProvider, $urlRouterProvider, $rootScope){
+ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider){
    
     $urlRouterProvider.when('',['$state', function($state){
         $state.go('site',{page:'home',controller:'HomePageController'});
