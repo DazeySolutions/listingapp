@@ -57,12 +57,13 @@ public class eBayListingService {
                 
             data.setNumPages(1);
             data.setNumResults(20);
+            data.setListings(retValues);
 
         } catch (Exception e) {
 
         }
         
-        data.setListings(retValues);
+        
     }
   
     private Listing PopulateListing(ItemType item){
