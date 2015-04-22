@@ -35,6 +35,8 @@ ngListApp.run(function($rootScope, $state, Auth){
     }
 })
 .controller('LoginController', ['$scope', 'Auth', 'Restangular','$state', function($scope, Auth, Restangular, $state){
+    $scope.userName = '';
+    $scope.password = '';
     $scope.login = function login(){
         Restangular.post({user:$scope.userName, password:$scope.password}).then(function(data){
            Auth.setUser({'loggedIn':true});
