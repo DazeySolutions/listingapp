@@ -28,14 +28,17 @@ public class EBayRestService {
    private EntityManager em;
   
    @GET
-   @Path("/{page:[0-9][0-9]*}")
+   @Path("/{page:[0-9][0-9]*/{perpage:[0-9][0-9]*}")
    @Produces("application/json")
-   public ArrayList<Listing> GetUnSold(@PathParam("page") int page){
-     ArrayList<String> retStrings = new ArrayList<>();
-     eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-     ArrayList<Listing> listings = new ArrayList<>();
-     listings = eBayService.getCurrentListings(page);
-     return listings;
+    public UnsoldListData GetUnSold(@PathParam("page") int page, @PathParam("perpage") int perpage){
+        UnsoldListData returnData = new UnsoldListData();
+        ArrayList<String> retStrings = new ArrayList<>();
+        eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+        ArrayList<Listing> listings = new ArrayList<>();
+        eBayService.getCurrentListings(page, perpage, returnData);
+        returnData.setListings(listings);
+        return returnData;
    }
   
 }
+

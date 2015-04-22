@@ -11,6 +11,7 @@ import com.ebay.sdk.ApiContext;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import com.ds.listing.rest.UnsoldListData;
 
 /**
  * Created by bithack on 3/31/15.
@@ -22,7 +23,7 @@ public class eBayListingService {
         this.apiContext = apiContext;
     }
 
-    public ArrayList<Listing> getCurrentListings(int page) {
+    public void getCurrentListings(int page, int resultPerPage, UnsoldListData data) {
         System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
@@ -30,7 +31,7 @@ public class eBayListingService {
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
             unsoldList.setInclude(true);  
             PaginationType pt = new PaginationType();
-            pt.setEntriesPerPage(200);
+            pt.setEntriesPerPage(resultPerPage);
             
             int pageNum = page;
             int totalNumberOfPages = 1;
@@ -38,27 +39,30 @@ public class eBayListingService {
             
             api.setUnsoldList(unsoldList);
             
-                pt.setPageNumber(pageNum);
-                api.getMyeBaySelling();
+            pt.setPageNumber(pageNum);
+            api.getMyeBaySelling();
+            
+            PaginatedItemArrayType unsoldItems = api.getReturnedUnsoldList();
+            if(unsoldItems != null){
+                PaginationResultType pr = unsoldItems.getPaginationResult();
+                totalNumberOfPages = pr.getTotalNumberOfPages();
+                ItemArrayType itemArray = unsoldItems.getItemArray();
+                ItemType[] items = itemArray.getItem();
                 
-                PaginatedItemArrayType unsoldItems = api.getReturnedUnsoldList();
-                if(unsoldItems != null){
-                    PaginationResultType pr = unsoldItems.getPaginationResult();
-                    totalNumberOfPages = pr.getTotalNumberOfPages();
-                    ItemArrayType itemArray = unsoldItems.getItemArray();
-                    ItemType[] items = itemArray.getItem();
-                    
-                    for(ItemType item : items){
-                        System.out.println(item.getItemID()+" - " + item.getTitle());
-                        retValues.add(PopulateListing(item));
-                    }
+                for(ItemType item : items){
+                    System.out.println(item.getItemID()+" - " + item.getTitle());
+                    retValues.add(PopulateListing(item));
                 }
+            }
                 
+            data.setNumPages(1);
+            data.setNumResulst(20):
 
         } catch (Exception e) {
 
         }
-        return retValues;
+        
+        data.setListings(retValues);
     }
   
     private Listing PopulateListing(ItemType item){
