@@ -58,6 +58,7 @@ public class eBayListingService {
             data.setNumPages(1);
             data.setNumResults(20);
             data.setListings(retValues);
+            System.out.println(retValues.size());
 
         } catch (Exception e) {
 
