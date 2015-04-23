@@ -51,7 +51,7 @@ public class User implements Serializable {
         return this.failed;
     }
     
-    public int setFailed(int failed){
+    public void setFailed(int failed){
         this.failed = failed;
     }
     
