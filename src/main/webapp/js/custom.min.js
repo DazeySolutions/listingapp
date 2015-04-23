@@ -142,18 +142,20 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
     $scope.init =  function init(){
-       
+        Restangular.all('ebay').get().then(function(res){
+            $scope.rows = res;
+        });
     };
+    $scope.rows;
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10           // count per page
     }, {
         total: 0,
         getData: function($defer, params) {
-            Restangular.all('ebay').get().then(function(res){
                params.total(20);
-               $defer.resolve(res);
-            });
+               $defer.resolve($scope.rows);
+           
         }
     });
     $scope.init();
