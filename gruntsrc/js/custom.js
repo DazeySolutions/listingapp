@@ -1,4 +1,4 @@
-var appDependencies = ['ui.router', 'toaster', 'ngAnimate', 'ngLodash', 'restangular'];
+var appDependencies = ['ui.router', 'toaster', 'ngAnimate', 'ngLodash', 'restangular', 'ngTable'];
 var ngListApp = angular.module("ngListApp", appDependencies);
 
 angular.isUndefinedOrNull = function undefinedOrNull(value){
@@ -144,6 +144,18 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.init =  function init(){
        
     };
+    $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10           // count per page
+    }, {
+        total: 0,
+        getData: function($defer, params) {
+            Restangular.all('ebay').get().then(function(res){
+               params.total(20);
+               $defer.resolve(res);
+            });
+        }
+    });
     $scope.init();
 }]);
 ngListApp.controller('NewListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){

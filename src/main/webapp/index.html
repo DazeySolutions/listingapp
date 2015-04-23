@@ -27,8 +27,8 @@
                         <a ui-sref="list">Listings</a>
                     </li>
                 </ul>
+                <p ng-if="loggedin" class="navbar-text navbar-right">Signed in as {{user.name}} <a ui-sref="logout" class="navbar-link"><i class="fa fa-fw fa-sign-out"></i></a></p>
             </div>
-            <p ng-if="loggedin" class="navbar-text navbar-right">Signed in as {{user.name}} <a ui-sref="logout" class="navbar-link"><i class="fa fa-fw fa-sign-out"></i></a></p>
         </div>
     </nav>
     <div id="content" ui-view>
