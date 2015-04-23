@@ -10,6 +10,37 @@
     <script src="js/custom.min.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="default">Listings</a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <span ng-if="loggedin">
+                    <li ui-sref-active="active" class="item">
+                        <a ui-sref="list.new">New Listing</a>
+                    </li>
+                    <li ui-sref-active="active" class="item">
+                        <a ui-sref="list.unsold">Unsold Listings</a>
+                    </li>
+                    <li ui-sref-active="active" class="item">
+                        <a ui-sref="list.saved">Saved Listing</a>
+                    </li>
+                    <li ui-sref-active="active" class="item">
+                        <a ui-sref="logout">Logout</a>
+                    </li>
+                    </span>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div id="content" ui-view>
 
     </div>

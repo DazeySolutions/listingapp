@@ -43,6 +43,13 @@ ngListApp.run(function($rootScope, $state, Auth){
            $state.go('default');
         });
     };
+}])
+.controller('LogoutController', ['$scope', 'Auth', 'Restangular','$state', function($scope, Auth, Restangular, $state){
+    $scope.logout = function logout(){
+        Auth.setUser(undefined);
+        $state.go('login');
+    };
+    $scope.logout();
 }]);
 
 /**
@@ -68,6 +75,11 @@ ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider
             url:'/login',
             templateUrl: 'partials/login.html',
             controller: 'LoginController'
+        })
+        .state('logout',{
+            url:'/logout',
+            templateUrl: 'partials/logout.html',
+            controller: 'LogoutController'
         })
         .state('list', {
             url:'/list',
@@ -105,6 +117,31 @@ ngListApp.controller('SiteController', ['$scope', 'toaster', '$window', '$http',
     $scope.init();
 }]);
 ngListApp.controller('HomePageController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
+    $scope.init =  function init(){
+       
+    };
+    $scope.init();
+}]);
+ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
+    $scope.init =  function init(){
+       
+    };
+    $scope.init();
+}]);
+ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
+    $scope.init =  function init(){
+       
+    };
+    $scope.init();
+}]);
+ngListApp.controller('NewListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
+    $scope.init =  function init(){
+       
+    };
+    $scope.init();
+}]);
+
+ngListApp.controller('ListMainController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
     $scope.init =  function init(){
        
     };
