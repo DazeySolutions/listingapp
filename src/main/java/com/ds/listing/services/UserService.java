@@ -15,7 +15,7 @@ public class UserService {
   @PersistenceContext(unitName="primary")
   private EntityManager em;
   
-  public User login(String userName){
+  public User login(String userName, String password){
       Query query = em.createQuery("select u from User u where  u.name = :user AND u.failed < 4").setParameter("user", userName);
       User current = (User)query.getSingleResult();
       if(current.getPassword() == password){
