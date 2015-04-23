@@ -5,6 +5,7 @@ import com.ds.listing.model.NameValuePair;
 import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
 import com.ebay.sdk.call.GetMyeBaySellingCall;
+import com.ebay.sdk.call.GetItemCall;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;

@@ -4,7 +4,7 @@
         <tbody>
           <tr ng-repeat="item in $data">
             <td data-title="'Title'">
-                    {{item.ebayTitle}}
+                    {{item.ebayTitle}} <button class="btn btn-xs btn-primary" ng-click="getItemDetails(item.ebayListingId)">Edit</button>
             </td>
           </tr>
         </tbody>
