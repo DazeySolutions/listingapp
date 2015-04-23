@@ -12,18 +12,24 @@ import javax.persistence.Query;
 @Singleton
 public class UserService {
   
-  @PersistenceContext(unitName="primary")
-  private EntityManager em;
+    @PersistenceContext(unitName="primary")
+    private EntityManager em;
   
-  public User login(String userName, String password){
-      Query query = em.createQuery("select u from User u where  u.name = :user AND u.failed < 4").setParameter("name", userName);
-      User current = (User)query.getSingleResult();
-      if(current.getPassword() == password){
-          return current;
-      }else{
-          current.setFailed(current.getFailed()+1);
-          return null;
-      }
+    public User login(String userName, String password){
+        System.out.println(userName);
+        System.out.println(password);
+        try{
+            Query query = em.createQuery("select u from User u where  u.name = :username AND u.failed < 4").setParameter("username", userName);
+            User current = (User)query.getSingleResult();
+            if(current.getPassword() == password){
+                return current;
+            }else{
+                current.setFailed(current.getFailed()+1);
+                return null;
+            }
+        }catch (Exception e){
+            return null;
+        }
   }
   
 }
