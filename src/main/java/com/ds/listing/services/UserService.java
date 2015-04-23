@@ -1,6 +1,6 @@
 package com.ds.listing.services;
 
-import com.ds.listing.model.Listing;
+import com.ds.listing.model.User;
 
 import java.util.ArrayList;
 
