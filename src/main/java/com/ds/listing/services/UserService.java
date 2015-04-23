@@ -16,7 +16,7 @@ public class UserService {
   private EntityManager em;
   
   public User login(String userName, String password){
-      Query query = em.createQuery("select u from User u where  u.name = :user AND u.failed < 4").setParameter("user", userName);
+      Query query = em.createQuery("select u from User u where  u.name = :user AND u.failed < 4").setParameter("name", userName);
       User current = (User)query.getSingleResult();
       if(current.getPassword() == password){
           return current;
