@@ -21,8 +21,8 @@ public class UserRestService {
   @POST
   @Path("/login")
   @Produces("application/json")
-  public User login(@HeaderParam("user") UserDetails user) {
-      return service.login(user, password);
+  public User login(@HeaderParam("details") UserDetails details) {
+      return service.login(details.user, details.password);
   }
   
 }
