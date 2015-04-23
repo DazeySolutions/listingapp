@@ -123,8 +123,10 @@ ngListApp.config(['$locationProvider', function($locationProvider){
 */
 ngListApp.controller('SiteController', ['$scope', 'toaster', '$window', '$http', '$stateParams', '$state', 'Auth', function ($scope, toaster, $window, $http, $stateParams, $state, Auth){
     $scope.loggedin = false;
+    $scope.user = {};
     $scope.init = function init(){
         $scope.loggedin = Auth.isLoggedIn()? true : false;
+        $scope.user = Auth.isLoggedIn();
     };
     Auth.registerObserverCallback($scope.init);
     $scope.init();

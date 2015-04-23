@@ -1,2 +1,16 @@
-<h1>List app</h1>
-<div ui-view></div>
+<div class="container">
+    <div class="tabable">
+        <ul class="nav nav-tabs">
+            <li ui-sref-active="active">
+                <a ui-sref="list.new">Create</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="list.unsold">Unsold</a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="list.saved">Saved</a>
+            </li>
+        </ul>
+        <div ui-view class="col-xs-12"></div>
+    </div>
+</div>
