@@ -36,8 +36,8 @@ ngListApp.run(function($rootScope, $state, Auth){
     });
   };
   this.setUser = function(aUser){
-            notifyObservers();
             user = aUser;
+            notifyObservers();
         };
     this.isLoggedIn = function(){
             return (user)?user:false;
