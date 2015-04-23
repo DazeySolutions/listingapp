@@ -21,7 +21,24 @@ public class UserRestService {
   @POST
   @Path("/login")
   @Produces("application/json")
-  public User login(@FormParam("user") String user, @FormParam("password") String password) {
+  public User login(@HeaderParam("user") UserDetails user) {
       return service.login(user, password);
   }
+  
+}
+class UserDetails {
+    private String user;
+    private String password;
+    public String getUser(){
+        return this.user;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+    public void setUser(String user){
+        this.user = user;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
