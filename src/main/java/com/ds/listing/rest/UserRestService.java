@@ -22,7 +22,7 @@ public class UserRestService {
   @Path("/login")
   @Produces("application/json")
   public User login(@HeaderParam("details") UserDetails details) {
-      return service.login(details.user, details.password);
+      return service.login(details.getUser(), details.getPassword());
   }
   
 }
