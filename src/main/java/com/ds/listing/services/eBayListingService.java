@@ -64,8 +64,9 @@ public class eBayListingService {
                 ItemType[] items = itemArray.getItem();
                 
                 for(ItemType item : items){
-                    System.out.println(item.getItemID()+" - " + item.getTitle());
-                    retValues.add(populateListing(item));
+                    GetItemCall itemapi = new GetItemCall(apiContext);
+                    ItemType fulItem = itemapi.getItem(item.getItemID());
+                    retValues.add(populateListing(fullItem));
                 }
             }
                 
