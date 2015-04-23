@@ -1,1 +1,1 @@
-insert into User (user_id, name, password) values (0, 'markdazey@gmail.com', 'abababa1') 
+insert into User (user_id, name, password, failed) values (0, 'markdazey@gmail.com', 'abababa1', 0) 
