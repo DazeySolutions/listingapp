@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 
 @Path("/users")
 public class UserRestService {
@@ -21,7 +21,8 @@ public class UserRestService {
   @POST
   @Path("/login")
   @Produces("application/json")
-  public User login(@HeaderParam("details") UserDetails details) {
+  @Consumes("application/json")
+  public User login(UserDetails details) {
       return service.login(details.getUser(), details.getPassword());
   }
   
