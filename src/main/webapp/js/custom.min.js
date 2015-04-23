@@ -140,7 +140,7 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
     };
     $scope.init();
 }]);
-ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams){
+ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
     $scope.init =  function init(){
        
     };
