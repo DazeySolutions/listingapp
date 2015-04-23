@@ -65,7 +65,7 @@ public class eBayListingService {
                 
                 for(ItemType item : items){
                     GetItemCall itemapi = new GetItemCall(apiContext);
-                    ItemType fulItem = itemapi.getItem(item.getItemID());
+                    ItemType fullItem = itemapi.getItem(item.getItemID());
                     retValues.add(populateListing(fullItem));
                 }
             }
