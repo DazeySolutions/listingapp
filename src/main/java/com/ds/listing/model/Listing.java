@@ -11,7 +11,6 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="listings")
 public class Listing implements Serializable{
     @Id
     @Column(name="listing_id")

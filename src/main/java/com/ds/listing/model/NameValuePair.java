@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="name_value_pairs")
 public class NameValuePair implements Serializable{
     @Id
     @Column(name="nvp_id")

@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "isbn"), name="books")
 public class Book implements Serializable {
 
     @Id
