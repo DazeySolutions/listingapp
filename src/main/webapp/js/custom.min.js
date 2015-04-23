@@ -149,7 +149,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.rows;
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
-        count: 10           // count per page
+        count: 20           // count per page
     }, {
         total: 0,
         getData: function($defer, params) {
