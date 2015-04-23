@@ -113,9 +113,6 @@ ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider
             controller: 'SavedListController'
         });
 }] );
-ngListApp.config(['$locationProvider', function($locationProvider){
-    $locationProvider.html5Mode(true);
-}]);
 
 /**
 * CONTROLLERS FILE
