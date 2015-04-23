@@ -16,11 +16,10 @@ public class UserService {
     private EntityManager em;
   
     public User login(String userName, String password){
-        System.out.println(userName);
-        System.out.println(password);
         try{
             Query query = em.createQuery("select u from User u where  u.name = :username AND u.failed < 4").setParameter("username", userName);
             User current = (User)query.getSingleResult();
+            System.out.println(current.getId()+" - "+current.getName());
             if(current.getPassword() == password){
                 return current;
             }else{
@@ -28,6 +27,7 @@ public class UserService {
                 return null;
             }
         }catch (Exception e){
+            System.out.println("error occurred");
             return null;
         }
   }
