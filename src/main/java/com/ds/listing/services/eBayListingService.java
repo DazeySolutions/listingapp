@@ -1,6 +1,7 @@
 package com.ds.listing.services;
 
 import com.ds.listing.model.Listing;
+import com.ds.listing.model.Book;
 import com.ds.listing.model.NameValuePair;
 import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
@@ -94,6 +95,20 @@ public class eBayListingService {
       }
       if(item.getStorefront() != null){
         listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
+      }
+      if(item.getStartPrice()!=null){
+          listing.setEbayPrice(item.getStartPrice().getValue());
+      }
+      Book b = new Book();
+      if(item.getProductListingDetails() != null){
+          b.setIsbn(item.getProductListingDetails().getISBN());
+      }
+      if(item.getShippingDetails() != null){
+          b.setWeightMajor(item.getShippingDetails().getCalculatedShippingRate().getWeightMajor().getValue());
+          b.setWeightMinor(item.getShippingDetails().getCalculatedShippingRate().getWeightMinor().getValue());
+          b.setDepth(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+          b.setWidth(item.getShippingDetails().getCalculatedShippingRate().getPackageLength().getValue());
+          b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
       }
       return listing;
     }
