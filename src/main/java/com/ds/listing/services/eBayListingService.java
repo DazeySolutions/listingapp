@@ -85,9 +85,15 @@ public class eBayListingService {
       Listing listing = new Listing();
       listing.setEbayTitle(item.getTitle());
       listing.setEbayListingId(item.getItemID());
-      listing.setEbayDescription(item.getDescription());
-      listing.setConditionDescription(item.getConditionDescription());
-      listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
+      if(item.getDescription() != null){
+        listing.setEbayDescription(item.getDescription());    
+      }
+      if(item.getConditionDescription() != null){
+        listing.setConditionDescription(item.getConditionDescription());
+      }
+      if(item.getStorefront() != null){
+        listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
+      }
       return listing;
     }
 
