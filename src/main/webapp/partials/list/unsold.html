@@ -1,5 +1,23 @@
 <div classs="row">
     <h4 class="col-xs-12">Re-List unsold listings</h4>
+    <div class="col-xs-12 edit-window" ng-show="edit">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" ng-model="selectedItem.title">
+                </div>
+                <div class="form-group">
+                    <label for="title">Condition Description</label>
+                    <input type="text" class="form-control" ng-model="selectedItem.conditionDescription">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
     <table ng-table="tableParams" class="table table-striped table-hover table-condensed col-xs-12">
         <tbody>
           <tr ng-repeat="item in $data">

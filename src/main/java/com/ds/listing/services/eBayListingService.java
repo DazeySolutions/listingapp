@@ -67,14 +67,16 @@ public class eBayListingService {
                 for(ItemType item : items){
                     GetItemCall itemapi = new GetItemCall(apiContext);
                     ItemType fullItem = itemapi.getItem(item.getItemID());
-                    retValues.add(populateListing(fullItem));
+                    try{
+                        retValues.add(populateListing(fullItem));
+                    }catch(Exception e){
+                        
+                    }
                 }
+                data.setNumPages(totalNumberOfPages);
+                data.setNumResults(pr.getTotalNumberOfEntries());
+                data.setListings(retValues);
             }
-                
-            data.setNumPages(1);
-            data.setNumResults(20);
-            data.setListings(retValues);
-            System.out.println(retValues.size());
 
         } catch (Exception e) {
 
@@ -95,6 +97,9 @@ public class eBayListingService {
       }
       if(item.getStorefront() != null){
         listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
+        if(item.getStorefront().getStoreCategoryID().equals("28162")){
+            throw new Exception("not a book");
+        }
       }
       if(item.getStartPrice()!=null){
           listing.setEbayPrice(item.getStartPrice().getValue());
