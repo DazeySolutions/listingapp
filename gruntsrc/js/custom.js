@@ -24,9 +24,22 @@ ngListApp.run(function($rootScope, $state, Auth){
     });
 })
 .factory('Auth', function(){
+    var observerCallbacks = [];
+
+  this.registerObserverCallback = function(callback){
+    observerCallbacks.push(callback);
+  };
+
+  //call this when you know 'foo' has been changed
+  var notifyObservers = function(){
+    angular.forEach(observerCallbacks, function(callback){
+      callback();
+    });
+  };
     var user;
     return {
         setUser : function(aUser){
+            notifyObservers();
             user = aUser;
         },
         isLoggedIn : function(){
@@ -110,10 +123,12 @@ ngListApp.config(['$locationProvider', function($locationProvider){
 * CONTROLLERS FILE
 * controllers.js
 */
-ngListApp.controller('SiteController', ['$scope', 'toaster', '$window', '$http', '$stateParams', '$state', function ($scope, toaster, $window, $http, $stateParams, $state){
+ngListApp.controller('SiteController', ['$scope', 'toaster', '$window', '$http', '$stateParams', '$state', 'Auth', function ($scope, toaster, $window, $http, $stateParams, $state, Auth){
+    $scope.loggedin = false;
     $scope.init = function init(){
-
+        $scope.loggedin = Auth.isLoggedIn()? true : false;
     };
+    Auth.registerObserverCallback($scope.init);
     $scope.init();
 }]);
 ngListApp.controller('HomePageController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout', function($scope, $http, $stateParams, $window, lodash, $timeout){
