@@ -87,7 +87,7 @@ public class eBayListingService {
       listing.setEbayListingId(item.getItemID());
       listing.setEbayDescription(item.getDescription());
       listing.setConditionDescription(item.getConditionDescription());
-      listing.setStoreCategory(item.getStoreFront().getStoreCategoryID());
+      listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
       return listing;
     }
 
