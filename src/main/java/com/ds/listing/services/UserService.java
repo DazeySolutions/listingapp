@@ -19,12 +19,13 @@ public class UserService {
         try{
             Query query = em.createQuery("select u from User u where  u.name = :username AND u.failed < 4").setParameter("username", userName);
             User current = (User)query.getSingleResult();
-            System.out.println(current.getPassword()+" - "+password);
-            if(current.getPassword() == password){
-                System.out.println("Success");
+            if(current.getPassword().equals(password)){
+                System.out.println("Successful login");
                 return current;
             }else{
+                System.out.println("Failed login");
                 current.setFailed(current.getFailed()+1);
+                em.persist(current);
                 return null;
             }
         }catch (Exception e){
