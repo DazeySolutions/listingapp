@@ -50,7 +50,7 @@ ngListApp.run(function($rootScope, $state, Auth){
     $scope.password = '';
     $scope.login = function login(){
         Restangular.all('users/login').post({user:$scope.userName, password:$scope.password}).then(function(data){
-           Auth.setUser({'loggedIn':true});
+           Auth.setUser(data);
            $state.go('default');
         });
     };
