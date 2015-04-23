@@ -256,8 +256,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../assets/fontsglyphicons-halflings-regular.eot');
-  src: url('../assets/fontsglyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../assets/fontsglyphicons-halflings-regular.woff2') format('woff2'), url('../assets/fontsglyphicons-halflings-regular.woff') format('woff'), url('../assets/fontsglyphicons-halflings-regular.ttf') format('truetype'), url('../assets/fontsglyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../fontsglyphicons-halflings-regular.eot');
+  src: url('../fontsglyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fontsglyphicons-halflings-regular.woff2') format('woff2'), url('../fontsglyphicons-halflings-regular.woff') format('woff'), url('../fontsglyphicons-halflings-regular.ttf') format('truetype'), url('../fontsglyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -6558,8 +6558,8 @@ button.close {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../assets/fonts/fontawesome-webfont.eot?v=4.3.0');
-  src: url('../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../assets/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../assets/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../assets/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../assets/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+  src: url('../fonts/fontawesome-webfont.eot?v=4.3.0');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -8352,8 +8352,6 @@ button.close {
   content: "\f23a";
 }
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eee;
 }
 .restric-width {
@@ -8441,6 +8439,11 @@ body {
   left: 0px;
   z-index: -1;
   right: 0px;
+}
+.tabpage {
+  border: 1px solid #dddddd;
+  border-top: none;
+  background: white;
 }
 .nav li a p {
   margin: -2px !important;
