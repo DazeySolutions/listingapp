@@ -142,8 +142,8 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
     $scope.init =  function init(){
-        Restangular.all('ebay').get().then(function(res){
-            $scope.rows = res;
+        Restangular.one('ebay').get().then(function(res){
+            $scope.rows = res.listings;
         });
     };
     $scope.rows;
