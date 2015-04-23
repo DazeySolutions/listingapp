@@ -30,22 +30,20 @@ ngListApp.run(function($rootScope, $state, Auth){
     observerCallbacks.push(callback);
   };
 
-  //call this when you know 'foo' has been changed
   var notifyObservers = function(){
     angular.forEach(observerCallbacks, function(callback){
       callback();
     });
   };
-    var user;
-    return {
-        setUser : function(aUser){
+  this.setUser = function(aUser){
             notifyObservers();
             user = aUser;
-        },
-        isLoggedIn : function(){
+        };
+    this.isLoggedIn = function(){
             return (user)?user:false;
-        }
-    }
+        };
+    var user;
+    return this;
 })
 .controller('LoginController', ['$scope', 'Auth', 'Restangular','$state', function($scope, Auth, Restangular, $state){
     $scope.userName = '';
