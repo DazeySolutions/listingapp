@@ -30,6 +30,8 @@ public class eBayListingService {
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
             unsoldList.setInclude(true);  
+            unsoldList.setDurationInDays(60);
+            api.addDetailLevel(DetailLevelCodeType.RETURN_ALL);
             PaginationType pt = new PaginationType();
             pt.setEntriesPerPage(resultPerPage);
             
