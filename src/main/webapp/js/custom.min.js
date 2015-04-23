@@ -145,16 +145,27 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         if(angular.isUndefinedOrNullOrEmpty(page)){
             page = 1;
         }
+        $scope.rows = undefined;
         Restangular.one('ebay').get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
         });
+    };
+    $scope.getItemDetails = function getItemDetails(itemid){
+      Restangular.one('ebay').get(itemid).then(function(data){
+            lodash.each($scope.rows, function(item, index){
+                if(item.ebayListingId === itemid){
+                    $scope.rows[index] = data;
+                }
+            });
+      });
     };
     $scope.rows;
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 20           // count per page
     }, {
+        counts: [],
         total: 0,
         getData: function($defer, params) {
                params.total(20);

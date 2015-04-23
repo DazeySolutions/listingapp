@@ -22,6 +22,17 @@ public class eBayListingService {
     public eBayListingService(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
+    
+    public Listing getItem(String id){
+        try{
+            GetItemCall api = new GetItemCall(apiContext);
+            ItemType item = api.getItem(id);
+            Listing listed = populateListing(item);
+            return listed;
+        }catch(Exception e){
+            return null;   
+        }
+    }
 
     public void getCurrentListings(int page, int resultPerPage, UnsoldListData data) {
         System.out.println("try");
@@ -53,7 +64,7 @@ public class eBayListingService {
                 
                 for(ItemType item : items){
                     System.out.println(item.getItemID()+" - " + item.getTitle());
-                    retValues.add(PopulateListing(item));
+                    retValues.add(populateListing(item));
                 }
             }
                 
@@ -69,9 +80,13 @@ public class eBayListingService {
         
     }
   
-    private Listing PopulateListing(ItemType item){
+    private Listing populateListing(ItemType item){
       Listing listing = new Listing();
       listing.setEbayTitle(item.getTitle());
+      listing.setEbayListingId(item.getItemID());
+      listing.setEbayDescription(item.getDescription());
+      listing.setConditionDescription(item.getConditionDescription());
+      listing.setStoreCategory(item.getStoreFront().getStoreCategoryID());
       return listing;
     }
 

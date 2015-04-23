@@ -37,6 +37,13 @@ public class EBayRestService {
         eBayService.getCurrentListings(1, 20, returnData);
         return returnData;
    }
+   @GET
+   @Path("/{id}")
+   @Produces(MediaType.APPLICATION_JSON)
+   public Listing getListing(@PathParam("id") String id){
+       eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+       return eBayService.getItem(id);
+   }
   
 }
 
