@@ -47,9 +47,8 @@ public class eBayListingService {
         try {
             GetSellerListCall fullListApi = new GetSellerListCall(apiContext);
             Calendar timeFrom = Calendar.getInstance();
-            timeFrom.add(Calendar.DATE, -121);
+            timeFrom.add(Calendar.DATE, -61);
             Calendar timeTo = Calendar.getInstance();
-            timeTo.add(Calendar.DATE, -1);
             TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
             fullListApi.setEndTimeFilter(endTimeFilter);
             fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
