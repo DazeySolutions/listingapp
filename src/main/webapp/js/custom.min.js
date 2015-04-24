@@ -152,14 +152,54 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         });
     };
     $scope.getItemDetails = function getItemDetails(itemid){
-      Restangular.one('ebay').get(itemid).then(function(data){
-            lodash.each($scope.rows, function(item, index){
-                if(item.ebayListingId === itemid){
-                    $scope.rows[index] = data;
+        lodash.each($scope.rows, function(item, index){
+            $http.get('http://kmhenry70.com/includes/amazonSearch.php',{
+                params:{
+                    ISBN: item.book.isbn
                 }
+            })
+            .success(function(data){
+                $scope.amazon = data;
             });
-      });
+        });
     };
+    
+    var loadImage = function loadImage(src) {
+        var img = new Image();
+        img.onload = function() {
+            var imageRatio = img.width / img.height,
+                canvasRatio = 1000 / 690;
+            if (imageRatio !== canvasRatio) {
+                if ((1000 / imageRatio) > 690) {
+                    img.width = 690 * imageRatio;
+                    img.height = 690;
+                } else {
+                    img.width = 1000;
+                    img.height = 1000 / imageRatio;
+                }
+            } else {
+                img.width = 1000;
+                img.height = 690;
+            }
+            $("canvas").drawImage({
+                source: img,
+                x: 1000 / 2,
+                y: 690 / 2,
+                height: img.height,
+                width: img.width,
+                fromCenter: true
+            });
+            var save = $("canvas").getCanvasImage('jpeg', 1);
+            $http.post("resize.php").post({
+                fileName: $scope.model.asin + ".jpg",
+                data: save
+            }).success(function(data) {
+                
+            });
+        };
+        img.src = src;
+    };
+    
     $scope.rows;
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
