@@ -3,7 +3,6 @@ package com.ds.listing.services;
 import com.ds.listing.model.Listing;
 import com.ds.listing.model.Book;
 import com.ds.listing.model.NameValuePair;
-import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
 import com.ebay.sdk.call.GetMyeBaySellingCall;
 import com.ebay.sdk.call.GetItemCall;
@@ -12,7 +11,8 @@ import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.List;
+
 import com.ds.listing.rest.UnsoldListData;
 
 /**
@@ -21,18 +21,20 @@ import com.ds.listing.rest.UnsoldListData;
 public class eBayListingService {
     private ApiContext apiContext;
 
+    private static final String STOCK_DESCRIPTION = "<h3 style='text-align: center;'><span style='color: #ff0000;'>All items are stored in a pet free and smoke free environment.<br /><br /></span>General listing information on abbreviations used in title description HC-hardcover DJ-dust jacket BCE-Book club edition.<br /><br />All books are full size retail editions unless otherwise noted.<br /><br />Ship worldwide!<br /><br />International shipments will ship for the cheapest rate possible.<br /><br />Media mail normally takes 2 to 14 days for delivery.</h3><h5 style='text-align: center;'><em>(Estimated delivery dates are from the USPS, not the seller.)</em></h5><h3 style='text-align: center;'> Puerto Rico, Guam, Hawaii, Alaska and all other US Providences can take between four to six weeks.<br /><br />I provide shipping tracking numbers so that you may follow your purchase.<br /><br />Feedback is left when shipping is complete. <br /><br />Refund given on items if they are not as described, please contact seller.<br /><br />Returns are allowed if buyer pays shipping rates.<br /><br />Many payment forms are welcome.<br /><br />Check out my <a href='http://search.ebay.com/?sass=kmhenry70&amp;ht=-1' target='_blank'>other items</a>!<br /><br />Be sure to add me to your <a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;sellerid=kmhenry70&amp;sspageName=DB:FavList' target='_blank'>favorites list</a>!<br /><br /><a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;linkname=includenewsletter&amp;sellerid=kmhenry70' target='_blank'>Sign up for my email newsletters</a> by adding my eBay Store to your Favorites!</h3>";
+
     public eBayListingService(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
-    
-    public Listing getItem(String id){
-        try{
+
+    public Listing getItem(String id) {
+        try {
             GetItemCall api = new GetItemCall(apiContext);
             ItemType item = api.getItem(id);
             Listing listed = populateListing(item);
             return listed;
-        }catch(Exception e){
-            return null;   
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -42,35 +44,35 @@ public class eBayListingService {
         try {
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
-            unsoldList.setInclude(true);  
+            unsoldList.setInclude(true);
             unsoldList.setDurationInDays(60);
             api.addDetailLevel(DetailLevelCodeType.RETURN_ALL);
             PaginationType pt = new PaginationType();
             pt.setEntriesPerPage(resultPerPage);
-            
+
             int pageNum = page;
             int totalNumberOfPages = 1;
             unsoldList.setPagination(pt);
-            
+
             api.setUnsoldList(unsoldList);
-            
+
             pt.setPageNumber(pageNum);
             api.getMyeBaySelling();
-            
+
             PaginatedItemArrayType unsoldItems = api.getReturnedUnsoldList();
-            if(unsoldItems != null){
+            if (unsoldItems != null) {
                 PaginationResultType pr = unsoldItems.getPaginationResult();
                 totalNumberOfPages = pr.getTotalNumberOfPages();
                 ItemArrayType itemArray = unsoldItems.getItemArray();
                 ItemType[] items = itemArray.getItem();
-                
-                for(ItemType item : items){
+
+                for (ItemType item : items) {
                     GetItemCall itemapi = new GetItemCall(apiContext);
                     ItemType fullItem = itemapi.getItem(item.getItemID());
-                    try{
+                    try {
                         retValues.add(populateListing(fullItem));
-                    }catch(Exception e){
-                        
+                    } catch (Exception e) {
+
                     }
                 }
                 data.setNumPages(totalNumberOfPages);
@@ -81,41 +83,60 @@ public class eBayListingService {
         } catch (Exception e) {
 
         }
-        
-        
+
+
     }
-  
-    private Listing populateListing(ItemType item){
-      Listing listing = new Listing();
-      listing.setEbayTitle(item.getTitle());
-      listing.setEbayListingId(item.getItemID());
-      if(item.getDescription() != null){
-        listing.setEbayDescription(item.getDescription());    
-      }
-      if(item.getConditionDescription() != null){
-        listing.setConditionDescription(item.getConditionDescription());
-      }
-      if(item.getStorefront() != null){
-        listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
-        if(item.getStorefront().getStoreCategoryID().equals("28162")){
-            throw new Exception("not a book");
+
+    private Listing populateListing(ItemType item) throws Exception {
+        Listing listing = new Listing();
+        listing.setEbayTitle(item.getTitle());
+        listing.setEbayListingId(item.getItemID());
+        if (item.getConditionDescription() != null) {
+            listing.setConditionDescription(item.getConditionDescription());
         }
-      }
-      if(item.getStartPrice()!=null){
-          listing.setEbayPrice(item.getStartPrice().getValue());
-      }
-      Book b = new Book();
-      if(item.getProductListingDetails() != null){
-          b.setIsbn(item.getProductListingDetails().getISBN());
-      }
-      if(item.getShippingDetails() != null){
-          b.setWeightMajor(item.getShippingDetails().getCalculatedShippingRate().getWeightMajor().getValue());
-          b.setWeightMinor(item.getShippingDetails().getCalculatedShippingRate().getWeightMinor().getValue());
-          b.setDepth(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
-          b.setWidth(item.getShippingDetails().getCalculatedShippingRate().getPackageLength().getValue());
-          b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
-      }
-      return listing;
+        if (item.getStorefront() != null) {
+            listing.setStoreCategory(item.getStorefront().getStoreCategoryID());
+            long fabid = 28162;
+            if (item.getStorefront().getStoreCategoryID() == fabid) {
+                throw new Exception("not a book");
+            }
+        }
+        if (item.getStartPrice() != null) {
+            listing.setEbayPrice(item.getStartPrice().getValue());
+        }
+        Book b = new Book();
+        if (item.getProductListingDetails() != null) {
+            b.setIsbn(item.getProductListingDetails().getISBN());
+        }
+        if (item.getShippingDetails() != null) {
+            b.setWeightMajor(item.getShippingDetails().getCalculatedShippingRate().getWeightMajor().getValue());
+            b.setWeightMinor(item.getShippingDetails().getCalculatedShippingRate().getWeightMinor().getValue());
+            b.setDepth(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+            b.setWidth(item.getShippingDetails().getCalculatedShippingRate().getPackageLength().getValue());
+            b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+        }
+        listing.setBook(b);
+        if(item.getPrimaryCategory() != null) {
+            listing.setCategory(item.getPrimaryCategory().getCategoryID());
+        }
+        listing.setEbayCondition(item.getConditionID());
+        if(item.getItemSpecifics() != null) {
+            List<NameValuePair> nvps = new ArrayList<>();
+            for (NameValueListType pair : item.getItemSpecifics().getNameValueList()) {
+                NameValuePair nvPair = new NameValuePair();
+                nvPair.setName(pair.getName());
+                nvPair.setValue(pair.getValue(0));
+                nvps.add(nvPair);
+            }
+            listing.setNvps(nvps);
+        }
+        if(item.getSellingStatus() != null) {
+            listing.setQuantity(item.getQuantity() - item.getSellingStatus().getQuantitySold());
+        }else{
+            listing.setQuantity(item.getQuantity());
+        }
+        listing.setEbayDescription(STOCK_DESCRIPTION);
+        return listing;
     }
 
     public boolean addListing(Listing listing) {
