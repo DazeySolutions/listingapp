@@ -3,14 +3,17 @@ package com.ds.listing.services;
 import com.ds.listing.model.Listing;
 import com.ds.listing.model.Book;
 import com.ds.listing.model.NameValuePair;
+import com.ebay.sdk.TimeFilter;
 import com.ebay.sdk.call.AddFixedPriceItemCall;
 import com.ebay.sdk.call.GetMyeBaySellingCall;
 import com.ebay.sdk.call.GetItemCall;
+import com.ebay.sdk.call.GetSellerListCall;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.ds.listing.rest.UnsoldListData;
@@ -20,7 +23,7 @@ import com.ds.listing.rest.UnsoldListData;
  */
 public class eBayListingService {
     private ApiContext apiContext;
-
+    private ArrayList<ItemType> itemsList;
     private static final String STOCK_DESCRIPTION = "<h3 style='text-align: center;'><span style='color: #ff0000;'>All items are stored in a pet free and smoke free environment.<br /><br /></span>General listing information on abbreviations used in title description HC-hardcover DJ-dust jacket BCE-Book club edition.<br /><br />All books are full size retail editions unless otherwise noted.<br /><br />Ship worldwide!<br /><br />International shipments will ship for the cheapest rate possible.<br /><br />Media mail normally takes 2 to 14 days for delivery.</h3><h5 style='text-align: center;'><em>(Estimated delivery dates are from the USPS, not the seller.)</em></h5><h3 style='text-align: center;'> Puerto Rico, Guam, Hawaii, Alaska and all other US Providences can take between four to six weeks.<br /><br />I provide shipping tracking numbers so that you may follow your purchase.<br /><br />Feedback is left when shipping is complete. <br /><br />Refund given on items if they are not as described, please contact seller.<br /><br />Returns are allowed if buyer pays shipping rates.<br /><br />Many payment forms are welcome.<br /><br />Check out my <a href='http://search.ebay.com/?sass=kmhenry70&amp;ht=-1' target='_blank'>other items</a>!<br /><br />Be sure to add me to your <a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;sellerid=kmhenry70&amp;sspageName=DB:FavList' target='_blank'>favorites list</a>!<br /><br /><a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;linkname=includenewsletter&amp;sellerid=kmhenry70' target='_blank'>Sign up for my email newsletters</a> by adding my eBay Store to your Favorites!</h3>";
 
     public eBayListingService(ApiContext apiContext) {
@@ -42,6 +45,31 @@ public class eBayListingService {
         System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
+            if(itemsList == null) {
+                GetSellerListCall fullListApi = new GetSellerListCall();
+                TimeFilter endTimeFilter = new TimeFilter();
+                Calendar date = Calendar.getInstance();
+                Calendar toDate = Calendar.getInstance();
+                date.add(Calendar.DATE, -65);
+                endTimeFilter.setTimeFrom(date);
+                endTimeFilter.setTimeTo(toDate);
+                fullListApi.setEndTimeFilter(endTimeFilter);
+                fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
+                fullListApi.setAdminEndedItemsOnly(false);
+                PaginationType pagination = new PaginationType();
+                pagination.setEntriesPerPage(200);
+                pagination.setPageNumber(1);
+                fullListApi.setPagination(pagination);
+                itemsList = new ArrayList<>();
+                while (fullListApi.getHasMoreItems()) {
+                    ItemType[] itemsArray = fullListApi.getSellerList();
+                    for (ItemType i : itemsArray) {
+                        itemsList.add(i);
+                    }
+                    int curPage = pagination.getPageNumber();
+                    pagination.setPageNumber(curPage++);
+                }
+            }
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
             unsoldList.setInclude(true);
@@ -67,12 +95,14 @@ public class eBayListingService {
                 ItemType[] items = itemArray.getItem();
 
                 for (ItemType item : items) {
-                    GetItemCall itemapi = new GetItemCall(apiContext);
-                    ItemType fullItem = itemapi.getItem(item.getItemID());
-                    try {
-                        retValues.add(populateListing(fullItem));
-                    } catch (Exception e) {
+                    for(ItemType fullItem : itemsList) {
+                        if(item.getItemID().equals(fullItem.getItemID())) {
+                            try {
+                                retValues.add(populateListing(fullItem));
+                            } catch (Exception e) {
 
+                            }
+                        }
                     }
                 }
                 data.setNumPages(totalNumberOfPages);
@@ -116,11 +146,11 @@ public class eBayListingService {
             b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
         }
         listing.setBook(b);
-        if(item.getPrimaryCategory() != null) {
+        if (item.getPrimaryCategory() != null) {
             listing.setCategory(item.getPrimaryCategory().getCategoryID());
         }
         listing.setEbayCondition(item.getConditionID());
-        if(item.getItemSpecifics() != null) {
+        if (item.getItemSpecifics() != null) {
             List<NameValuePair> nvps = new ArrayList<>();
             for (NameValueListType pair : item.getItemSpecifics().getNameValueList()) {
                 NameValuePair nvPair = new NameValuePair();
@@ -130,9 +160,9 @@ public class eBayListingService {
             }
             listing.setNvps(nvps);
         }
-        if(item.getSellingStatus() != null) {
+        if (item.getSellingStatus() != null) {
             listing.setQuantity(item.getQuantity() - item.getSellingStatus().getQuantitySold());
-        }else{
+        } else {
             listing.setQuantity(item.getQuantity());
         }
         listing.setEbayDescription(STOCK_DESCRIPTION);
