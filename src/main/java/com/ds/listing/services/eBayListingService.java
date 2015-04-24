@@ -61,15 +61,17 @@ public class eBayListingService {
             ArrayList<ItemType> itemsList = new ArrayList<>();
             boolean hasMore = true;
             while (hasMore) {
+                System.out.println("Test");
                 pagination.setPageNumber(curPage);
                 ItemType[] itemsArray = fullListApi.getSellerList();
                 for (ItemType i : itemsArray) {
+                    System.out.println("Test Item");
                     itemsList.add(i);
                 }
-
                 hasMore = fullListApi.getHasMoreItems();
                 curPage++;
             }
+
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
             unsoldList.setInclude(true);
