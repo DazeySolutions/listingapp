@@ -20,6 +20,7 @@ import com.ds.listing.rest.UnsoldListData;
 
 /**
  * Created by bithack on 3/31/15.
+ * ebay api calls
  */
 public class eBayListingService {
     private ApiContext apiContext;
@@ -34,8 +35,7 @@ public class eBayListingService {
         try {
             GetItemCall api = new GetItemCall(apiContext);
             ItemType item = api.getItem(id);
-            Listing listed = populateListing(item);
-            return listed;
+            return populateListing(item);
         } catch (Exception e) {
             return null;
         }
@@ -82,13 +82,12 @@ public class eBayListingService {
             PaginationType pt = new PaginationType();
             pt.setEntriesPerPage(resultPerPage);
 
-            int pageNum = page;
-            int totalNumberOfPages = 1;
+            int totalNumberOfPages;
             unsoldList.setPagination(pt);
 
             api.setUnsoldList(unsoldList);
 
-            pt.setPageNumber(pageNum);
+            pt.setPageNumber(page);
             api.getMyeBaySelling();
 
             PaginatedItemArrayType unsoldItems = api.getReturnedUnsoldList();
@@ -104,7 +103,7 @@ public class eBayListingService {
                         if (item.getItemID().equals(fullItem.getItemID())) {
                             try {
                                 retValues.add(populateListing(fullItem));
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
 
                             }
                         }
@@ -115,7 +114,7 @@ public class eBayListingService {
                 data.setListings(retValues);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 
@@ -182,7 +181,7 @@ public class eBayListingService {
 
             FeesType fees = api.addFixedPriceItem();
             double listingFee = eBayUtil.findFeeByName(fees.getFee(), "ListingFee").getFee().getValue();
-            System.out.println("Listing fee is: " + new Double(listingFee).toString());
+            System.out.println("Listing fee is: " + Double.toString(listingFee));
             listing.setEbayListingId(item.getItemID());
             return true;
         } catch (Exception e) {
