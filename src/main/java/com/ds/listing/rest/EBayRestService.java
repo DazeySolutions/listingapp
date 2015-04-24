@@ -29,21 +29,24 @@ public class EBayRestService {
    private EntityManager em;
   
    @GET
+   @Path("/{id}")
    @Produces(MediaType.APPLICATION_JSON)
-    public UnsoldListData GetUnSold(){
+    public UnsoldListData GetUnSold(@PathParam("id") String id ){
         UnsoldListData returnData = new UnsoldListData();
         ArrayList<String> retStrings = new ArrayList<>();
         eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-        eBayService.getCurrentListings(1, 20, returnData);
+        int page;
+        page = Integer.parseInt(id);
+        eBayService.getCurrentListings(page, 20, returnData);
         return returnData;
    }
-   @GET
-   @Path("/{id}")
-   @Produces(MediaType.APPLICATION_JSON)
-   public Listing getListing(@PathParam("id") String id){
-       eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-       return eBayService.getItem(id);
-   }
+//   @GET
+//   @Path("/{id}")
+//   @Produces(MediaType.APPLICATION_JSON)
+//   public Listing getListing(@PathParam("id") String id){
+//       eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+//       return eBayService.getItem(id);
+//   }
   
 }
 

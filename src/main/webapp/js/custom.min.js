@@ -141,16 +141,18 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
     $scope.init();
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
-    $scope.init =  function init(page){
-        if(angular.isUndefinedOrNullOrEmpty(page)){
-            page = 1;
-        }
+    var page = 1;
+    $scope.init =  function init(){
         $scope.rows = undefined;
-        Restangular.one('ebay').get().then(function(res){
+        Restangular.one('ebay').get(page).then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
         });
+    };
+    $scope.nextPage = function nextPage(){
+        page++;
+        $scope.init();
     };
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
