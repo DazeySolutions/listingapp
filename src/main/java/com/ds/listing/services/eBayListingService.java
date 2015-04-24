@@ -57,12 +57,12 @@ public class eBayListingService {
             PaginationType pagination = new PaginationType();
             pagination.setEntriesPerPage(200);
             int curPage = 1;
+            pagination.setPageNumber(curPage);
             fullListApi.setPagination(pagination);
             ArrayList<ItemType> itemsList = new ArrayList<>();
             boolean hasMore = true;
             while (hasMore) {
-                System.out.println("Test");
-                pagination.setPageNumber(curPage);
+
                 ItemType[] itemsArray = fullListApi.getSellerList();
                 for (ItemType i : itemsArray) {
                     System.out.println("Test Item");
@@ -70,6 +70,9 @@ public class eBayListingService {
                 }
                 hasMore = fullListApi.getHasMoreItems();
                 curPage++;
+                System.out.println("Test");
+                pagination.setPageNumber(curPage);
+                System.out.println("Test1");
             }
 
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
