@@ -54,26 +54,33 @@ public class eBayListingService {
             fullListApi.setEndTimeFilter(endTimeFilter);
             fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
             fullListApi.setAdminEndedItemsOnly(false);
-            PaginationType pagination = new PaginationType();
-            pagination.setEntriesPerPage(200);
-            int curPage = 1;
-            pagination.setPageNumber(curPage);
-            fullListApi.setPagination(pagination);
+//            PaginationType pagination = new PaginationType();
+//            pagination.setEntriesPerPage(200);
+//            int curPage = 1;
+//            pagination.setPageNumber(curPage);
+//            fullListApi.setPagination(pagination);
             ArrayList<ItemType> itemsList = new ArrayList<>();
             boolean hasMore = true;
-            while (hasMore) {
-
-                ItemType[] itemsArray = fullListApi.getSellerList();
-                for (ItemType i : itemsArray) {
-                    System.out.println("Test Item");
-                    itemsList.add(i);
-                }
-                hasMore = fullListApi.getHasMoreItems();
-                curPage++;
-                System.out.println("Test");
-                pagination.setPageNumber(curPage);
-                System.out.println("Test1");
-            }
+            ItemType[] itemsArray = fullListApi.getSellerList();
+            hasMore = fullListApi.getHasMoreItems();
+//            for (ItemType i : itemsArray) {
+//                System.out.println("Test Item");
+//                itemsList.add(i);
+//            }
+//            curPage++;
+//            pagination.setPageNumber(curPage);
+//            while (hasMore) {
+//                ItemType[] itemsArray = fullListApi.getSellerList();
+//                hasMore = fullListApi.getHasMoreItems();
+//                for (ItemType i : itemsArray) {
+//                    System.out.println("Test Item");
+//                    itemsList.add(i);
+//                }
+//                curPage++;
+//                System.out.println("Test");
+//                pagination.setPageNumber(curPage);
+//                System.out.println("Test1");
+//            }
 
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
@@ -100,7 +107,7 @@ public class eBayListingService {
                 ItemType[] items = itemArray.getItem();
 
                 for (ItemType item : items) {
-                    for (ItemType fullItem : itemsList) {
+                    for (ItemType fullItem : itemsArray) {
                         System.out.println(item.getItemID() + "  -  " + fullItem.getItemID());
                         if (item.getItemID().equals(fullItem.getItemID())) {
                             try {
