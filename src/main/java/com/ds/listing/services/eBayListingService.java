@@ -56,16 +56,19 @@ public class eBayListingService {
             fullListApi.setAdminEndedItemsOnly(false);
             PaginationType pagination = new PaginationType();
             pagination.setEntriesPerPage(200);
-            pagination.setPageNumber(1);
+            int curPage = 1;
             fullListApi.setPagination(pagination);
             ArrayList<ItemType> itemsList = new ArrayList<>();
-            while (fullListApi.getHasMoreItems()) {
+            boolean hasMore = true;
+            while (hasMore) {
+                pagination.setPageNumber(curPage);
                 ItemType[] itemsArray = fullListApi.getSellerList();
                 for (ItemType i : itemsArray) {
                     itemsList.add(i);
                 }
-                int curPage = pagination.getPageNumber();
-                pagination.setPageNumber(curPage++);
+
+                hasMore = fullListApi.getHasMoreItems();
+                curPage++;
             }
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
