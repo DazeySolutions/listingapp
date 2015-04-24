@@ -153,7 +153,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     $scope.getItemDetails = function getItemDetails(itemid){
         lodash.each($scope.rows, function(item, index){
-            $http.get('http://kmhenry70.com/includes/amazonSearch.php',{
+            $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
                 params:{
                     ISBN: item.book.isbn
                 }
