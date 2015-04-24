@@ -23,7 +23,7 @@ import com.ds.listing.rest.UnsoldListData;
  */
 public class eBayListingService {
     private ApiContext apiContext;
-    private ArrayList<ItemType> itemsList;
+
     private static final String STOCK_DESCRIPTION = "<h3 style='text-align: center;'><span style='color: #ff0000;'>All items are stored in a pet free and smoke free environment.<br /><br /></span>General listing information on abbreviations used in title description HC-hardcover DJ-dust jacket BCE-Book club edition.<br /><br />All books are full size retail editions unless otherwise noted.<br /><br />Ship worldwide!<br /><br />International shipments will ship for the cheapest rate possible.<br /><br />Media mail normally takes 2 to 14 days for delivery.</h3><h5 style='text-align: center;'><em>(Estimated delivery dates are from the USPS, not the seller.)</em></h5><h3 style='text-align: center;'> Puerto Rico, Guam, Hawaii, Alaska and all other US Providences can take between four to six weeks.<br /><br />I provide shipping tracking numbers so that you may follow your purchase.<br /><br />Feedback is left when shipping is complete. <br /><br />Refund given on items if they are not as described, please contact seller.<br /><br />Returns are allowed if buyer pays shipping rates.<br /><br />Many payment forms are welcome.<br /><br />Check out my <a href='http://search.ebay.com/?sass=kmhenry70&amp;ht=-1' target='_blank'>other items</a>!<br /><br />Be sure to add me to your <a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;sellerid=kmhenry70&amp;sspageName=DB:FavList' target='_blank'>favorites list</a>!<br /><br /><a href='http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&amp;linkname=includenewsletter&amp;sellerid=kmhenry70' target='_blank'>Sign up for my email newsletters</a> by adding my eBay Store to your Favorites!</h3>";
 
     public eBayListingService(ApiContext apiContext) {
@@ -45,29 +45,27 @@ public class eBayListingService {
         System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
-            if(itemsList == null) {
-                GetSellerListCall fullListApi = new GetSellerListCall();
-                Calendar timeFrom = Calendar.getInstance();
-                timeFrom.add(Calendar.DATE, -121);
-                Calendar timeTo = Calendar.getInstance();
-                timeTo.add(Calendar.DATE, -1);
-                TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
-                fullListApi.setEndTimeFilter(endTimeFilter);
-                fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
-                fullListApi.setAdminEndedItemsOnly(false);
-                PaginationType pagination = new PaginationType();
-                pagination.setEntriesPerPage(200);
-                pagination.setPageNumber(1);
-                fullListApi.setPagination(pagination);
-                itemsList = new ArrayList<>();
-                while (fullListApi.getHasMoreItems()) {
-                    ItemType[] itemsArray = fullListApi.getSellerList();
-                    for (ItemType i : itemsArray) {
-                        itemsList.add(i);
-                    }
-                    int curPage = pagination.getPageNumber();
-                    pagination.setPageNumber(curPage++);
+            GetSellerListCall fullListApi = new GetSellerListCall();
+            Calendar timeFrom = Calendar.getInstance();
+            timeFrom.add(Calendar.DATE, -121);
+            Calendar timeTo = Calendar.getInstance();
+            timeTo.add(Calendar.DATE, -1);
+            TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
+            fullListApi.setEndTimeFilter(endTimeFilter);
+            fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
+            fullListApi.setAdminEndedItemsOnly(false);
+            PaginationType pagination = new PaginationType();
+            pagination.setEntriesPerPage(200);
+            pagination.setPageNumber(1);
+            fullListApi.setPagination(pagination);
+            ArrayList<ItemType> itemsList = new ArrayList<>();
+            while (fullListApi.getHasMoreItems()) {
+                ItemType[] itemsArray = fullListApi.getSellerList();
+                for (ItemType i : itemsArray) {
+                    itemsList.add(i);
                 }
+                int curPage = pagination.getPageNumber();
+                pagination.setPageNumber(curPage++);
             }
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
@@ -94,9 +92,9 @@ public class eBayListingService {
                 ItemType[] items = itemArray.getItem();
 
                 for (ItemType item : items) {
-                    for(ItemType fullItem : itemsList) {
+                    for (ItemType fullItem : itemsList) {
                         System.out.println(item.getItemID() + "  -  " + fullItem.getItemID());
-                        if(item.getItemID().equals(fullItem.getItemID())) {
+                        if (item.getItemID().equals(fullItem.getItemID())) {
                             try {
                                 retValues.add(populateListing(fullItem));
                             } catch (Exception e) {
