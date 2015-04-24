@@ -170,17 +170,19 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 }
                 var extra = 0.25;
                 item.book.title = as.Title;
-                if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Wieght)){
-                    as.ItemDimensions.Weight = extra.toString();
-                }else{
-                    as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
-                    as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
+                if(!angular.isUndefinedOrNullOrEmpty(as.ItemDimensions)){
+                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
+                        as.ItemDimensions.Weight = extra.toString();
+                    }else{
+                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
+                        as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
+                    }
+                    item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
+                    item.book.weigthMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
+                    item.book.depth = as.ItemDimensions.Height;
+                    item.book.height = as.ItemDimensions.Length;
+                    item.book.width = as.ItemDimensions.Width;
                 }
-                item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
-                item.book.weigthMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
-                item.book.depth = as.ItemDimensions.Height;
-                item.book.height = as.ItemDimensions.Length;
-                item.book.width = as.ItemDimensions.Width;
                 var imageURL = as.SmallImage.URL.replace("SL75", "SL500")
                 loadImage(imageURL);
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
