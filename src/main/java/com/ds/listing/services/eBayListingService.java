@@ -95,6 +95,7 @@ public class eBayListingService {
 
                 for (ItemType item : items) {
                     for(ItemType fullItem : itemsList) {
+                        System.out.println(item.getItemID() + "  -  " + fullItem.getItemID());
                         if(item.getItemID().equals(fullItem.getItemID())) {
                             try {
                                 retValues.add(populateListing(fullItem));
