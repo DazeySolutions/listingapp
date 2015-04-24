@@ -149,9 +149,10 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         Restangular.one('ebay').get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
+            $scope.getItemsDetails();
         });
     };
-    $scope.getItemDetails = function getItemDetails(itemid){
+    $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
             $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
                 params:{
@@ -159,7 +160,24 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 }
             })
             .success(function(data){
-                $scope.amazon = data;
+                var as = data.payload[1][0].AttributeSets[0];
+                var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
+                item.book.asin = asin;
+                item.book.author = as.Author;
+                item.book.publishDate = as.PublicationDate;
+                if(as.Binding === "Hardcover"){
+                    item.book.hardcover = true;
+                }
+                item.book.title = as.Title;
+                as.ItemDimensions.Weight = as.ItemDimensions.Weight+.25;
+                item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
+                item.book.weigthMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
+                item.book.depth = as.ItemDimensions.Height;
+                item.book.height = as.ItemDimensions.Length;
+                item.book.width = as.ItemDimensions.Width;
+                var imageURL = SmallImage.URL.replace("SL75", "SL500")
+                loadImage(imageURL);
+                item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
             });
         });
     };
@@ -181,17 +199,12 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 img.width = 1000;
                 img.height = 690;
             }
-            $("canvas").drawImage({
-                source: img,
-                x: 1000 / 2,
-                y: 690 / 2,
-                height: img.height,
-                width: img.width,
-                fromCenter: true
-            });
-            var save = $("canvas").getCanvasImage('jpeg', 1);
+            var canvas = angular.element("<cavnas height='690' width='1000'></canvas>");
+            var context = canvas[0].getContext('2d');
+            context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
+            var save = canvas.toDataUrl("image/jpg")
             $http.post("resize.php").post({
-                fileName: $scope.model.asin + ".jpg",
+                fileName: $scope.item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
                 
