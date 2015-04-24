@@ -168,9 +168,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 if(as.Binding === "Hardcover"){
                     item.book.hardcover = true;
                 }
+                var extra = 0.25;
                 item.book.title = as.Title;
-                as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
-                as.ItemDi
+                if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Wieght)){
+                    as.ItemDimensions.Weight = extra.toString();
+                }else{
+                    as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
+                    as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
+                }
                 item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
                 item.book.weigthMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
                 item.book.depth = as.ItemDimensions.Height;
@@ -200,7 +205,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 img.width = 1000;
                 img.height = 690;
             }
-            var canvas = angular.element("<cavnas height='690' width='1000'></canvas>");
+            var canvas = angular.element("<canvas height='690' width='1000'></canvas>");
             var context = canvas[0].getContext('2d');
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
             var save = canvas.toDataUrl("image/jpg")
