@@ -169,13 +169,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     item.book.hardcover = true;
                 }
                 item.book.title = as.Title;
-                as.ItemDimensions.Weight = as.ItemDimensions.Weight+.25;
+                as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
+                as.ItemDi
                 item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
                 item.book.weigthMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
                 item.book.depth = as.ItemDimensions.Height;
                 item.book.height = as.ItemDimensions.Length;
                 item.book.width = as.ItemDimensions.Width;
-                var imageURL = SmallImage.URL.replace("SL75", "SL500")
+                var imageURL = as.SmallImage.URL.replace("SL75", "SL500")
                 loadImage(imageURL);
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
             });
