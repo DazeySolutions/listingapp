@@ -47,12 +47,11 @@ public class eBayListingService {
         try {
             if(itemsList == null) {
                 GetSellerListCall fullListApi = new GetSellerListCall();
-                TimeFilter endTimeFilter = new TimeFilter();
-                Calendar date = Calendar.getInstance();
-                Calendar toDate = Calendar.getInstance();
-                date.add(Calendar.DATE, -65);
-                endTimeFilter.setTimeFrom(date);
-                endTimeFilter.setTimeTo(toDate);
+                Calendar timeFrom = Calendar.getInstance();
+                timeFrom.add(Calendar.DATE, -121);
+                Calendar timeTo = Calendar.getInstance();
+                timeTo.add(Calendar.DATE, -1);
+                TimeFilter endTimeFilter = new TimeFilter(timeFrom, timeTo);
                 fullListApi.setEndTimeFilter(endTimeFilter);
                 fullListApi.setGranularityLevel(GranularityLevelCodeType.FINE);
                 fullListApi.setAdminEndedItemsOnly(false);
