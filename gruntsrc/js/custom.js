@@ -210,8 +210,8 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             var canvas = angular.element("<canvas height='690' width='1000'></canvas>");
             var context = canvas[0].getContext('2d');
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
-            var save = canvas[0].toDataUrl("image/jpg")
-            $http.post("resize.php").post({
+            var save = canvas[0].toDataUrl("image/jpg");
+            $http.post("http://dazeysolutions.com/includes/resize.php").post({
                 fileName: $scope.item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
