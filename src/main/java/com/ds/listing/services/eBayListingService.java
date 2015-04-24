@@ -39,7 +39,6 @@ public class eBayListingService {
     }
 
     public void getCurrentListings(int page, int resultPerPage, UnsoldListData data) {
-        System.out.println("try");
         ArrayList<Listing> retValues = new ArrayList<>();
         try {
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
@@ -72,16 +71,17 @@ public class eBayListingService {
                     try{
                         retValues.add(populateListing(fullItem));
                     }catch(Exception ignored){
-
+                        System.out.println("remove non book");
                     }
                 }
                 data.setNumPages(totalNumberOfPages);
                 data.setNumResults(pr.getTotalNumberOfEntries());
                 data.setListings(retValues);
+                System.out.println("Results #" + retValues.size());
             }
 
         } catch (Exception ignored) {
-
+            System.out.println("unknown error");
         }
 
 
