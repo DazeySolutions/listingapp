@@ -291,14 +291,47 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                             value: "United States"
                         });
                     } else if (value === "Special Attributes") {
-						opts.push({name:"Paperback"});
-						opts.push({name:"Hard Cover"});
-						$scope.specifics.push({
-                            name: value,
-                            options: opts,
-                            value: ""
-                        });
-                    } 
+                        if($scope.selectedItem.firstEdition){
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "1st Edition"
+                            });
+                        }else if($scope.selectedItem.illustrated){
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "Illustrated"
+                            });
+                        }else if($scope.selectedItem.book.hardcover){
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "Hardcover"
+                            });
+                        }else{
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "Paperback"
+                            });
+                        }
+                    }
+                    else if(value == "Format"){
+                        if($scope.selectedItem.book.hardcover){
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "Hardcover"
+                            });
+                        }else{
+                            $scope.specifics.push({
+                                name: value,
+                                options: [],
+                                value: "Paperback"
+                            });
+                        }
+                    }
 					else {
                         $scope.specifics.push({
                             name: value,

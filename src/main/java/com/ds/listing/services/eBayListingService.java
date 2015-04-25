@@ -338,7 +338,7 @@ public class eBayListingService {
         String[] imageURLS = new String[12];
 
         for (int i = 0; i < 12; i++) {
-            imageURLS[i] = "http://kmhenry70.com/images/" + listing.getBook().getAsin() + ".jpg";
+            imageURLS[i] = listing.book.getImageUrl();
         }
         pdt.setPictureURL(imageURLS);
         item.setPictureDetails(pdt);
