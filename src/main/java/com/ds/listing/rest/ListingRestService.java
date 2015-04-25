@@ -3,6 +3,7 @@ package com.ds.listing.rest;
 import com.ds.listing.model.Listing;
 import com.ds.listing.services.ListingService;
 
+import com.ds.listing.services.eBayListingService;
 import com.ds.listing.properties.eBayAuth;
 import java.util.ArrayList;
 
