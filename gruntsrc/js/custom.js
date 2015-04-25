@@ -178,22 +178,55 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
+            var title = item.ebayTitle;
+            title = title.toLowerCase();
+            if(title.indexOf("1st/1st")>=0){
+                item.firstEdition = true;
+                item.firstPrinting = true;
+            }
+            if(title.indexOf("dj")>=0){
+                item.dustJacket = true;
+            }
+            if(title.indexOf("illust")>=0){
+                item.illustrated = true;
+            }
+            if(title.indexOf("bce")>=0){
+                item.bookClub = true;
+            }
+            
             $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
                 params:{
                     ISBN: item.book.isbn
                 }
             })
             .success(function(data){
+                var addOnTitle = "";
                 var as = data.payload[1][0].AttributeSets[0];
                 var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
                 item.book.asin = asin;
                 item.book.author = as.Author;
+                addOnTitle += " " + as.Author;
                 item.book.publishDate = as.PublicationDate;
                 if(as.Binding === "Hardcover"){
-                    item.book.hardcover = true;
+                    item.book.hardcover = true
+                    addOnTitle += " HC";
+                    if(item.bookClub){
+                        addOnTitle += " BCE";
+                    }
+                    if(item.dustJacket){
+                        addOnTitle += " DJ";
+                    }
+                    if(item.firstPrinting && item.firstEdition){
+                        addOnTitle += " 1st/1st";
+                    }
+                    addOnTitle += " Free Ship";
                 }
                 var extra = 0.25;
                 item.book.title = as.Title;
+                item.book.title = replaceAll(item.book.title, "/", " ");
+                var end = 80;
+                end = 79 - addOnTitle.length
+                item.ebayTitle = item.book.title.substring(0, end) + addOnTitle;
                 if(!angular.isUndefinedOrNullOrEmpty(as.ItemDimensions)){
                     if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
                         as.ItemDimensions.Weight = extra.toString();
