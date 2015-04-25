@@ -63,7 +63,7 @@
                     <button class="btn btn-xs btn-primary" ng-click="edit(item.ebayListingId)"><i class="fa fa-fw fa-pencil"></i></button>
                     <button class="btn btn-xs btn-danger" ng-click="remove(item.ebayListingId)"><i class="fa fa-fw fa-times"></i></button>
                     <button class="btn btn-xs btn-success" ng-show="item.checked"><i class="fa fa-fw fa-check"></i></button>
-                    <button class="btn btn-xs btn-info" ng-show="item.checked"><i class="fa fa-fw fa-spinner fa-spin"></i></button>
+                    <button class="btn btn-xs btn-info" ng-show="item.loadingImage"><i class="fa fa-fw fa-spinner fa-spin"></i></button>
                 </td>
               </tr>
             </tbody>
