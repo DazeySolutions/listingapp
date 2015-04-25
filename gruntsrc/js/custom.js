@@ -224,7 +224,12 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     if(cat.value === currentItem.storeCategory){
                         $scope.selectedStoreCategory = cat;
                     }
-                })
+                });
+                lodash.each($scope.categories, function(cat){
+                    if(cat.ID == item.category){
+                        $scope.selectedCategory = cat;
+                    }
+                });
                 $scope.isEdit = true;
             }
         })
@@ -312,11 +317,6 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 if(title.indexOf("bce")>=0){
                     item.bookClub = true;
                 }
-                lodash.each($scope.categories, function(cat){
-                    if(cat.ID == item.category){
-                        $scope.selectedCategory = cat;
-                    }
-                });
                 var addOnTitle = "";
                 var as = data.payload[1][0].AttributeSets[0];
                 var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
