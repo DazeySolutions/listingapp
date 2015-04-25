@@ -38,12 +38,12 @@ ngListApp.run(function($rootScope, $state, Auth){
   };
 
   var store = function(){
-     localStorage.setItem('listuser', JSON.toString(user));
+     localStorage.setItem('listuser', angular.fromJson(user));
   };
  
      var retrieve = function(){
          if(localStorage.hasOwnProperty('listuser')){
-            user = JSON.parse(localStorage.getItem('listuser'));
+            user = angular.toJson(localStorage.getItem('listuser'));
          }
      };
      
@@ -58,7 +58,9 @@ ngListApp.run(function($rootScope, $state, Auth){
             notifyObservers();
         };
     this.isLoggedIn = function(){
-            retrieve();
+            if(!user){
+                retrieve();
+            }
             return (user)?user:false;
         };
     var user;
