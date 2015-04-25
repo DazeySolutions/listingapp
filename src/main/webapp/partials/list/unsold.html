@@ -1,9 +1,26 @@
+<div ng-if="loading" id="loading" style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.2);
+    z-index: 2000;
+">
+  <i class="fa fa-spinner fa-5x fa-spin" style="
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+"></i></div>
 <div classs="row">
     <h4 class="col-xs-12">Re-List unsold listings</h4>
-
     <div class="col-xs-12 edit-window" ng-if="isEdit">
         <div class="row">
             <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12">
+                    <img src="{{item.book.imageUrl}}" style="width:100%;">
+                </div>
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input id="title" type="text" class="form-control" ng-model="selectedItem.ebayTitle">
@@ -32,11 +49,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="storeCat">Store Category</label>
-                    <select id="storeCat" ng-model="selectedStoreCategory" class="form-control"
-                            ng-options="opt as opt.name for opt in storeCategoryIDs">
+    				<label for="storeCat">Store Category</label>
+    				<select id="storeCat" ng-model="selectedStoreCategory" class="form-control"
+                    ng-options="opt as opt.name for opt in storeCategoryIDs">
                     </select>
-                </div>
+    			</div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
@@ -49,49 +66,41 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <button type="button" id="category" class="btn btn-default form-control" ng-model="$parent.selectedCategory"
-                            ng-options="category as category.name for category in categories" bs-select>Select
-                        Category<span class="fa fa-caret-down fa-fw"></span></button>
+                        <button type="button" id="category" class="btn btn-default form-control" ng-model="selectedCategory" ng-options="category as category.name for category in categories" bs-select>Select Category<span class="fa fa-caret-down fa-fw"></span></button>
                 </div>
                 <div class="form-group" data-ng-repeat="item in specifics">
                     <label>{{item.name}}</label>
-                    <input type="text" data-ng-if="item.options.length>0" data-min-length="0" data-animation="am-flip-x"
-                           data-limit="item.options.length" class="form-control" ng-model="item.value"
-                           ng-options="opt as opt.name for opt in item.options" bs-typeahead
-                           placeholder="Enter {{item.name}}"/>
-                    <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..."
-                           data-ng-if="item.options.length==0"/>
+                    <input type="text" data-ng-if="item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="item.options.length" class="form-control" ng-model="item.value" ng-options="opt as opt.name for opt in item.options" bs-typeahead placeholder="Enter {{item.name}}" />
+                    <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
                 </div>
             </div>
-
+			
+            </div>
         </div>
     </div>
-</div>
-<table ng-table="tableParams" class="table table-striped table-hover table-condensed col-xs-12">
-    <tbody>
-    <tr ng-repeat="item in $data">
-        <td data-title="'Title'">
-            {{item.ebayTitle}}
-        </td>
-        <td data-title="'Actions'">
-            <button class="btn btn-xs btn-primary" ng-click="edit(item.ebayListingId)"><i
-                    class="fa fa-fw fa-pencil"></i></button>
-            <button class="btn btn-xs btn-danger" ng-click="remove(item.ebayListingId)"><i
-                    class="fa fa-fw fa-times"></i></button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<div class="row">
-    <div class="col-xs-12 col-md-6">
-        <a class="btn btn-xs btn-info text-center" ng-click="nextPage()">Next</a>
+    <table ng-table="tableParams" class="table table-striped table-hover table-condensed col-xs-12">
+        <tbody>
+          <tr ng-repeat="item in $data">
+            <td data-title="'Title'">
+                    {{item.ebayTitle}} 
+            </td>
+            <td data-title="'Actions'">
+                <button class="btn btn-xs btn-primary" ng-click="edit(item.ebayListingId)"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-xs btn-danger" ng-click="remove(item.ebayListingId)"><i class="fa fa-fw fa-times"></i></button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-xs btn-info text-center" ng-click="nextPage()">Next</a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <span class="text-center">Page {{currPage}} of {{pages}}</span>
+        </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <span class="text-center">Page {{currPage}} of {{pages}}</span>
+    
+    <div class="hidden-xs hidden-sm hidden-md hidden-lg">
+        <canvas height="690" width="1000"></canvas>
     </div>
-</div>
-
-<div class="hidden-xs hidden-sm hidden-md hidden-lg">
-    <canvas height="690" width="1000"></canvas>
-</div>
 </div>

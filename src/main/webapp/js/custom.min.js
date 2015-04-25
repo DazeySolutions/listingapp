@@ -175,6 +175,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.selectedCategory;
     $scope.specifics;
     $scope.selectedStoreCategory;
+    $scope.loading = true;
     $scope.storeCategoryIDs = [
 		{
 			name:"Other",
@@ -199,11 +200,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
 	];
     $scope.init =  function init(){
         var categoryArray = [];
-        lodash.forEach(Cats.model.payload, function(category) {
-            categoryArray.push(category);
-        });
-        $scope.categories = categoryArray;
+        if($scope.loading){
+            lodash.forEach(Cats.model.payload, function(category) {
+                categoryArray.push(category);
+            });
+            $scope.categories = categoryArray;
+        }
         $scope.rows = undefined;
+        $scope.loading = true;
         Restangular.one('ebay/id/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.pages = res.numPages;
@@ -414,6 +418,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         total: 0,
         getData: function($defer, params) {
                params.total(20);
+               $scope.loading = false;
                $defer.resolve($scope.rows);
            
         }
