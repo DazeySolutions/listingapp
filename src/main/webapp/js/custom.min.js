@@ -219,7 +219,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         page++;
         $scope.currPage++;
         lodash.each($scope.rows, function(item){
-            Restangular.one("/list/new").post('input',item).then(function(data){
+            Restangular.one("/list").post('new',item).then(function(data){
                 console.log(data.response);
             });
         });
