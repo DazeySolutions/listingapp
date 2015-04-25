@@ -148,7 +148,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
-        Restangular.one('ebay/'+page).get().then(function(res){
+        Restangular.one('ebay/id/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
@@ -240,7 +240,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     item.book.height = as.ItemDimensions.Length;
                     item.book.width = as.ItemDimensions.Width;
                 }
-                var imageURL = as.SmallImage.URL.replace("SL75", "SL500")
+                var imageURL = as.SmallImage.URL.replace("SL75", "SL500");
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
                 $http.get("http://dazeysolutions.com/includes/get_image.php", {
                     params:{
