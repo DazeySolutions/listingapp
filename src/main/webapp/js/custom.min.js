@@ -27,8 +27,6 @@ ngListApp.run(function($rootScope, $state, Auth){
         if(!Auth.isLoggedIn() && toState.name !== 'login'){
             event.preventDefault();
             $state.go('login');
-        }else if(toState.name === 'login'){
-            $state.go('default');
         }
     });
 })

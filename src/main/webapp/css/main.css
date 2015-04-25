@@ -8581,6 +8581,7 @@ body {
   border: 1px solid #dddddd;
   border-top: none;
   background: white;
+  padding-bottom: 15px;
 }
 .edit-window {
   border-bottom: 1px solid #dddddd;
