@@ -182,10 +182,12 @@ public class eBayListingService {
     public boolean addListing(Listing listing) throws Exception{
         try {
             ItemType item = buildItemType(listing);
+            System.out.println("Adding item "+listing.getEbayTitle());
             AddFixedPriceItemCall api = new AddFixedPriceItemCall(apiContext);
             api.setItem(item);
-
+            System.out.println("test");
             FeesType fees = api.addFixedPriceItem();
+            System.out.println("test1");
             double listingFee = eBayUtil.findFeeByName(fees.getFee(), "ListingFee").getFee().getValue();
             System.out.println("Listing fee is: " + Double.toString(listingFee));
             listing.setEbayListingId(item.getItemID());
