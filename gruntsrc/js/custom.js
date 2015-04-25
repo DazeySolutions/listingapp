@@ -1,7 +1,7 @@
 var replaceAll = function replaceAll(string, find, replace) {
     return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 };
-var appDependencies = ['ui.router', 'toaster', 'ngAnimate', 'ngLodash', 'restangular', 'ngTable'];
+var appDependencies = ['ui.router', 'toaster', 'ngAnimate', 'ngLodash', 'restangular', 'ngTable', 'mgcrea.ngStrap'];
 var ngListApp = angular.module("ngListApp", appDependencies);
 
 angular.isUndefinedOrNull = function undefinedOrNull(value){
@@ -23,6 +23,8 @@ ngListApp.run(function($rootScope, $state, Auth){
         if(!Auth.isLoggedIn() && toState.name !== 'login'){
             event.preventDefault();
             $state.go('login');
+        }else if(toState.name === 'login'){
+            $state.go('default');
         }
     });
 })
@@ -212,7 +214,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     $scope.edit = function edit(ebayId){
-        lodash.each($scope.row, function(currentItem){
+        lodash.each($scope.rows, function(currentItem){
             if(currentItem.ebayListingId === ebayId){
                 $scope.selectedItem = currentItem;
                 lodash.each($scope.storeCategoryIDs, function(cat){
