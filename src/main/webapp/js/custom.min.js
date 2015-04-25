@@ -98,17 +98,17 @@ ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider
             controller: 'ListMainController'
         })
         .state('list.new',{
-            url:'/list/new',
+            url:'/new',
             templateUrl: 'partials/list/new.html',
             controller: 'NewListController'
         })
         .state('list.unsold',{
-            url:'/list/unsold',
+            url:'/unsold',
             templateUrl: 'partials/list/unsold.html',
             controller: 'UnsoldListController'
         })
         .state('list.saved',{
-            url:'/list/saved',
+            url:'/saved',
             templateUrl: 'partials/list/saved.html',
             controller: 'SavedListController'
         });
@@ -141,10 +141,14 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
     $scope.init();
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
+    $scope.selectedItem;
+    $scope.isEdit = false;
+    $scope.currPage = 1;
+    $scope.pages = 1;
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
-        Restangular.one('ebay').get(page).then(function(res){
+        Restangular.one('ebay/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
@@ -154,6 +158,24 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         page++;
         $scope.init();
     };
+    
+    $scope.edit = function edit(ebayId){
+        lodash.each($scope.row, function(currentItem){
+            if(currentItem.ebayListingId === ebayId){
+                $scope.selectedItem = currentItem;
+                $scope.isEdit = true;
+            }
+        })
+    };
+    
+    $scope.done = function done(){
+        $scope.isEdit = false;
+    };
+    
+    $scope.remove = function remove(ebayId){
+        lodash.remove($scope.rows, function(currentItem){ return currentItem.ebayListingId === ebayId});
+    };
+    
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
             $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
@@ -176,7 +198,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
                         as.ItemDimensions.Weight = extra.toString();
                     }else{
-                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
+                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+extra;
                         as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
                     }
                     item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
@@ -186,14 +208,24 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     item.book.width = as.ItemDimensions.Width;
                 }
                 var imageURL = as.SmallImage.URL.replace("SL75", "SL500")
-                loadImage(imageURL);
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
+                $http.get("http://dazeysolutions.com/includes/get_image.php", {
+                    params:{
+                        imagename: asin+".jpg",
+                        imageurl: imageURL
+                    }
+                })
+                .success(function(data){
+                   loadImage(item); 
+                });
             });
         });
     };
     
-    var loadImage = function loadImage(src) {
+    var loadImage = function loadImage(item) {
+        var src = item.book.imageUrl;
         var img = new Image();
+        img.setAttribute('crossOrigin', 'anonymous');
         img.onload = function() {
             var imageRatio = img.width / img.height,
                 canvasRatio = 1000 / 690;
@@ -212,12 +244,12 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             var canvas = angular.element("<canvas height='690' width='1000'></canvas>");
             var context = canvas[0].getContext('2d');
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
-            var save = canvas[0].toDataUrl("image/jpg");
+            var save = canvas[0].toDataURL("image/jpg");
             $http.post("http://dazeysolutions.com/includes/resize.php").post({
-                fileName: $scope.item.book.asin + ".jpg",
+                fileName: item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
-                
+                console.log(data.success);
             });
         };
         img.src = src;
