@@ -61,7 +61,7 @@ public class eBayListingService {
                 }
             }
             GetCategorySpecificsCall catApi = new GetCategorySpecificsCall(apiContext);
-            catApi.setCategoryID((String[])catId.toArray());
+            catApi.setCategoryID((String[]) catId.toArray());
             RecommendationsType[] rec = catApi.getCategorySpecifics();
             ArrayList<RecommendationsType> retList = new ArrayList<>();
             for(RecommendationsType item : rec){
@@ -147,11 +147,23 @@ public class eBayListingService {
             b.setIsbn(item.getProductListingDetails().getISBN());
         }
         if (item.getShippingDetails() != null) {
-            b.setWeightMajor(item.getShippingDetails().getCalculatedShippingRate().getWeightMajor().getValue());
-            b.setWeightMinor(item.getShippingDetails().getCalculatedShippingRate().getWeightMinor().getValue());
-            b.setDepth(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
-            b.setWidth(item.getShippingDetails().getCalculatedShippingRate().getPackageLength().getValue());
-            b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+            if(item.getShippingDetails() != null){
+                if( item.getShippingDetails().getCalculatedShippingRate().getWeightMajor() != null){
+                    b.setWeightMajor(item.getShippingDetails().getCalculatedShippingRate().getWeightMajor().getValue());
+                }
+                if( item.getShippingDetails().getCalculatedShippingRate().getWeightMinor() != null){
+                    b.setWeightMinor(item.getShippingDetails().getCalculatedShippingRate().getWeightMinor().getValue());
+                }
+                if( item.getShippingDetails().getCalculatedShippingRate().getPackageDepth() != null){
+                    b.setDepth(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+                }
+                if( item.getShippingDetails().getCalculatedShippingRate().getPackageLength() != null){
+                    b.setWidth(item.getShippingDetails().getCalculatedShippingRate().getPackageLength().getValue());
+                }
+                if( item.getShippingDetails().getCalculatedShippingRate().getPackageDepth() != null){
+                    b.setHeight(item.getShippingDetails().getCalculatedShippingRate().getPackageDepth().getValue());
+                }
+            }
         }
         listing.setBook(b);
         if (item.getPrimaryCategory() != null) {
