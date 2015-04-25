@@ -272,28 +272,32 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
-            var title = item.ebayTitle;
-            title = title.toLowerCase();
-            if(title.indexOf("1st/1st")>=0){
-                item.firstEdition = true;
-                item.firstPrinting = true;
-            }
-            if(title.indexOf("dj")>=0){
-                item.dustJacket = true;
-            }
-            if(title.indexOf("illust")>=0){
-                item.illustrated = true;
-            }
-            if(title.indexOf("bce")>=0){
-                item.bookClub = true;
-            }
-            
             $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
                 params:{
                     ISBN: item.book.isbn
                 }
             })
             .success(function(data){
+                var title = item.ebayTitle;
+                title = title.toLowerCase();
+                if(title.indexOf("1st/1st")>=0){
+                    item.firstEdition = true;
+                    item.firstPrinting = true;
+                }
+                if(title.indexOf("dj")>=0){
+                    item.dustJacket = true;
+                }
+                if(title.indexOf("illust")>=0){
+                    item.illustrated = true;
+                }
+                if(title.indexOf("bce")>=0){
+                    item.bookClub = true;
+                }
+                lodash.each($scope.categories, function(cat){
+                    if(cat.ID == item.category){
+                        $scope.selectedCategory = cat;
+                    }
+                });
                 var addOnTitle = "";
                 var as = data.payload[1][0].AttributeSets[0];
                 var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
