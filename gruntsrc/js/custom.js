@@ -194,13 +194,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                 })
                 .success(function(data){
-                   loadImage(item.book.imageUrl); 
+                   loadImage(item); 
                 });
             });
         });
     };
     
-    var loadImage = function loadImage(src) {
+    var loadImage = function loadImage(item) {
+        var src = item.book.imageUrl;
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
         img.onload = function() {
@@ -223,10 +224,10 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
             var save = canvas[0].toDataURL("image/jpg");
             $http.post("http://dazeysolutions.com/includes/resize.php").post({
-                fileName: $scope.item.book.asin + ".jpg",
+                fileName: item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
-                
+                console.log(data.success);
             });
         };
         img.src = src;
