@@ -202,6 +202,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     
     var loadImage = function loadImage(src) {
         var img = new Image();
+        img.setAttribute('crossOrigin', 'anonymous');
         img.onload = function() {
             var imageRatio = img.width / img.height,
                 canvasRatio = 1000 / 690;
