@@ -5,15 +5,40 @@
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" ng-model="selectedItem.ebayTitle">
+                    <input id="title" type="text" class="form-control" ng-model="selectedItem.ebayTitle">
                 </div>
                 <div class="form-group">
-                    <label for="title">Condition Description</label>
-                    <input type="text" class="form-control" ng-model="selectedItem.conditionDescription">
+                    <label for="condDesc">Condition Description</label>
+                    <input id="condDesc" type="text" class="form-control" ng-model="selectedItem.conditionDescription">
+                </div>
+                <div class="form-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.dustJacket">
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.bookClub">
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.firstEdition">
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.firstPrinting">
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.illustrated">
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
+                    <label for="qty">Quantity</label>
+                    <input type="number" id="qty" ng-model="selectedItem.quantity">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" ng-model="selectedItem.ebayPrice">
                 </div>
             </div>
         </div>
