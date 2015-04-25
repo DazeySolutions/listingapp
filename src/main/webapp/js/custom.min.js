@@ -176,7 +176,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
                         as.ItemDimensions.Weight = extra.toString();
                     }else{
-                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+.25;
+                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+extra;
                         as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
                     }
                     item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
@@ -186,8 +186,16 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     item.book.width = as.ItemDimensions.Width;
                 }
                 var imageURL = as.SmallImage.URL.replace("SL75", "SL500")
-                loadImage(imageURL);
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
+                $http.get("http://dazeysolutions.com/includes/get_image.php", {
+                    params:{
+                        imagename: asin+".jpg",
+                        imageurl: imageURL
+                    }
+                })
+                .success(function(data){
+                   loadImage(item.book.imageUrl); 
+                });
             });
         });
     };
@@ -212,7 +220,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             var canvas = angular.element("<canvas height='690' width='1000'></canvas>");
             var context = canvas[0].getContext('2d');
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
-            var save = canvas[0].toDataUrl("image/jpg");
+            var save = canvas[0].toDataURL("image/jpg");
             $http.post("http://dazeysolutions.com/includes/resize.php").post({
                 fileName: $scope.item.book.asin + ".jpg",
                 data: save
