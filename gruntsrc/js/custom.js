@@ -252,6 +252,12 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     $scope.done = function done(){
+        if(angular.isUndefinedOrNullOrEmpty($scope.selectedItem.nvps)){
+            $scope.selectedItem.nvps = [];
+        }
+        lodash.each($scope.specifics, function(specific){
+           $scope.selectedItem.nvps.push({id:null,name:specific.name,value:specific.value});
+        });
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
         $scope.category = $scope.selectedCategory;
         $scope.selectedItem.checked = true;
