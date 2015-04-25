@@ -241,6 +241,8 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     
     $scope.done = function done(){
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
+        $scope.category = $scope.selectedCategory;
+        $scope.selectedItem.checked = true;
         $scope.isEdit = false;
     };
     
