@@ -280,8 +280,8 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                             value: "United States"
                         });
                     } else if (value === "Special Attributes") {
-						opts.push("Paperback");
-						opts.push("Hard Cover");
+						opts.push({name:"Paperback"});
+						opts.push({name:"Hard Cover"});
 						$scope.specifics.push({
                             name: value,
                             options: opts,
