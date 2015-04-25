@@ -300,7 +300,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         }  
     };
     $scope.$watch('selectedCategory', function() {
-      setCategoryInfo();
+      $scope.setCategoryInfo();
     });
     
     $scope.getItemsDetails = function getItemsDetails(itemid){
