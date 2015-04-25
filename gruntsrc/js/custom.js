@@ -219,6 +219,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         page++;
         $scope.currPage++;
         lodash.each($scope.rows, function(item){
+            delete item.checked;
             Restangular.one("/list").post('new',item).then(function(data){
                 console.log(data.response);
             });
