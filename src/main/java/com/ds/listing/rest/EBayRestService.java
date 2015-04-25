@@ -6,6 +6,7 @@ import com.ds.listing.model.Listing;
 import com.ds.listing.properties.eBayAuth;
 import com.ds.listing.services.ListingService;
 import com.ds.listing.services.eBayListingService;
+import com.ebay.soap.eBLBaseComponents.RecommendationsType;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -40,6 +41,14 @@ public class EBayRestService {
         eBayService.getCurrentListings(page, 20, returnData);
         return returnData;
    }
+
+    @GET
+    @Path("/categories")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<RecommendationsType> getCategories(){
+        eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+        return eBayService.getCategories();
+    }
 //   @GET
 //   @Path("/{id}")
 //   @Produces(MediaType.APPLICATION_JSON)

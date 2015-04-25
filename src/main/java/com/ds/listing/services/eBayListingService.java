@@ -3,9 +3,7 @@ package com.ds.listing.services;
 import com.ds.listing.model.Listing;
 import com.ds.listing.model.Book;
 import com.ds.listing.model.NameValuePair;
-import com.ebay.sdk.call.AddFixedPriceItemCall;
-import com.ebay.sdk.call.GetMyeBaySellingCall;
-import com.ebay.sdk.call.GetItemCall;
+import com.ebay.sdk.call.*;
 import com.ebay.sdk.util.eBayUtil;
 import com.ebay.soap.eBLBaseComponents.*;
 import com.ebay.sdk.ApiContext;
@@ -33,9 +31,47 @@ public class eBayListingService {
             GetItemCall api = new GetItemCall(apiContext);
             ItemType item = api.getItem(id);
             return populateListing(item);
-        } catch (Exception e) {
-            return null;
+        } catch (Exception ignored) {
+
         }
+        return null;
+    }
+
+    public ArrayList<RecommendationsType> getCategories(){
+        try {
+            GetCategoriesCall api = new GetCategoriesCall(apiContext);
+            GetCategoriesCall apiChild = new GetCategoriesCall(apiContext);
+            api.setLevelLimit(1);
+            apiChild.setLevelLimit(2);
+            apiChild.addDetailLevel(DetailLevelCodeType.RETURN_ALL);
+            CategoryType[] parents = api.getCategories();
+
+            for (CategoryType parent : parents) {
+                if (parent.getCategoryName().equals("Books")){
+                    String[] cat = new String[1];
+                    cat[0] = parent.getCategoryID();
+                    apiChild.setParentCategory(cat);
+                }
+            }
+            CategoryType[] categories = apiChild.getCategories();
+            ArrayList<String> catId = new ArrayList<>();
+            for(CategoryType child : categories){
+                if(!child.getCategoryName().equals("Books")){
+                    catId.add(child.getCategoryID());
+                }
+            }
+            GetCategorySpecificsCall catApi = new GetCategorySpecificsCall(apiContext);
+            catApi.setCategoryID((String[])catId.toArray());
+            RecommendationsType[] rec = catApi.getCategorySpecifics();
+            ArrayList<RecommendationsType> retList = new ArrayList<>();
+            for(RecommendationsType item : rec){
+                retList.add(item);
+            }
+            return retList;
+        }catch (Exception ignored){
+
+        }
+        return null;
     }
 
     public void getCurrentListings(int page, int resultPerPage, UnsoldListData data) {
