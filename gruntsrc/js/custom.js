@@ -98,17 +98,17 @@ ngListApp.config(['$stateProvider','$urlRouterProvider', function($stateProvider
             controller: 'ListMainController'
         })
         .state('list.new',{
-            url:'/list/new',
+            url:'/new',
             templateUrl: 'partials/list/new.html',
             controller: 'NewListController'
         })
         .state('list.unsold',{
-            url:'/list/unsold',
+            url:'/unsold',
             templateUrl: 'partials/list/unsold.html',
             controller: 'UnsoldListController'
         })
         .state('list.saved',{
-            url:'/list/saved',
+            url:'/saved',
             templateUrl: 'partials/list/saved.html',
             controller: 'SavedListController'
         });
@@ -144,7 +144,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
-        Restangular.one('ebay').get(page).then(function(res){
+        Restangular.one('ebay/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
