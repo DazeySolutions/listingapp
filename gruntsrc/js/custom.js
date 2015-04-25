@@ -264,19 +264,16 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     if (value === "Publication Year") {
                         $scope.specifics.push({
                             name: value,
-                            options: opts,
                             value: $scope.selectedItem.book.publishDate.substring(0, 4)
                         });
                     } else if (value === "Language") {
                         $scope.specifics.push({
                             name: value,
-                            options: opts,
                             value: "English"
                         });
                     } else if (value === "Country/Region of Manufacture") {
                         $scope.specifics.push({
                             name: value,
-                            options: opts,
                             value: "United States"
                         });
                     } else if (value === "Special Attributes") {
