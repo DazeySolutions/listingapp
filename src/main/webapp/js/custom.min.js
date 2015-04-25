@@ -206,6 +206,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         $scope.rows = undefined;
         Restangular.one('ebay/id/'+page).get().then(function(res){
             $scope.rows = res.listings;
+            $scope.pages = res.numPages;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
         });
