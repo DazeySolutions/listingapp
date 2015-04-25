@@ -232,6 +232,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 lodash.each($scope.categories, function(cat){
                     if(cat.value == currentItem.category){
                         $scope.selectedCategory = cat;
+                        $scope.setCategoryInfo();
                     }
                 });
                 $scope.isEdit = true;
@@ -249,8 +250,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.remove = function remove(ebayId){
         lodash.remove($scope.rows, function(currentItem){ return currentItem.ebayListingId === ebayId});
     };
-    
-    $scope.$watch('selectedCategory', function() {
+    $scope.setCategoryInfo = function setCategoryInfo(){
         if (!angular.isUndefinedOrNullOrEmpty($scope.selectedCategory)) {
             $scope.specifics = [];
             _.forEach($scope.selectedCategory.recomend, function(value, index) {
@@ -297,7 +297,10 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                 }
             });
-        }
+        }  
+    };
+    $scope.$watch('selectedCategory', function() {
+      setCategoryInfo();
     });
     
     $scope.getItemsDetails = function getItemsDetails(itemid){
