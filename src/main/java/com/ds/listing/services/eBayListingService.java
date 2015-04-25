@@ -79,6 +79,7 @@ public class eBayListingService {
         try {
             GetMyeBaySellingCall api = new GetMyeBaySellingCall(apiContext);
             ItemListCustomizationType unsoldList = new ItemListCustomizationType();
+            unsoldList.setSort(ItemSortTypeCodeType.END_TIME);
             unsoldList.setInclude(true);
             unsoldList.setDurationInDays(60);
             api.addDetailLevel(DetailLevelCodeType.RETURN_ALL);
