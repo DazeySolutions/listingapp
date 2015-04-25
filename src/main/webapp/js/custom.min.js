@@ -142,7 +142,7 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
     $scope.selectedItem;
-    $scope.edit = false;
+    $scope.isEdit = false;
     $scope.currPage = 1;
     $scope.pages = 1;
     var page = 1;
@@ -163,7 +163,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         lodash.each($scope.row, function(currentItem){
             if(currentItem.ebayListingId === ebayId){
                 $scope.selectedItem = currentItem;
-                $scope.edit = true;
+                $scope.isEdit = true;
             }
         })
     };
