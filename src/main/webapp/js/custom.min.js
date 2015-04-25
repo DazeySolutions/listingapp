@@ -217,6 +217,11 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     $scope.nextPage = function nextPage(){
         page++;
+        lodash.each($scope.rows, function(item){
+            Restangular.one("/list/net").post(item).then(function(data){
+                console.log(data.response);
+            });
+        });
         $scope.init();
     };
     
