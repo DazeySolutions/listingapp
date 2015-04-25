@@ -247,6 +247,10 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         })
     };
     
+    $scope.cancel = function cancel(){
+        $scope.isEdit = false;
+    };
+    
     $scope.done = function done(){
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
         $scope.category = $scope.selectedCategory;
@@ -332,6 +336,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 }
                 if(title.indexOf("bce")>=0){
                     item.bookClub = true;
+                }
+                if(item.conditionDescription.indexOf(item.book.isbn)==-1){
+                    item.conditionDescription += " - "+item.book.isbn;
                 }
                 var addOnTitle = "";
                 var as = data.payload[1][0].AttributeSets[0];
