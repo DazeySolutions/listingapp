@@ -145,6 +145,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.isEdit = false;
     $scope.currPage = 1;
     $scope.pages = 1;
+    $scope.categories;
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
@@ -152,6 +153,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
+        });
+        $http.get("http://kmhenry70.com/includes/getCategories.php").success(function(data){
+            $scope.categories = data.payload;
         });
     };
     $scope.nextPage = function nextPage(){
