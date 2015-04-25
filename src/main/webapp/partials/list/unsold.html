@@ -53,7 +53,9 @@
                 </div>
                 <div class="form-group" data-ng-repeat="item in specifics">
                     <label>{{item.name}}</label>
-                    <input type="text" data-ng-if="item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="$parent.item.options.length" class="form-control" ng-model="item.value" ng-options="opt as opt.name for opt in item.options" bs-typeahead placeholder="Enter {{item.name}}" />
+                    <input  type="text" data-ng-if="item.options.length > 0"
+                            class="form-control" ng-model="item.value" data-min-length="20"
+                            bs-options="opt as opt.name for opt in item.options" placeholder="..." bs-typeahead>
                     <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
                 </div>
             </div>
