@@ -33,7 +33,7 @@ public class ListingRestService {
   @Path("/new")
   public Response addListing(final Listing input){
       eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-      System.out.println(input.getEbayTile());
+      System.out.println(input.getEbayTitle());
       //eBayService.addListing(input);
       service.addListing(input);
       Response r = new Response();
