@@ -168,6 +168,10 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         })
     };
     
+    $scope.done = function done(){
+        $scope.isEdit = false;
+    };
+    
     $scope.remove = function remove(ebayId){
         lodash.remove($scope.rows, function(currentItem){ return currentItem.ebayListingId === ebayId});
     };
