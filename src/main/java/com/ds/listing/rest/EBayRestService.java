@@ -30,7 +30,7 @@ public class EBayRestService {
    private EntityManager em;
   
    @GET
-   @Path("/{id}")
+   @Path("/id/{id}")
    @Produces(MediaType.APPLICATION_JSON)
     public UnsoldListData GetUnSold(@PathParam("id") String id ){
         UnsoldListData returnData = new UnsoldListData();
