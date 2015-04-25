@@ -226,7 +226,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                 });
                 lodash.each($scope.categories, function(cat){
-                    if(cat.ID == item.category){
+                    if(cat.ID == currentItem.category){
                         $scope.selectedCategory = cat;
                     }
                 });
@@ -395,7 +395,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             var context = canvas[0].getContext('2d');
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
             var save = canvas[0].toDataURL("image/jpg");
-            $http.post("http://dazeysolutions.com/includes/resize.php").post({
+            $http.post("http://dazeysolutions.com/includes/resize.php", {
                 fileName: item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
