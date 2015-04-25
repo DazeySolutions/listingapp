@@ -108,6 +108,7 @@ public class eBayListingService {
                     try{
                         retValues.add(populateListing(fullItem));
                     }catch(Exception ignored){
+                        ignored.printStackTrace();
                         System.out.println("unable to add record: " + ignored.getMessage());
                     }
                 }
