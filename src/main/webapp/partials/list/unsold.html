@@ -30,6 +30,12 @@
                         </label>
                     </div>
                 </div>
+                <div class="form-group">
+    				<label for="storeCat">Store Category</label>
+    				<select id="storeCat" ng-model="selectedStoreCategory" class="form-control"
+                    ng-options="opt as opt.name for opt in storeCategoryIDs">
+                    </select>
+    			</div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
@@ -50,12 +56,7 @@
                     <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
                 </div>
             </div>
-			<div class="form-group">
-				<label for="storeCat">Store Category</label>
-				<select id="storeCat" ng-model="selectedStoreCategory" class="form-control"
-                ng-options="opt as opt.name for opt in storeCategoryIDs">
-            </select>
-			</div>
+			
             </div>
         </div>
     </div>
