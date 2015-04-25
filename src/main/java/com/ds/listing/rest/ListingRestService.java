@@ -36,6 +36,9 @@ public class ListingRestService {
       
       //eBayService.addListing(input);
       service.addListing(input);
+      Response r = new Response();
+      r.setStatus(true);
+      r.setResponse("Done");
   }
 }
 
