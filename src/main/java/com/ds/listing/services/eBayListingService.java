@@ -165,7 +165,7 @@ public class eBayListingService {
                 nvPair.setValue(pair.getValue(0));
                 nvps.add(nvPair);
             }
-            System.out.println(nvps.size();
+            System.out.println(nvps.size());
             listing.setNvps(nvps);
         }
         if (item.getSellingStatus() != null) {
