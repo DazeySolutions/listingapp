@@ -179,7 +179,7 @@ public class eBayListingService {
         return listing;
     }
 
-    public boolean addListing(Listing listing) {
+    public boolean addListing(Listing listing) throws Exception{
         try {
             ItemType item = buildItemType(listing);
             AddFixedPriceItemCall api = new AddFixedPriceItemCall(apiContext);
@@ -192,7 +192,7 @@ public class eBayListingService {
             return true;
         } catch (Exception e) {
             System.out.println("Error adding item");
-            return false;
+            throw new Exception("Error adding item");
         }
 
     }

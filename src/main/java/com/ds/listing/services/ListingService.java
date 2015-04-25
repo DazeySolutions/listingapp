@@ -20,4 +20,14 @@ public class ListingService {
       return (ArrayList<Listing>)query.getResultList();
   }
   
+  public boolean addListing(Listing input){
+      try{
+        em.persist(input);
+        return true;
+      }catch(Exception e){
+          return false;
+      }
+      
+  }
+  
 }
