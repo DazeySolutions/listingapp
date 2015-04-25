@@ -38,7 +38,7 @@ public class EBayRestService {
         eBayListingService eBayService = new eBayListingService(auth.getApiContext());
         int page;
         page = Integer.parseInt(id);
-        eBayService.getCurrentListings(page, 20, returnData);
+        eBayService.getCurrentListings(page, 1, returnData);
         return returnData;
    }
 
