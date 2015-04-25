@@ -429,6 +429,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     var loadImage = function loadImage(item) {
+        item.loadingImage = true;
         var src = item.book.imageUrl;
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
@@ -455,6 +456,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 fileName: item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
+                delete item.loadingImage;
                 console.log(data.success);
             });
         };
