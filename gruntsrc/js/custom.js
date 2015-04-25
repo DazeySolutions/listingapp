@@ -1,3 +1,7 @@
+var escapeRegExp = function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+};
+
 var replaceAll = function replaceAll(string, find, replace) {
     return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 };
@@ -39,15 +43,15 @@ ngListApp.run(function($rootScope, $state, Auth){
     observerCallbacks.push(callback);
   };
 
-  var store = function(){
-     localStorage.setItem('listuser', angular.fromJson(user));
-  };
+//   var store = function(){
+//      localStorage.setItem('listuser', angular.fromJson(user));
+//   };
  
-     var retrieve = function(){
-         if(localStorage.hasOwnProperty('listuser')){
-            user = angular.toJson(localStorage.getItem('listuser'));
-         }
-     };
+//      var retrieve = function(){
+//          if(localStorage.hasOwnProperty('listuser')){
+//             user = angular.toJson(localStorage.getItem('listuser'));
+//          }
+//      };
      
   var notifyObservers = function(){
     angular.forEach(observerCallbacks, function(callback){
@@ -56,13 +60,13 @@ ngListApp.run(function($rootScope, $state, Auth){
   };
   this.setUser = function(aUser){
             user = aUser;
-            store();
+            // store();
             notifyObservers();
         };
     this.isLoggedIn = function(){
-            if(!user){
-                retrieve();
-            }
+            // if(!user){
+            //     retrieve();
+            // }
             return (user)?user:false;
         };
     var user;
@@ -237,7 +241,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     $scope.$watch('selectedCategory', function() {
-        if (!angular.isUndefined($scope.selectedCategory)) {
+        if (!angular.isUndefinedOrNullOrEmpty($scope.selectedCategory)) {
             $scope.specifics = [];
             _.forEach($scope.selectedCategory.recomend, function(value, index) {
                 if (parseInt(index) % 2 === 0) {
@@ -251,7 +255,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                         $scope.specifics.push({
                             name: value,
                             options: opts,
-                            value: $scope.model.publishDate.substring(0, 4)
+                            value: $scope.selectedItem.book.publishDate.substring(0, 4)
                         });
                     } else if (value === "Language") {
                         $scope.specifics.push({
