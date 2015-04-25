@@ -108,7 +108,7 @@ public class eBayListingService {
                     try{
                         retValues.add(populateListing(fullItem));
                     }catch(Exception ignored){
-                        System.out.println("remove non book");
+                        System.out.println("unable to add record: " + ignored.getMessage());
                     }
                 }
                 data.setNumPages(totalNumberOfPages);
@@ -157,18 +157,6 @@ public class eBayListingService {
             listing.setCategory(item.getPrimaryCategory().getCategoryID());
         }
         listing.setEbayCondition(item.getConditionID());
-        if (item.getItemSpecifics() != null) {
-            ArrayList<NameValuePair> nvps = new ArrayList<>();
-            for (NameValueListType pair : item.getItemSpecifics().getNameValueList()) {
-                NameValuePair nvPair = new NameValuePair();
-                System.out.println(pair.getName()+" ; "+pair.getValue(0));
-                nvPair.setName(pair.getName());
-                nvPair.setValue(pair.getValue(0));
-                nvps.add(nvPair);
-            }
-            System.out.println(nvps.size());
-            listing.setNvps(nvps);
-        }
         if (item.getSellingStatus() != null) {
             listing.setQuantity(item.getQuantity() - item.getSellingStatus().getQuantitySold());
         } else {
