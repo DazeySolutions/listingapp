@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <div class="col-xs-12">
-                    <img ng-src="{{selectedItem.book.imageUrl}}" style="width:100%;">
+                    <img ng-src="{{item.book.imageUrl}}" style="width:100%;">
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -28,6 +28,25 @@
                 <div class="form-group">
                     <label for="condDesc">Condition Description</label>
                     <input id="condDesc" type="text" class="form-control" ng-model="selectedItem.conditionDescription">
+                </div>
+                <div class="form-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.dustJacket">DJ
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.bookClub">BCE
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.firstEdition">1st Ed.
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.firstPrinting">1st Print
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" ng-model="selectedItem.illustrated">Illustrated
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
     				<label for="storeCat">Store Category</label>
@@ -47,10 +66,11 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <select id="category" ng-model="selectedCategory" class="form-control" ng-options="opt as opt.name for opt in categories"></select>
+                        <button type="button" id="category" class="btn btn-default form-control" ng-model="$parent.selectedCategory" ng-options="category as category.name for category in categories" bs-select>Select Category<span class="fa fa-caret-down fa-fw"></span></button>
+                </div>
                 <div class="form-group" data-ng-repeat="item in specifics">
                     <label>{{item.name}}</label>
-                    <input type="text" data-ng-if="$parent.item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="$parent.item.options.length" class="form-control" ng-model="$parent.item.value" ng-options="opt as opt.name for opt in $parent.item.options" bs-typeahead placeholder="Enter {{$parent.item.name}}" />
+                    <input type="text" data-ng-if="$parent.item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="$parent.item.options.length" class="form-control" ng-model="item.value" ng-options="opt as opt.name for opt in item.options" bs-typeahead placeholder="Enter {{item.name}}" />
                     <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
                 </div>
             </div>
