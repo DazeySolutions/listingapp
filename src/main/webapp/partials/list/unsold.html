@@ -31,7 +31,15 @@
           </tr>
         </tbody>
     </table>
-    <button class="btn btn-xs btn-info" ng-click="nextPage()">Next</button>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-xs btn-info text-center" ng-click="nextPage()">Next</a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <span class="text-center">Page {{currPage}} of {{pages}}</span>
+        </div>
+    </div>
+    
     <div class="hidden-xs hidden-sm hidden-md hidden-lg">
         <canvas height="690" width="1000"></canvas>
     </div>

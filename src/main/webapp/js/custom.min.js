@@ -143,6 +143,8 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
     $scope.selectedItem;
     $scope.edit = false;
+    $scope.currPage = 1;
+    $scope.pages = 1;
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
