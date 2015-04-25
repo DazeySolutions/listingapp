@@ -1,3 +1,6 @@
+var replaceAll = function replaceAll(string, find, replace) {
+    return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+};
 var appDependencies = ['ui.router', 'toaster', 'ngAnimate', 'ngLodash', 'restangular', 'ngTable'];
 var ngListApp = angular.module("ngListApp", appDependencies);
 
