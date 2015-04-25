@@ -141,6 +141,8 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
     $scope.init();
 }]);
 ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
+    $scope.selectedItem;
+    $scope.edit = false;
     var page = 1;
     $scope.init =  function init(){
         $scope.rows = undefined;
@@ -154,6 +156,20 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         page++;
         $scope.init();
     };
+    
+    $scope.edit = function edit(ebayId){
+        lodash.each($scope.row, function(currentItem){
+            if(currentItem.ebayListingId === ebayId){
+                $scope.selectedItem = currentItem;
+                $scope.edit = true;
+            }
+        })
+    };
+    
+    $scope.remove = function remove(ebayId){
+        lodash.remove($scope.rows, function(currentItem){ return currentItem.ebayListingId === ebayId});
+    };
+    
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){
             $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{

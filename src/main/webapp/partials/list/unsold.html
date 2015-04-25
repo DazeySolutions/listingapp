@@ -22,7 +22,11 @@
         <tbody>
           <tr ng-repeat="item in $data">
             <td data-title="'Title'">
-                    {{item.ebayTitle}} <button class="btn btn-xs btn-primary" ng-click="getItemDetails(item.ebayListingId)">Edit</button>
+                    {{item.ebayTitle}} 
+            </td>
+            <td data-title="'Actions'">
+                <button class="btn btn-xs btn-primary" ng-click="edit(item.ebayListingId)"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-xs btn-danger" ng-click="remove(item.ebayListingId)"><i class="fa fa-fw fa-times"></i></button>
             </td>
           </tr>
         </tbody>
