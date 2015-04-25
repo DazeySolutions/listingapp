@@ -181,13 +181,15 @@ public class eBayListingService {
 
     public boolean addListing(Listing listing) throws Exception{
         try {
-            ItemType item = buildItemType(listing);
+            
             System.out.println("Adding item "+listing.getEbayTitle());
+            ItemType item = buildItemType(listing);
+            
+            System.out.println("test");
             AddFixedPriceItemCall api = new AddFixedPriceItemCall(apiContext);
             api.setItem(item);
-            System.out.println("test");
             FeesType fees = api.addFixedPriceItem();
-            System.out.println("test1");
+            
             double listingFee = eBayUtil.findFeeByName(fees.getFee(), "ListingFee").getFee().getValue();
             System.out.println("Listing fee is: " + Double.toString(listingFee));
             listing.setEbayListingId(item.getItemID());
@@ -208,18 +210,25 @@ public class eBayListingService {
 
         item.setCurrency(CurrencyCodeType.USD);
 
+        System.out.println("A");
         setPrice(item, listing.getEbayPrice());
         item.setQuantity(listing.getQuantity());
+        
+            System.out.println("B");
 
         item.setListingDuration(ListingDurationCodeType.DAYS_30.value());
 
+            System.out.println("C");
         item.setPostalCode("40065");
         item.setLocation("Shelbyville");
         item.setCountry(CountryCodeType.US);
+        
+            System.out.println("D");
         //Generate Category Type
         CategoryType cat = new CategoryType();
         cat.setCategoryID(listing.getCategory());
 
+            System.out.println("E");
         item.setPrimaryCategory(cat);
 
         item.setConditionID(listing.getEbayCondition());

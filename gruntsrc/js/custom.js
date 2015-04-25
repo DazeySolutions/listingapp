@@ -224,7 +224,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 console.log(data.response);
             });
         });
-        $scope.init();
+        //$scope.init();
     };
     
     $scope.edit = function edit(ebayId){
