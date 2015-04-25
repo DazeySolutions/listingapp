@@ -1,5 +1,5 @@
 <div classs="row">
-<div ng-if="loading" id="loading" style="
+<div ng-if="$parent.loading" id="loading" style="
     position: absolute;
     top: 0;
     left: 0;
@@ -53,9 +53,7 @@
                 </div>
                 <div class="form-group" data-ng-repeat="item in specifics">
                     <label>{{item.name}}</label>
-                    <input  type="text" data-ng-if="item.options.length > 0"
-                            class="form-control" ng-model="item.value" data-min-length="20"
-                            bs-options="opt as opt.name for opt in item.options" placeholder="..." bs-typeahead>
+                    <input type="text" data-ng-if="item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="item.options.length" class="form-control" ng-model="item.value" bs-options="opt as opt.name for opt in item.options" placeholder="Enter {{item.name}}" bs-typeahead>
                     <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
                 </div>
             </div>

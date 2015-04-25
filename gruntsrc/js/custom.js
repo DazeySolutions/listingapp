@@ -230,7 +230,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                 });
                 lodash.each($scope.categories, function(cat){
-                    if(cat.ID == currentItem.category){
+                    if(cat.value == currentItem.category){
                         $scope.selectedCategory = cat;
                     }
                 });
