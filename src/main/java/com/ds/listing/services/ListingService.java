@@ -8,6 +8,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 @Singleton
 public class ListingService {
@@ -20,6 +21,7 @@ public class ListingService {
       return (ArrayList<Listing>)query.getResultList();
   }
   
+  @Transactional
   public boolean addListing(Listing input){
       try{
         em.persist(input);
