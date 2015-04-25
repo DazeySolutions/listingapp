@@ -147,22 +147,49 @@ ngListApp.controller('SavedListController', ['$scope', '$http', '$stateParams', 
     };
     $scope.init();
 }]);
-ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular){
+ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams', '$window','lodash', '$timeout','ngTableParams', 'Restangular','Cats', function($scope, $http, $stateParams, $window, lodash, $timeout, ngTableParams, Restangular, Cats){
     $scope.selectedItem;
     $scope.isEdit = false;
     $scope.currPage = 1;
     $scope.pages = 1;
     $scope.categories;
     var page = 1;
+    $scope.selectedCategory;
+    $scope.specifics;
+    $scope.selectedStoreCategory;
+    $scope.storeCategoryIDs = [
+		{
+			name:"Other",
+			value: 1
+		},
+		{
+			name:"Textbook",
+			value: 331155519
+		},
+		{
+			name:"child young adult book",
+			value: 319734419
+		},
+		{
+			name:"Fiction Book",
+			value: 319734319
+		},
+		{
+			name:"Non-Fiction Book",
+			value: 319734219
+		}
+	];
     $scope.init =  function init(){
+        var categoryArray = [];
+        lodash.forEach(Cats.model.payload, function(category) {
+            categoryArray.push(category);
+        });
+        $scope.categories = categoryArray;
         $scope.rows = undefined;
         Restangular.one('ebay/id/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.tableParams.reload();
             $scope.getItemsDetails();
-        });
-        $http.get("http://kmhenry70.com/includes/getCategories.php").success(function(data){
-            $scope.categories = data.payload;
         });
     };
     $scope.nextPage = function nextPage(){
@@ -174,18 +201,74 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         lodash.each($scope.row, function(currentItem){
             if(currentItem.ebayListingId === ebayId){
                 $scope.selectedItem = currentItem;
+                lodash.each($scope.storeCategoryIDs, function(cat){
+                    if(cat.value === currentItem.storeCategory){
+                        $scope.selectedStoreCategory = cat;
+                    }
+                })
                 $scope.isEdit = true;
             }
         })
     };
     
     $scope.done = function done(){
+        $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
         $scope.isEdit = false;
     };
     
     $scope.remove = function remove(ebayId){
         lodash.remove($scope.rows, function(currentItem){ return currentItem.ebayListingId === ebayId});
     };
+    
+    $scope.$watch('selectedCategory', function() {
+        if (!angular.isUndefined($scope.selectedCategory)) {
+            $scope.specifics = [];
+            _.forEach($scope.selectedCategory.recomend, function(value, index) {
+                if (parseInt(index) % 2 === 0) {
+                    var opts = [];
+                    _.forEach($scope.selectedCategory.recomend[parseInt(index) + 1], function(value) {
+                        opts.push({
+                            name: value
+                        });
+                    });
+                    if (value === "Publication Year") {
+                        $scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: $scope.model.publishDate.substring(0, 4)
+                        });
+                    } else if (value === "Language") {
+                        $scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: "English"
+                        });
+                    } else if (value === "Country/Region of Manufacture") {
+                        $scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: "United States"
+                        });
+                    } else if (value === "Special Attributes") {
+						opts.push("Paperback");
+						opts.push("Hard Cover");
+						$scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: ""
+                        });
+                    } 
+					else {
+                        $scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: ''
+                        });
+                    }
+                }
+            });
+        }
+    });
     
     $scope.getItemsDetails = function getItemsDetails(itemid){
         lodash.each($scope.rows, function(item, index){

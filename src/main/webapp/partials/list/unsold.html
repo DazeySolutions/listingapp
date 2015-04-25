@@ -40,6 +40,22 @@
                     <label for="price">Price</label>
                     <input type="number" id="price" ng-model="selectedItem.ebayPrice">
                 </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                        <button type="button" id="category" class="btn btn-default form-control" ng-model="$parent.selectedCategory" ng-options="category as category.name for category in categories" bs-select>Select Category<span class="fa fa-caret-down fa-fw"></span></button>
+                </div>
+                <div class="form-group" data-ng-repeat="item in specifics">
+                    <label>{{item.name}}</label>
+                    <input type="text" data-ng-if="item.options.length>0" data-min-length="0" data-animation="am-flip-x" data-limit="item.options.length" class="form-control" ng-model="item.value" ng-options="opt as opt.name for opt in item.options" bs-typeahead placeholder="Enter {{item.name}}" />
+                    <input type="text" class="form-control" ng-model="item.value" placeholder="Enter {{item.name}}..." data-ng-if="item.options.length==0"/> 
+                </div>
+            </div>
+			<div class="form-group">
+				<label for="storeCat">Store Category</label>
+				<select id="storeCat" ng-model="selectedStoreCategory"
+                ng-options="opt as opt.name for opt in storeCategoryIDs">
+            </select>
+			</div>
             </div>
         </div>
     </div>
