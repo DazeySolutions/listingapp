@@ -32,13 +32,16 @@ public class ListingRestService {
   @POST @Consumes("application/json")
   @Path("/new")
   public Response addListing(final Listing input){
-      eBayListingService eBayService = new eBayListingService(auth.getApiContext());
-      System.out.println(input.getEbayTitle());
-      //eBayService.addListing(input);
-      service.addListing(input);
       Response r = new Response();
-      r.setStatus(true);
-      r.setResponse("Done");
+      boolean status = false;
+      eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+      try{
+          status = eBayService.addListing(input);
+      }catch(Exception e){
+          r.setResponse("unknown error");
+      }
+      r.setStatus(status);
+      
       return r;
   }
 }
