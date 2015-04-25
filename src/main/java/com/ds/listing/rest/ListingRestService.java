@@ -35,7 +35,7 @@ public class ListingRestService {
       eBayListingService eBayService = new eBayListingService(auth.getApiContext());
       
       //eBayService.addListing(input);
-      service.addLiting(input);
+      service.addListing(input);
   }
 }
 
