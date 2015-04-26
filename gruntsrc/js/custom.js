@@ -346,7 +346,11 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 var as = data.payload[1][0].AttributeSets[0];
                 var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
                 item.book.asin = asin;
-                item.book.author = as.Author;
+                if(typeof(as.Author) === "object"){
+                    item.book.author = as.Author[0];
+                }else{
+                    item.book.author = as.Author;
+                }
                 addOnTitle += " " + as.Author;
                 item.book.publishDate = as.PublicationDate;
                 if(as.Binding === "Hardcover"){
