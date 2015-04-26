@@ -252,10 +252,19 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     $scope.done = function done(){
-        if(angular.isUndefinedOrNullOrEmpty($scope.selectedItem.nvps)){
-            $scope.selectedItem.nvps = [];
-        }
+        $scope.selectedItem.nvps = [];
+        
         lodash.each($scope.specifics, function(specific){
+            var spec = {
+                id: null,
+                name: specific.name,
+                value: ''
+            }
+            if(typeof(specific.value)==="object"){
+                spec.value = specific.value.name;
+            }else{
+                spec.value = specific.value;
+            }
            $scope.selectedItem.nvps.push({id:null,name:specific.name,value:specific.value.name});
         });
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
