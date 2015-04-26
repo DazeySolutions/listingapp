@@ -375,97 +375,121 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 }
             })
             .success(function(data){
-                var title = item.ebayTitle;
-                title = title.toLowerCase();
-                if(title.indexOf("1st/1st")>=0){
-                    item.firstEdition = true;
-                    item.firstPrinting = true;
-                }
-                if(title.indexOf("dj")>=0){
-                    item.dustJacket = true;
-                }
-                if(title.indexOf("illust")>=0){
-                    item.illustrated = true;
-                }
-                if(title.indexOf("bce")>=0){
-                    item.bookClub = true;
-                }
-                if(item.conditionDescription.indexOf(item.book.isbn)==-1){
-                    item.conditionDescription += " - "+item.book.isbn;
-                }
-                var addOnTitle = "";
-                var as = data.payload[1][0].AttributeSets[0];
-                var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
-                item.book.asin = asin;
-                if(typeof(as.Author) === "object"){
-                    item.book.author = as.Author[0];
+                if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0].AttributeSets)){
+                    $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
+                        params:{
+                            ISBN: item.book.isbn
+                        }
+                    })
+                    .success(function(data){
+                        if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0].AttributeSets)){        
+                            alert("Unable to retrieve data for: "+item.ebayTitle+" retry later");
+                        }else{
+                            processSearch(data,item);
+                        }
+                        
+                    });
                 }else{
-                    item.book.author = as.Author;
+                    processSearch(data, item);                    
                 }
-                addOnTitle += " " + item.book.author;
-                item.book.publishDate = as.PublicationDate;
-                var date = new Date();
-                item.ebayDescription+="<p>"+date.toDateString();+"</p>";
-                item.ebayDescription+="<p>"+item.book.isbn+"</p>";
-                if(as.Binding === "Hardcover"){
-                    item.book.hardcover = true
-                    addOnTitle += " HC";
-                    if(item.bookClub){
-                        addOnTitle += " BCE";
-                    }
-                    if(item.dustJacket){
-                        addOnTitle += " DJ";
-                    }
-                    if(item.firstPrinting && item.firstEdition){
-                        addOnTitle += " 1st/1st";
-                    }
-                    addOnTitle += " Free Ship";
-                }
-                var extra = 0.25;
-                item.book.title = as.Title;
-                item.book.title = replaceAll(item.book.title, "/", " ");
-                var end = 80;
-                end = 79 - addOnTitle.length
-                item.ebayTitle = item.book.title.substring(0, end) + addOnTitle;
-                if(!angular.isUndefinedOrNullOrEmpty(as.ItemDimensions)){
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
-                        as.ItemDimensions.Weight = extra.toString();
-                    }else{
-                        as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+extra;
-                        as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
-                    }
-                    item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
-                    item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
-                        item.book.depth = "8.5"
-                    }else{
-                        item.book.depth = as.ItemDimensions.Height;
-                    }
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Length) || as.ItemDimensions.Length == 0){
-                        item.book.height = "5.5";
-                    }else{
-                        item.book.height = as.ItemDimensions.Length;    
-                    }
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Width) || as.ItemDimensions.Width == 0){
-                        item.book.width = "1.5";
-                    }else{
-                        item.book.width = as.ItemDimensions.Width;
-                    }
-                    
-                }
-                var imageURL = as.SmallImage.URL.replace("SL75", "SL500");
-                item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
-                $http.get("http://dazeysolutions.com/includes/get_image.php", {
-                    params:{
-                        imagename: asin+".jpg",
-                        imageurl: imageURL
-                    }
-                })
-                .success(function(data){
-                   loadImage(item); 
-                });
             });
         });
+    };
+    
+    var processSearch = function(data, item){
+        var title = item.ebayTitle;
+        title = title.toLowerCase();
+        if(title.indexOf("1st/1st")>=0){
+            item.firstEdition = true;
+            item.firstPrinting = true;
+        }
+        if(title.indexOf("dj")>=0){
+            item.dustJacket = true;
+        }
+        if(title.indexOf("illust")>=0){
+            item.illustrated = true;
+        }
+        if(title.indexOf("bce")>=0){
+            item.bookClub = true;
+        }
+        if(!angular.isUndefinedOrNullOrEmpty(item.conditionDescription)){
+            if(item.conditionDescription.indexOf(item.book.isbn)==-1){
+                item.conditionDescription += " - "+item.book.isbn;
+            }
+        }else{
+            item.conditionDescription += item.book.isbn;
+        }
+        var addOnTitle = "";
+        var as = data.payload[1][0].AttributeSets[0];
+        var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
+        item.book.asin = asin;
+        if(typeof(as.Author) === "object"){
+            item.book.author = as.Author[0];
+        }else{
+            item.book.author = as.Author;
+        }
+        addOnTitle += " " + item.book.author;
+        item.book.publishDate = as.PublicationDate;
+        var date = new Date();
+        item.ebayDescription+="<p>"+date.toDateString();+"</p>";
+        item.ebayDescription+="<p>"+item.book.isbn+"</p>";
+        if(as.Binding === "Hardcover"){
+            item.book.hardcover = true
+            addOnTitle += " HC";
+            if(item.bookClub){
+                addOnTitle += " BCE";
+            }
+            if(item.dustJacket){
+                addOnTitle += " DJ";
+            }
+            if(item.firstPrinting && item.firstEdition){
+                addOnTitle += " 1st/1st";
+            }
+            addOnTitle += " Free Ship";
+        }
+        var extra = 0.25;
+        item.book.title = as.Title;
+        item.book.title = replaceAll(item.book.title, "/", " ");
+        var end = 80;
+        end = 79 - addOnTitle.length
+        item.ebayTitle = item.book.title.substring(0, end) + addOnTitle;
+        if(!angular.isUndefinedOrNullOrEmpty(as.ItemDimensions)){
+            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
+                as.ItemDimensions.Weight = extra.toString();
+            }else{
+                as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+extra;
+                as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
+            }
+            item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
+            item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
+            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
+                item.book.depth = "8.5"
+            }else{
+                item.book.depth = as.ItemDimensions.Height;
+            }
+            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Length) || as.ItemDimensions.Length == 0){
+                item.book.height = "5.5";
+            }else{
+                item.book.height = as.ItemDimensions.Length;    
+            }
+            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Width) || as.ItemDimensions.Width == 0){
+                item.book.width = "1.5";
+            }else{
+                item.book.width = as.ItemDimensions.Width;
+            }
+            
+        }
+        var imageURL = as.SmallImage.URL.replace("SL75", "SL500");
+        item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
+        $http.get("http://dazeysolutions.com/includes/get_image.php", {
+            params:{
+                imagename: asin+".jpg",
+                imageurl: imageURL
+            }
+        })
+        .success(function(data){
+           loadImage(item); 
+            });
     };
     
     var loadImage = function loadImage(item) {
