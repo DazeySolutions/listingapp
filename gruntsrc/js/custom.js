@@ -256,7 +256,11 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                         $scope.setCategoryInfo();
                     }
                 });
-                $scope.isEdit = true;
+                if(angular.isUndefinedOrNullOrEmpty($scope.selectedItem.book.asin)){
+                    alert("Book does not have amazon information, remove before submitting.");
+                }else{
+                    $scope.isEdit = true;
+                }
             }
         })
     };
