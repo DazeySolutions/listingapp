@@ -198,6 +198,11 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
 			value: 319734219
 		}
 	];
+	
+	$scope.clearStatus = function(){
+        $scope.status = [];
+	};
+	
     $scope.init =  function init(){
         var categoryArray = [];
         if($scope.loading){
@@ -215,15 +220,19 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             $scope.getItemsDetails();
         });
     };
-    $scope.nextPage = function nextPage(){
-        page++;
-        $scope.currPage++;
+    $scope.status = [];
+    $scope.addListings = function addListings(){
         lodash.each($scope.rows, function(item){
-            delete item.checked;
             Restangular.one("/list").post('new',item).then(function(data){
-                console.log(data.response);
+                if(data.status === "true"){
+                    $scope.status.push({book:item.book.isbn, status:"Success"});
+                }else{
+                        $scope.status.push({book:item.book.isbn, status:data.response});
+                }
             });
         });
+    };
+    $scope.nextPage = function nextPage(){
         $scope.init();
     };
     
@@ -247,26 +256,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         })
     };
     
-    $scope.cancel = function cancel(){
-        $scope.isEdit = false;
-    };
-    
     $scope.done = function done(){
-        $scope.selectedItem.nvps = [];
-        
-        lodash.each($scope.specifics, function(specific){
-            var spec = {
-                id: null,
-                name: specific.name,
-                value: ''
-            }
-            if(typeof(specific.value)==="object"){
-                spec.value = specific.value.name;
-            }else{
-                spec.value = specific.value;
-            }
-           $scope.selectedItem.nvps.push(spec);
-        });
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
         $scope.category = $scope.selectedCategory;
         $scope.selectedItem.checked = true;
@@ -306,47 +296,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                             value: "United States"
                         });
                     } else if (value === "Special Attributes") {
-                        if($scope.selectedItem.firstEdition){
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "1st Edition"
-                            });
-                        }else if($scope.selectedItem.illustrated){
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "Illustrated"
-                            });
-                        }else if($scope.selectedItem.book.hardcover){
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "Hardcover"
-                            });
-                        }else{
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "Paperback"
-                            });
-                        }
-                    }
-                    else if(value == "Format"){
-                        if($scope.selectedItem.book.hardcover){
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "Hardcover"
-                            });
-                        }else{
-                            $scope.specifics.push({
-                                name: value,
-                                options: [],
-                                value: "Paperback"
-                            });
-                        }
-                    }
+						opts.push({name:"Paperback"});
+						opts.push({name:"Hard Cover"});
+						$scope.specifics.push({
+                            name: value,
+                            options: opts,
+                            value: ""
+                        });
+                    } 
 					else {
                         $scope.specifics.push({
                             name: value,
@@ -385,9 +342,6 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 if(title.indexOf("bce")>=0){
                     item.bookClub = true;
                 }
-                if(item.conditionDescription.indexOf(item.book.isbn)==-1){
-                    item.conditionDescription += " - "+item.book.isbn;
-                }
                 var addOnTitle = "";
                 var as = data.payload[1][0].AttributeSets[0];
                 var asin = data.payload[1][0].Identifiers.MarketplaceASIN.ASIN;
@@ -395,9 +349,6 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 item.book.author = as.Author;
                 addOnTitle += " " + as.Author;
                 item.book.publishDate = as.PublicationDate;
-                var date = new Date();
-                item.ebayDescription+="<p>"+date.toDateString();+"</p>";
-                item.ebayDescription+="<p>"+item.book.isbn+"</p>";
                 if(as.Binding === "Hardcover"){
                     item.book.hardcover = true
                     addOnTitle += " HC";
@@ -427,22 +378,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                     item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
                     item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
-                        item.book.depth = "8.5"
-                    }else{
-                        item.book.depth = as.ItemDimensions.Height;
-                    }
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Length) || as.ItemDimensions.Length == 0){
-                        item.book.height = "5.5";
-                    }else{
-                        item.book.height = as.ItemDimensions.Length;    
-                    }
-                    if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Width) || as.ItemDimensions.Width == 0){
-                        item.book.width = "1.5";
-                    }else{
-                        item.book.width = as.ItemDimensions.Width;
-                    }
-                    
+                    item.book.depth = as.ItemDimensions.Height;
+                    item.book.height = as.ItemDimensions.Length;
+                    item.book.width = as.ItemDimensions.Width;
                 }
                 var imageURL = as.SmallImage.URL.replace("SL75", "SL500");
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
@@ -460,7 +398,6 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     };
     
     var loadImage = function loadImage(item) {
-        item.loadingImage = true;
         var src = item.book.imageUrl;
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
@@ -484,10 +421,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             context.drawImage(img,((1000 / 2)-(img.width/2)), ((690 / 2)-(img.height/2)), img.width, img.height);
             var save = canvas[0].toDataURL("image/jpg");
             $http.post("http://dazeysolutions.com/includes/resize.php", {
-                fileName: item.book.asin,
+                fileName: item.book.asin + ".jpg",
                 data: save
             }).success(function(data) {
-                delete item.loadingImage;
                 console.log(data.success);
             });
         };
