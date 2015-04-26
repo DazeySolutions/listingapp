@@ -387,8 +387,8 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 addOnTitle += " " + as.Author;
                 item.book.publishDate = as.PublicationDate;
                 var date = new Date();
-                item.description+="<p>"+date.toDateString();+"</p>";
-                item.description+="<p>"+item.book.isbn+"</p>";
+                item.ebayDescription+="<p>"+date.toDateString();+"</p>";
+                item.ebayDescription+="<p>"+item.book.isbn+"</p>";
                 if(as.Binding === "Hardcover"){
                     item.book.hardcover = true
                     addOnTitle += " HC";
