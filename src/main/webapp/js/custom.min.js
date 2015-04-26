@@ -219,6 +219,15 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.addListings = function addListings(){
         lodash.each($scope.rows, function(item){
             delete item.checked;
+            if(angular.isUndefinedOrNullOrEmpty(item.book.depth)){
+                item.book.depth = 1.5;
+            }
+            if(angular.isUndefinedOrNullOrEmpty(item.book.width)){
+                item.book.width = 5.5;
+            }
+            if(angular.isUndefinedOrNullOrEmpty(item.book.height)){
+                item.book.height = 8.5;
+            }
             Restangular.one("/list").post('new',item).then(function(data){
                 if(!data.status){
                     item.error = true;
