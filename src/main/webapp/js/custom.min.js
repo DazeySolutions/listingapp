@@ -220,7 +220,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         lodash.each($scope.rows, function(item){
             delete item.checked;
             Restangular.one("/list").post('new',item).then(function(data){
-                if(data.status === "true"){
+                if(!data.status){
                     item.error = true;
                 }else{
                     item.complete = true;
