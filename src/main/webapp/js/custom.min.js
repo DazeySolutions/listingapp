@@ -245,21 +245,21 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         lodash.each($scope.rows, function(currentItem){
             if(currentItem.ebayListingId === ebayId){
                 $scope.selectedItem = currentItem;
-                lodash.each($scope.storeCategoryIDs, function(cat){
-                    if(cat.value === currentItem.storeCategory){
-                        $scope.selectedStoreCategory = cat;
-                    }
-                });
-                lodash.each($scope.categories, function(cat){
-                    if(cat.value == currentItem.category){
-                        $scope.selectedCategory = cat;
-                        $scope.setCategoryInfo();
-                    }
-                });
-                if(angular.isUndefinedOrNullOrEmpty($scope.selectedItem.book.asin)){
-                    alert("Book does not have amazon information, remove before submitting.");
-                }else{
+                if(!angular.isUndefinedOrNullOrEmpty($scope.selectedItem.book.asin)){
+                    lodash.each($scope.storeCategoryIDs, function(cat){
+                        if(cat.value === currentItem.storeCategory){
+                            $scope.selectedStoreCategory = cat;
+                        }
+                    });
+                    lodash.each($scope.categories, function(cat){
+                        if(cat.value == currentItem.category){
+                            $scope.selectedCategory = cat;
+                            $scope.setCategoryInfo();
+                        }
+                    });
                     $scope.isEdit = true;
+                }else{
+                    alert("Book does not have amazon information, remove before submitting.");
                 }
             }
         })
