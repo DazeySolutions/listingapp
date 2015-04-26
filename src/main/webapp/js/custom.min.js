@@ -461,7 +461,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
             }
             item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
-            item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
+            item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16)+.01;
             if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
                 item.book.depth = "8.5"
             }else{
