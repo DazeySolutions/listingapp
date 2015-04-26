@@ -224,7 +224,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 console.log(data.response);
             });
         });
-        //$scope.init();
+        $scope.init();
     };
     
     $scope.edit = function edit(ebayId){
@@ -386,6 +386,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 item.book.author = as.Author;
                 addOnTitle += " " + as.Author;
                 item.book.publishDate = as.PublicationDate;
+                var date = new Date();
+                item.description+="<p>"+date.toDateString();+"</p>";
+                item.description+="<p>"+item.book.isbn+"</p>";
                 if(as.Binding === "Hardcover"){
                     item.book.hardcover = true
                     addOnTitle += " HC";
