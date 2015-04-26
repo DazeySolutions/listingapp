@@ -375,14 +375,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                 }
             })
             .success(function(data){
-                if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0].AttributeSets)){
+                if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0])){
                     $http.get('http://dazeysolutions.com/includes/amazonSearch.php',{
                         params:{
                             ISBN: item.book.isbn
                         }
                     })
                     .success(function(data){
-                        if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0].AttributeSets)){        
+                        if(angular.isUndefinedOrNullOrEmpty(data.payload[1][0])){        
                             alert("Unable to retrieve data for: "+item.ebayTitle+" retry later");
                         }else{
                             processSearch(data,item);
