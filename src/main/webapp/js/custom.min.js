@@ -198,9 +198,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
 			value: 319734219
 		}
 	];
-	$scope.clearStatus = function(){
-        $scope.status = [];
-	};
+	
     $scope.init =  function init(){
         var categoryArray = [];
         if($scope.loading){
@@ -218,14 +216,14 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             $scope.getItemsDetails();
         });
     };
-    $scope.status = [];
     $scope.addListings = function addListings(){
         lodash.each($scope.rows, function(item){
+            delete item.checked;
             Restangular.one("/list").post('new',item).then(function(data){
                 if(data.status === "true"){
-                    $scope.status.push({book:item.book.isbn, status:"Success"});
+                    item.error = true;
                 }else{
-                        $scope.status.push({book:item.book.isbn, status:data.response});
+                    item.complete = true;
                 }
             });
         });
