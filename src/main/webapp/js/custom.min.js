@@ -265,7 +265,7 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             }else{
                 spec.value = specific.value;
             }
-           $scope.selectedItem.nvps.push({id:null,name:specific.name,value:specific.value.name});
+           $scope.selectedItem.nvps.push(spec);
         });
         $scope.selectedItem.storeCategory = $scope.selectedStoreCategory.value;
         $scope.category = $scope.selectedCategory;
@@ -427,9 +427,22 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
                     }
                     item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
                     item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
-                    item.book.depth = as.ItemDimensions.Height;
-                    item.book.height = as.ItemDimensions.Length;
-                    item.book.width = as.ItemDimensions.Width;
+                    if(angular.isbn(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
+                        item.book.depth = "8.5"
+                    }else{
+                        item.book.depth = as.ItemDimensions.Height;
+                    }
+                    if(angular.isbn(as.ItemDimensions.Length) || as.ItemDimensions.Length == 0){
+                        item.book.height = "5.5";
+                    }else{
+                        item.book.height = as.ItemDimensions.Length;    
+                    }
+                    if(angular.isbn(as.ItemDimensions.Width) || as.ItemDimensions.Width == 0){
+                        item.book.width = "1.5";
+                    }else{
+                        item.book.width = as.ItemDimensions.Width;
+                    }
+                    
                 }
                 var imageURL = as.SmallImage.URL.replace("SL75", "SL500");
                 item.book.imageUrl = "http://dazeysolutions.com/images/"+asin+".jpg";
