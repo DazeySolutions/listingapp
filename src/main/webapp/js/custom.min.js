@@ -466,33 +466,33 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
         var end = 80;
         end = 79 - addOnTitle.length
         item.ebayTitle = item.book.title.substring(0, end) + addOnTitle;
-        if(!angular.isUndefinedOrNullOrEmpty(as.ItemDimensions)){
-            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Weight)){
-                as.ItemDimensions.Weight = extra.toString();
+        if(!angular.isUndefinedOrNullOrEmpty(as.PackageDimensions)){
+            if(angular.isUndefinedOrNullOrEmpty(as.PackageDimensions.Weight)){
+                as.PackageDimensions.Weight = extra.toString();
             }else{
-                as.ItemDimensions.Weight = parseFloat(as.ItemDimensions.Weight)+extra;
-                as.ItemDimensions.Weight = as.ItemDimensions.Weight.toString();
+                as.PackageDimensions.Weight = parseFloat(as.PackageDimensions.Weight)+extra;
+                as.PackageDimensions.Weight = as.PackageDimensions.Weight.toString();
             }
-            item.book.weightMajor = parseInt(as.ItemDimensions.Weight);
-            item.book.weightMinor = Math.ceil((parseFloat(as.ItemDimensions.Weight)*16) % 16);
+            item.book.weightMajor = parseInt(as.PackageDimensions.Weight);
+            item.book.weightMinor = Math.ceil((parseFloat(as.PackageDimensions.Weight)*16) % 16);
             while(item.book.weightMinor >= 16){
                 item.book.weightMinor -=16;
                 item.book.weightMajor += 1;
             }
-            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Height) || as.ItemDimensions.Height == 0){
+            if(angular.isUndefinedOrNullOrEmpty(as.PackageDimensions.Height) || as.PackageDimensions.Height == 0){
                 item.book.depth = "8.5"
             }else{
-                item.book.depth = as.ItemDimensions.Height;
+                item.book.depth = as.PackageDimensions.Height;
             }
-            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Length) || as.ItemDimensions.Length == 0){
+            if(angular.isUndefinedOrNullOrEmpty(as.PackageDimensions.Length) || as.PackageDimensions.Length == 0){
                 item.book.height = "5.5";
             }else{
-                item.book.height = as.ItemDimensions.Length;    
+                item.book.height = as.PackageDimensions.Length;    
             }
-            if(angular.isUndefinedOrNullOrEmpty(as.ItemDimensions.Width) || as.ItemDimensions.Width == 0){
+            if(angular.isUndefinedOrNullOrEmpty(as.PackageDimensions.Width) || as.PackageDimensions.Width == 0){
                 item.book.width = "1.5";
             }else{
-                item.book.width = as.ItemDimensions.Width;
+                item.book.width = as.PackageDimensions.Width;
             }
             
         }
