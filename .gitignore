@@ -2,7 +2,3 @@ target/
 .idea/
 node_modules/
 bower_components/
-bower.json
-package.json
-Gruntfile.js
-grunt/
