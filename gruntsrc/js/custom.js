@@ -176,6 +176,9 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
     $scope.specifics;
     $scope.selectedStoreCategory;
     $scope.loading = true;
+    $scope.started = false;
+    $scope.byfile = false;
+    
     $scope.storeCategoryIDs = [
 		{
 			name:"Other",
@@ -198,8 +201,44 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
 			value: 319734219
 		}
 	];
+	$scope.switchToCSV = function switchToCSV(){
+        $scope.byfile = !$scope.byfile;  
+	};
 	
-    $scope.init =  function init(){
+	$scope.startFile = function startFile(){
+        $scope.started = true;
+        $scope.loading = true;
+        var reader = new FileReader();
+        reader.onload = function(onLoadEvent){
+            $scope.fileContents = onLoadEvent.target.result;
+            $scope.fileContents = csvToJSON($scope.fileContents);
+            
+            $scope.initByFile();
+        }
+        
+        reader.readAsText(angular.element(".csvfile")[0].files[0]);
+	};
+	
+	var csvToJSON = function csvToJSON(csv){
+        var lines=csv.split("\n");
+        var result = [];
+        var headers=lines[0].split("\",\"");
+        for(var k=0; k<headers.length; k++ ){
+            headers[k] = replaceAll(headers[k],"\"","");
+        }
+        for(var i=1;i<lines.length;i++){
+            var obj = {};
+            var currentline=lines[i].split(",");
+            for(var j=0;j<headers.length;j++){
+                obj[headers[j]] = replaceAll(currentline[j],"\"","");
+            }
+            
+            result.push(obj);
+        }
+        return result;
+	};
+	var startPos = 0;
+	$scope.initByFile = function initByFile(){
         var categoryArray = [];
         if($scope.loading){
             lodash.forEach(Cats.model.payload, function(category) {
@@ -207,8 +246,37 @@ ngListApp.controller('UnsoldListController', ['$scope', '$http', '$stateParams',
             });
             $scope.categories = categoryArray;
         }
-        $scope.rows = undefined;
+        $scope.started = true;
         $scope.loading = true;
+        $scope.rows = undefined;
+        
+        var requestData = [];
+        for(var i=startPos; (i<$scope.fileContents.length && i<startPos+10); i++){
+            var obj = {
+                id: $scope.fileContents[i]["Item ID"]
+            };
+            requestData.push(obj);
+        }
+        Restangular.one('ebay').post('list',requestData).then(function(res){
+            $scope.rows = res.listings;
+            $scope.pages = parseInt(($scope.fileContents.length-startPos)/10)+($scope.fileContents.length-startPos)%10;
+            startPos += 10;
+            $scope.tableParams.reload();
+            $scope.getItemsDetails();
+        });
+	};
+	
+    $scope.initAuto =  function initAuto(){
+        var categoryArray = [];
+        if($scope.loading){
+            lodash.forEach(Cats.model.payload, function(category) {
+                categoryArray.push(category);
+            });
+            $scope.categories = categoryArray;
+        }
+        $scope.started = true;
+        $scope.loading = true;
+        $scope.rows = undefined;
         Restangular.one('ebay/id/'+page).get().then(function(res){
             $scope.rows = res.listings;
             $scope.pages = res.numPages;

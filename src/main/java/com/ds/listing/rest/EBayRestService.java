@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,6 +43,18 @@ public class EBayRestService {
         return returnData;
    }
 
+    @POST
+    @Path("/list")
+    public UnsoldListData GetItems(final ArrayList<ExportData> items){
+        UnsoldListData returnData = new UnsoldListData();
+        eBayListingService eBayService = new eBayListingService(auth.getApiContext());
+        ArrayList<String> ids = new ArrayList<>();
+        for(ExportData item : items){
+            ids.add(item.getId());
+        }
+        eBayService.getItems(ids, returnData);
+        return returnData;
+    }
     @GET
     @Path("/categories")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,5 +70,15 @@ public class EBayRestService {
 //       return eBayService.getItem(id);
 //   }
   
+}
+
+class ExportData {
+    private String id;
+    public String getId(){
+        return this.id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
 }
 

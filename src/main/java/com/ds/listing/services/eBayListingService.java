@@ -74,6 +74,33 @@ public class eBayListingService {
         return null;
     }
 
+   public void getItems(ArrayList<String> ids, UnsoldListData data) {
+        ArrayList<Listing> retValues = new ArrayList<>();
+        try {
+            for(String item : ids){
+                GetItemCall itemApi = new GetItemCall(apiContext);
+                itemApi.addDetailLevel(DetailLevelCodeType.RETURN_ALL);
+                ItemType fullItem = itemApi.getItem(item);
+                try{
+                    retValues.add(populateListing(fullItem));
+                }catch(Exception ignored){
+                    ignored.printStackTrace();
+                    System.out.println("unable to add record: " + ignored.getMessage());
+                }
+            }
+            data.setNumPages(0);
+            data.setNumResults(0);
+            data.setListings(retValues);
+            System.out.println("Results #" + retValues.size());
+
+        } catch (Exception ignored) {
+            System.out.println("unknown error");
+        }
+
+
+    }
+
+
     public void getCurrentListings(int page, int resultPerPage, UnsoldListData data) {
         ArrayList<Listing> retValues = new ArrayList<>();
         try {

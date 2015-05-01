@@ -1,4 +1,24 @@
-<div classs="row">
+<div class="row" ng-if="!started">
+    <h4 class="col-xs-12">Re-List unsold listings</h4>
+    <div class="row">
+        <div class="col-xs-12" ng-if="!byfile">
+            <button class="btn btn-success col-xs-4 col-xs-offset-1" ng-click="initAuto();">Automatic</button>
+            <button class="btn btn-primary col-xs-4 col-xs-offset-2" ng-click="switchToCSV();">Upload File</button>
+        </div>
+        <div class="col-xs-12" ng-if="byfile">
+            <div class="col-xs-8 col-xs-offset-2 well">
+                <span class="col-xs-12"><i class="fa fa-3x fa-fw fa-upload"></i></span>
+                <div class="form-group col-xs-8 col-xs-offset-2">
+                    <label for="file">Or Select File</label>
+                    <input class="form-control csvfile" type="file">
+                </div>
+                <button class="btn btn-primary" ng-click="startFile()">Start</button>
+            </div>
+            <button class="btn btn-warning col-xs-4 col-xs-offset-4" ng-click="switchToCSV();">Cancel</button>
+        </div>
+    </div>
+</div>
+<div classs="row" ng-if="started">
     <div ng-if="loading" id="load" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.2);z-index: 2000;">
         <i class="fa fa-spinner fa-5x fa-spin" style="   color: white; position: absolute;    top: 50%;    left: 50%;"></i>
       
@@ -72,7 +92,8 @@
     <div class="row">
         <div class="col-xs-12 col-md-6">
             <a class="btn btn-success text-center" ng-click="addListings()">Submit</a>
-            <a class="btn btn-info text-center" ng-click="nextPage()">Next</a>
+            <a class="btn btn-info text-center" ng-if="!byfile" ng-click="nextPage()">Next</a>
+            <a class="btn btn-info text-center" ng-if="byfile" ng-click="nextPage()">Next</a>
         </div>
         <div class="col-xs-12 col-md-6">
             <span class="text-center">Pages Left: {{pages}}</span>
