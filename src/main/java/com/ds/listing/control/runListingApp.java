@@ -33,6 +33,7 @@ public class runListingApp {
 
     @Schedule(second = "*/15", minute = "*", hour = "*")
     public void checkForNewListings() {
+            try{
         eBayListingService listingService = new eBayListingService(auth.getApiContext());
 //        listingService.getCurrentListings();
         List<Listing> listings = findListings();
@@ -42,6 +43,8 @@ public class runListingApp {
                 em.persist(item);
             }
         }
+            } catch(Exception e){
+            }
      }
     private List<Listing> findListings(){
         Query query = em.createQuery("Select l from Listing l where l.status = false");

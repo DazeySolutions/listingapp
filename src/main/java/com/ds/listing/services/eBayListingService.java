@@ -237,25 +237,19 @@ public class eBayListingService {
 
         item.setCurrency(CurrencyCodeType.USD);
 
-        System.out.println("A");
         setPrice(item, listing.getEbayPrice());
         item.setQuantity(listing.getQuantity());
         
-            System.out.println("B");
-
         item.setListingDuration(ListingDurationCodeType.DAYS_30.value());
 
-            System.out.println("C");
         item.setPostalCode("40065");
         item.setLocation("Shelbyville");
         item.setCountry(CountryCodeType.US);
         
-            System.out.println("D");
         //Generate Category Type
         CategoryType cat = new CategoryType();
         cat.setCategoryID(listing.getCategory());
 
-            System.out.println("E");
         item.setPrimaryCategory(cat);
 
         item.setConditionID(listing.getEbayCondition());
@@ -267,6 +261,7 @@ public class eBayListingService {
         design.setThemeID(223353102);
         item.setListingDesigner(design);
 
+       
         setItemSpecifics(item, listing);
         setStoreFront(item, listing.getStoreCategory());
         setPicture(item, listing);
@@ -287,7 +282,9 @@ public class eBayListingService {
         item.setDispatchTimeMax(0);
 
         setShippingDetails(item, listing);
+        System.out.println("t");
         setReturnPolicy(item);
+        System.out.println("t");
         return item;
     }
 
@@ -330,30 +327,46 @@ public class eBayListingService {
         csrt.setWeightMinor(weightMinor);
         csrt.setShippingPackage(ShippingPackageCodeType.PACKAGE_THICK_ENVELOPE);
         csrt.setShippingIrregular(true);
+        
         sdt.setCalculatedShippingRate(csrt);
         sdt.setGlobalShipping(true);
+        
         InternationalShippingServiceOptionsType ss = new InternationalShippingServiceOptionsType();
         ss.setShippingServicePriority(1);
         ss.setShippingService("USPSFirstClassMailInternational");
         String[] values = new String[1];
         values[0] = "WorldWide";
         ss.setShipToLocation(values);
-        sdt.setInternationalShippingServiceOption(0, ss);
+        InternationalShippingServiceOptionsType[] issot = new InternationalShippingServiceOptionsType[1];
+        issot[0] = ss;
+        sdt.setInternationalShippingServiceOption(issot);
         sdt.setShippingType(ShippingTypeCodeType.FLAT_DOMESTIC_CALCULATED_INTERNATIONAL);
+        
         ShippingServiceOptionsType[] sso = new ShippingServiceOptionsType[2];
+        sso[0] = new ShippingServiceOptionsType(); 
+        sso[1] = new ShippingServiceOptionsType(); 
         sso[0].setShippingServicePriority(1);
         sso[0].setShippingService("USPSMedia");
         sso[1].setShippingServicePriority(2);
         sso[1].setShippingService("USPSPriorityFlatRateEnvelope");
+        
+        System.out.println("te");
         AmountType samt = new AmountType();
         samt.setCurrencyID(CurrencyCodeType.USD);
         samt.setValue(0.00);
+        
+        System.out.println("te");
         sso[0].setShippingServiceCost(samt);
+        
+        System.out.println("te");
         AmountType samt2 = new AmountType();
         samt2.setCurrencyID(CurrencyCodeType.USD);
         samt2.setValue(4.95);
+        sso[1].setShippingServiceCost(samt2);
+
         sdt.setShippingServiceOptions(sso);
 
+        System.out.println("te");
         item.setShippingDetails(sdt);
 
     }
@@ -373,10 +386,11 @@ public class eBayListingService {
     private void setPicture(ItemType item, Listing listing) {
         PictureDetailsType pdt = new PictureDetailsType();
         pdt.setGalleryType(GalleryTypeCodeType.GALLERY);
-        String[] imageURLS = new String[12];
+        String[] imageURLS = new String[10];
 
-        for (int i = 0; i < 12; i++) {
-            imageURLS[i] = listing.getBook().getImageUrl();
+        for (int i = 0; i < 10; i++) {
+            imageURLS[i] = new String();
+            imageURLS[i] = "http://dazeysolutions.com/images/"+listing.getBook().getAsin()+"-"+i+".jpg";
         }
         pdt.setPictureURL(imageURLS);
         item.setPictureDetails(pdt);
@@ -389,7 +403,9 @@ public class eBayListingService {
         for (NameValuePair pair : listing.getNvps()) {
             NameValueListType itemSpecific = new NameValueListType();
             itemSpecific.setName(pair.getName());
-            itemSpecific.setValue(new String[]{pair.getValue()});
+            String[] values = new String[1];
+            values[0] = pair.getValue();
+            itemSpecific.setValue(values);
             itemSpecificsArray.add(itemSpecific);
         }
 
